@@ -93,7 +93,6 @@ vnPatch(){
     done
 }
 
-
 ##################  run   ########################
 pwd
 while getopts m: args

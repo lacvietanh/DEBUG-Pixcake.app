@@ -16,8 +16,8 @@ n以便我们尽快迭代解决您的问题;n cho chúng tôi càng sớm càng 
 眼部色素情况判断效果生效程度;Màu mắt xác định hiệu ứng của nhập vào lực lượng mức độ
 滑动滑竿时AI会自动根据纹路;Trượt trượt khi AI sẽ tự động theo đường
 会自动识别纯色背景并祛除瑕疵;Tự động xác định màu Nền và thoát khỏi nhược điểm
-年龄数据加载失败或识别不出来;Tuổi dữ liệu đã thất bại để tải; hay không nhận ra
-请先在左侧加选要应用的图片哦;Xin vui lòng; ở phía bên trái của Thêm được lựa chọn để áp dụng những hình ảnh Oh
+年龄数据加载失败或识别不出来;Tuổi dữ liệu đã thất bại để tải hay không nhận ra
+请先在左侧加选要应用的图片哦;Xin vui lòng ở phía bên trái của Thêm được lựa chọn để áp dụng những hình ảnh Oh
 片肤色情况判断效果是否生效;Tấm màu trường hợp để xác định xem hiệu quả của sự có hiệu lực
 适用于不想过多改变原图色调;Áp dụng để không muốn quá nhiều để thay đổi các nguyên tone
 片目前AI会自动屏蔽效果噢;Bây giờ AI sẽ tự động che chắn có hiệu lực Oh
@@ -122,7 +122,7 @@ HSL分组;KHỞI gói
 自动识别;Nhận Dạng Tự Động
 纯色背景;Màu Nền
 背景增强;Nền tăng cường
-对比度等;Ngược lại; etc.
+对比度等;Ngược lại, etc.
 高光立体;Ánh sáng ba chiều
 阴影立体;Tối của quan điểm
 眼妆增强;Trang điểm mắt tăng cường
@@ -182,7 +182,7 @@ AI塑形;AI tạo hình
 祛瑕疵;Bỏ nhược điểm
 无效果;Không hiệu quả
 摩尔纹;Gợn sóng
-波纹等;Sóng; etc.
+波纹等;Sóng, etc.
 的功能;Tính năng
 伪素颜;Giả trang điểm
 锦鲤妆;Hồ trang điểm
@@ -243,7 +243,7 @@ AI塑形;AI tạo hình
 脸宽;Mặt rộng
 下巴;Cằm
 大小;Kích thước
-眼高;Mắt; chiều cao
+眼高;Mắt chiều cao
 眼宽;Mắt rộng
 眼距;Mắt khoảng cách
 倾斜;Nghiêng
