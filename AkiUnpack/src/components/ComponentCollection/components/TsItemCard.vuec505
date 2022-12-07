@@ -1,0 +1,56 @@
+
+import { IObject } from '../types/types'
+import { Divider, Tooltip } from 'element-ui'
+
+export default {
+    components: {
+        'el-divider': Divider,
+        'el-tooltip': Tooltip
+    },
+    props: {
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        line: {
+            type: Boolean,
+            default: false
+        },
+        hiddenLabel: {
+            type: Boolean,
+            default: false
+        },
+        data: {
+            type: Object,
+            default: (): IObject => ({})
+        },
+        title: {
+            type: String,
+            default: ''
+        },
+        name: {
+            type: String,
+            default: ''
+        },
+        precise: {
+            type: Boolean,
+            default: false
+        },
+        beta: {
+            type: Boolean,
+            default: false
+        },
+        newIcon: {
+            type: Boolean,
+            default: false
+        },
+        value: {
+            type: Number,
+            default: 0
+        },
+        size: {
+            type: String,
+            default: 'default'
+        }
+    }
+}

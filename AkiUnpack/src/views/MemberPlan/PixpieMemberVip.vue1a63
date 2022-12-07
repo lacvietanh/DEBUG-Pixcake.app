@@ -1,0 +1,119 @@
+
+
+// 注意此处是从外部注入进去的
+//@ts-ignore
+const ipcRenderer = window.$ipcRenderer
+import { debounce } from 'lodash'
+import Vue from 'vue'
+import { CLIENT_NAME_EN } from '@/universal/types/config'
+
+interface VipItemParamItf {
+    name: string
+    style: number
+    isCustom: boolean
+}
+
+export default Vue.extend({
+    name: 'MemberVip',
+    data() {
+        return {
+            vipPlanList: [{
+                name: '商务合作',
+                style: 4,
+                isCustom: true
+            }],
+            CLIENT_NAME_EN: CLIENT_NAME_EN
+        }
+    },
+    computed: {
+        vipPlanResMap() {
+            let map = new Map()
+            let vipPlanList = this.vipPlanList
+            vipPlanList.forEach(item => {
+                let bg = null
+                let btnContent = null
+                let textColor = null
+                let totalPriceColor = null
+                let tipColor = null
+                let isEnterprice = false
+                let unitPrice = null
+                let isCustom = false
+
+                let btnImage = null
+                let btnShadow = null
+                let recommand = this.$getIconPath('member_label_recommend@3x.png')
+                switch (item.style) {
+                    case 4: {
+                        bg = this.$getIconPath('member_card_enterprise@3x.png')
+                        isEnterprice = true
+                        btnContent = '联系商务'
+                        textColor = '#AA7801'
+                        btnImage = 'linear-gradient(-53deg, #AF6C0A 0%, #FFBC46 100%)'
+                        btnShadow = '0px 5px 12px 0px rgba(149,96,2,0.24)'
+                        break
+                    }
+                }
+                map.set(item.style, {
+                    bg: bg,
+                    btnContent: btnContent,
+                    textColor: textColor,
+                    totalPriceColor: totalPriceColor,
+                    tipColor: tipColor,
+                    unitPrice: unitPrice,
+                    isEnterprice: isEnterprice,
+                    btnImage: btnImage,
+                    btnShadow: btnShadow,
+                    recommand: recommand,
+                    isCustom: isCustom
+                })
+            })
+            return map
+        }
+
+    },
+    methods: {
+        onCloseClick() {
+            ipcRenderer.send('custom-close', null)
+        },
+        onMousEnter(item: VipItemParamItf) {
+            // this.$tsStat.event('cake_member_price', {
+            //     cake_operate: `select_${item.id}_${item.style === 1 ? 'free' : item.style === 2 ? 'basis' : item.style === 3 ? 'profession' : item.style === 4 ? 'enterprise' : 'commission'}`
+            // })
+        },
+        handleScroll: debounce(function (this: Vue) {
+            this.$tsStat.event('cake_member_price', {
+                cake_operate: 'slide'
+            })
+        }, 1000),
+        getVipResItem(item: VipItemParamItf) {
+            return this.vipPlanResMap.get(item.style)
+        },
+        getTitleStyle(vipItem: VipItemParamItf) {
+            if (this.getVipResItem(vipItem).isCustom) {
+                return {
+                    color: this.getVipResItem(vipItem).textColor,
+                    backgroundImage: ' linear-gradient(135deg, #FFEECF 0%, #EEC05E 100%)',
+                    boxShadow: ' 0px 6px 40px 0px rgba(36,36,36,1)',
+                    paddingLeft: '26px',
+                    paddingRight: '12px',
+                    borderRadius: '6px',
+                    fontSize: '14px',
+                    height: '31px',
+                    position: 'relative',
+                    left: '-11px'
+                }
+            } else {
+                return {
+                    color: this.getVipResItem(vipItem).textColor,
+                    padding: '6px 12px',
+                    marginTop: '8px'
+                }
+            }
+        },
+        onBtnClick(item: VipItemParamItf) {
+
+        }
+    },
+    mounted() {
+    }
+})

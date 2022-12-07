@@ -1,0 +1,5 @@
+var render = function render(){var _vm=this,_c=_vm._self._c;return _c('el-dialog',{attrs:{"center":"","top":"28vh","width":"284px","append-to-body":"","visible":_vm.visible,"custom-class":"common-dialog user-package"},on:{"update:visible":function($event){_vm.visible=$event}}},[_c('div',{staticClass:"dialog-container"},[_c('img',{staticClass:"img",attrs:{"src":_vm.LOGO_ABOUT_US,"alt":"logo"}}),_c('span',{staticClass:"tip"},[_vm._v("版本"+_vm._s(_vm.version))]),_c('span',{staticClass:"tip"},[_vm._v("Copyright © 2022 "+_vm._s(_vm.clientName))]),(!_vm.$IS_CLIENT_PIX_PIE)?_c('span',{staticClass:"tip spanflex"},[_c('el-link',{on:{"click":function($event){return _vm.checkProtocol(_vm.privacyProtocol)}}},[_vm._v(" 隐私政策 ")]),_c('el-link',{on:{"click":function($event){return _vm.checkProtocol(_vm.userProtocol)}}},[_vm._v(" 商家使用协议 ")])],1):_vm._e(),(!_vm.IS_BAN_UPDATE)?[_c('el-button',{staticClass:"findUpdateBtn",attrs:{"loading":_vm.checkLoading},on:{"click":_vm.handleCheckUpdate}},[_vm._v(" 检测更新 ")])]:_vm._e()],2)])
+}
+var staticRenderFns = []
+
+export { render, staticRenderFns }

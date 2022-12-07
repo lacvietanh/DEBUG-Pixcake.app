@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./TSParamStepControl.vue?vue&type=template&id=528a5392&scoped=true&"
+import script from "./TSParamStepControl.vue?vue&type=script&lang=js&"
+export * from "./TSParamStepControl.vue?vue&type=script&lang=js&"
+import style0 from "./TSParamStepControl.vue?vue&type=style&index=0&id=528a5392&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "528a5392",
+  null
+  
+)
+
+export default component.exports

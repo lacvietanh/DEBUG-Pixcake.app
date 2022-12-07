@@ -1,0 +1,315 @@
+
+import ipcRenderer from '@/qt-ipc/Ipc-renderer'
+
+import Vue, {
+    ref,
+    getCurrentInstance,
+    computed,
+    onMounted, nextTick, onUnmounted, watch, Ref
+} from 'vue'
+import store from '@/store'
+
+import { fetchActivityInfo } from '@/api/commonApi'
+
+import { debounce } from 'lodash'
+import {IS_CLIENT_PIX_PIE, IS_CLIENT_PixCake_EXPO} from '@/universal/types/config'
+import { LOGO_RELATIVE_PATH } from '@/constants/config'
+
+import { TSImageIOManager } from '@/utils/tsImageIOManager'
+import ThumbnailModel from '@/model/ThumbnailModel'
+import UserModel from '@/universal/model/UserModel'
+
+import pointsMixin from '@/mixins/pointsMixin'
+import toast from '@/mixins/toast'
+
+import { Tooltip, Divider, Button } from 'element-ui'
+// @ts-ignore
+import UserInfoPopover from './UserInfoPopover'
+// @ts-ignore
+import HelperMenu from './HelperMenu'
+// @ts-ignore
+import GpuSwitchDialog from './GpuSwitchDialog'
+// @ts-ignore
+import ReceiveFreeDialog from './ReceiveFreeDialog'
+// @ts-ignore
+import PayTipPopover from './PayTipPopover'
+// @ts-ignore
+import DebugPopover from './DebugPopover'
+// @ts-ignore
+import PaySuccessDialog from './PaySuccessDialog'
+
+import refine, { RefineListenerEvent } from '../../../qt-ipc/business/refine'
+import MenuModel from '../../../model/MenuModel'
+import useUserPointsRepositories from '../../../composables/points/useUserPointsRepositories'
+import useExportPointsRepositories from '../../../composables/points/useExportPointsRepositories'
+import eventbus from "@/utils/eventbus"
+
+// @ts-ignore
+export default Vue.extend({
+    name: 'NavEntryGroup',
+    mixins: [pointsMixin, toast],
+    components: {
+        'el-tooltip': Tooltip,
+        'el-divider': Divider,
+        'el-button': Button,
+        UserInfoPopover,
+        HelperMenu,
+        GpuSwitchDialog,
+        ReceiveFreeDialog,
+        PayTipPopover,
+        DebugPopover,
+        PaySuccessDialog
+    },
+    props: {
+        navList: {
+            type: Array,
+            default: () => []
+        },
+        darkVip: {
+            type: Boolean,
+            default: false
+        }
+    },
+    setup(props) {
+        const that = getCurrentInstance()?.proxy as Vue
+
+        // @ts-ignore
+        const routeNameComp = computed(() => that.$route.name)
+        const isVip = computed(() => store.getters.isVip)
+        const user = computed(() => store.getters.user)
+
+        const showGpuSwitchSetting = ref(false)
+        const gpuSettingActiveTab = ref('default')
+        if (props?.navList.includes('set')) {
+            const showPhotoshopFunc = () => {
+                gpuSettingActiveTab.value = 'export'
+                showGpuSwitchSetting.value = true
+            }
+            eventbus.$on('showPhotoshopPathSet', showPhotoshopFunc)
+            onUnmounted(() => {
+                eventbus.$off('showPhotoshopPathSet', showPhotoshopFunc)
+            })
+        }
+
+        // 退出登录
+        const logout = debounce(function () {
+            store.dispatch('ExitLogin')
+            store.commit('clearExportTask')
+            that.$router.replace({ name: 'Login' })
+            that.$tsStat.logout()
+        }, 200)
+
+        // 发送埋点
+        const sendUserInfoPoint = () => {
+            setShowPayTip()
+
+            const defaultAction: { [key: string]: string } = {
+                'photoFinishing': 'init_refine_non_member',
+                'exportList': 'init_export_list_non_member',
+                'batchRetouch': 'init_gallery_non_member',
+                'index': 'init_workbench_non_member'
+            }
+
+            const vipActions: { [key: string]: string } = {
+                'photoFinishing': 'init_refine_member',
+                'exportList': 'init_export_list_member',
+                'batchRetouch': 'init_gallery_member',
+                'index': 'init_workbench_member'
+            }
+
+            const cakeOperate = isVip.value === 1
+                // @ts-ignore
+                ? vipActions[routeNameComp.value]
+                // @ts-ignore
+                : defaultAction[routeNameComp.value]
+
+            if (cakeOperate) {
+                that.$tsStat.event('cake_avatar', {
+                    cake_operate: cakeOperate
+                })
+            }
+        }
+
+        const getIconDisabled = computed(() => store.getters.getIconDisabled)
+        const activeProjectId = computed(() => store.getters['project/activeProjectId'])
+
+        // 进入精修页面
+        const routerPushPhotoFinishing = () => {
+            let queue = TSImageIOManager.shareInstance().imageViewModelQueue
+            if (queue == null || queue.size === 0) {
+                that?.$router.push({
+                    path: 'photoFinishing',
+                    query: {}
+                })
+                return
+            }
+            let arrayObj = Array.from(queue)
+            arrayObj = arrayObj.sort(function (a, b) {
+                // @ts-ignore
+                return a[1].imgIndex - b[1].imgIndex
+            })
+            let thumbIt = null
+            for (const queueElement of arrayObj) {
+                // @ts-ignore
+                if (queueElement[1].isImportantSelected) {
+                    // @ts-ignore
+                    thumbIt = queueElement[1]
+                    break
+                }
+            }
+            if (thumbIt == null) {
+                // @ts-ignore
+                thumbIt = arrayObj[0][1]
+            }
+
+            let thumbData = new ThumbnailModel()
+            thumbData.userId = that.$store.state.user.userId
+            thumbData.projectId = activeProjectId.value
+            thumbData.originalImagePath = thumbIt.imgPath
+
+            store.commit('thumbnail/_SetActiveThumbnail', {
+                imgPath: thumbIt.imgPath,
+                imgIndex: thumbIt.imgIndex
+            })
+
+            that.$router.push({
+                path: 'photoFinishing',
+                query: {}
+            })
+        }
+        // 页面跳转
+        const onRouterPush = debounce(function (name: string): void {
+            if (name === routeNameComp.value) {
+                return
+            }
+            // TSImageIOManager.shareInstance().clearImageIOQueue()
+            if (name === 'photoFinishing') {
+                routerPushPhotoFinishing()
+            } else {
+                if (getIconDisabled.value) {
+                    return
+                }
+                that?.$router.push({ name, query: { index: that.$route.query.index } })
+            }
+        }, 300) as Function
+
+
+        const { PointInitExportTable } = useExportPointsRepositories()
+
+        const handleGoexportlist = () => {
+            if (getIconDisabled.value) {
+                return
+            }
+            //关闭全局弹窗
+            // @ts-ignore
+            that?.tsNotifyClose()
+            PointInitExportTable(isVip.value)
+            onRouterPush('exportList')
+        }
+        // 免费领次数
+        const onReceiveFreeClick = () => {
+            ipcRenderer.send('open-receive-free-window', null)
+        }
+
+        const showCompleteInfo = ref(false)
+        UserModel.getInstance().getShowCompleteInfo().then(res => {
+            showCompleteInfo.value = res
+        })
+        // 会员充值
+        const showPayTip = ref(false)
+        const setShowPayTip = () => {
+            let user_info = user.value
+            let onVipPlanClick = store.state.config.configModel.onVipPlanClick
+
+            if (!user_info || !user_info.isVip) {
+                showPayTip.value = false
+                return
+            }
+
+            nextTick(() => {
+                showPayTip.value = user_info.leftNum < 50 && !onVipPlanClick
+            })
+        }
+        const onShowVipPlanClick = () => {
+            // 此处是通知主进程打开会员计划的对话框
+            // @ts-ignore
+            that?.PointMemberPriceClick()
+            ipcRenderer.send('open-member-plan-window', null)
+            // 以下注释代码待主进程处理完毕后，可删除
+            store.commit('config/updateConfig', { onVipPlanClick: true })
+            setShowPayTip()
+        }
+        // 更新user中的showCompleteInfo
+        const onSignalUpdateShowCompleteInfo = async () => {
+            await UserModel.getInstance().setShowCompleteInfo(false)
+            showCompleteInfo.value = false
+            refine.removeListener(RefineListenerEvent.SignalUpdateShowCompleteInfo)
+        }
+
+        onMounted(async () => {
+            refine.addListener(RefineListenerEvent.SignalUpdateShowCompleteInfo, onSignalUpdateShowCompleteInfo)
+        })
+
+        onUnmounted(() => {
+            showPayTip.value = false
+            refine.removeListener(RefineListenerEvent.SignalUpdateShowCompleteInfo)
+        })
+
+        watch(() => props?.navList, () => {
+            if (showPayTip.value) {
+                showPayTip.value = false
+
+                nextTick(() => {
+                    setTimeout(() => {
+                        showPayTip.value = true
+                    }, 300)
+                })
+            }
+        })
+
+        const { PointNavMenuClick } = useUserPointsRepositories()
+        const navMenus: Ref<MenuModel[]> = computed(() => (store.getters as any).navMenus)
+        const onClickNavMenu = debounce((menuModel: MenuModel) => {
+            if (!menuModel.url) {
+                that.tsNotify('页面不存在，请检查后再试')
+                return
+            }
+            menuModel.openLink()
+            PointNavMenuClick(menuModel.key)
+        }, 300)
+
+        return {
+            IS_CLIENT_PixCake_EXPO,
+            IS_CLIENT_PIX_PIE,
+            LOGO_RELATIVE_PATH,
+            routeNameComp,
+            isDebugEnv: computed(() => store.getters['config/isDebugEnv']),
+            showPaySuccess: computed(() => store.state.order.showPaySuccess),
+
+            // 用户
+            isVip,
+            user,
+            logout,
+            sendUserInfoPoint,
+            setShowPayTip,
+
+            // 导出
+            exportNumber: computed(() => store.state.export.exportNumber),
+            getIconDisabled,
+            handleGoexportlist,
+
+            // 设置
+            showGpuSwitchSetting,
+            onReceiveFreeClick,
+            showCompleteInfo,
+
+            // 免费领次数
+            showPayTip,
+            onShowVipPlanClick,
+
+            navMenus,
+            onClickNavMenu,
+            gpuSettingActiveTab
+        }
+    }
+})

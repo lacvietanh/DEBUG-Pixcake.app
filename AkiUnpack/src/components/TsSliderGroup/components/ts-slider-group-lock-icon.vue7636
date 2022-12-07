@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./ts-slider-group-lock-icon.vue?vue&type=template&id=6042517e&scoped=true&"
+import script from "./ts-slider-group-lock-icon.vue?vue&type=script&lang=js&"
+export * from "./ts-slider-group-lock-icon.vue?vue&type=script&lang=js&"
+import style0 from "./ts-slider-group-lock-icon.vue?vue&type=style&index=0&id=6042517e&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "6042517e",
+  null
+  
+)
+
+export default component.exports

@@ -1,0 +1,5 @@
+var render = function render(){var _vm=this,_c=_vm._self._c;return _c('div',{staticClass:"nav global__top-nav"},[_c('div',{staticClass:"left-func-container"},[(_vm.showReturnBtn)?[_c('el-button',{staticClass:"return-home-btn",attrs:{"size":"mini"},on:{"click":_vm.exportListBack}},[_c('i',{staticClass:"el-icon-arrow-left return-icon"}),_c('span',{staticClass:"label"},[_vm._v("返回")])])]:[_c('div',{staticClass:"home-logo",on:{"dblclick":_vm.onLogoClick}},[(_vm.TEXT_LOGO_RELATIVE_PATH)?_c('img',{attrs:{"src":_vm.TEXT_LOGO_RELATIVE_PATH,"alt":"logo"}}):_vm._e()])]],2),_c('div',{staticClass:"right-func"},[(['exportList'].includes(_vm.routeName))?[_c('nav-entry-group',{attrs:{"nav-list":['debug', 'navMenus', 'vip', 'userinfo', 'divider', 'help', 'set']}})]:[_c('nav-entry-group',{ref:"navEntryGroup",attrs:{"nav-list":['debug', 'navMenus', 'gift', 'free', 'vip', 'export', 'userinfo', 'divider', 'help', 'set']}})]],2)])
+}
+var staticRenderFns = []
+
+export { render, staticRenderFns }

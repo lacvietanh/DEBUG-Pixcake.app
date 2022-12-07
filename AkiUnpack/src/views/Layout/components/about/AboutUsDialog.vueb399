@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./AboutUsDialog.vue?vue&type=template&id=de4bcfb8&scoped=true&"
+import script from "./AboutUsDialog.vue?vue&type=script&lang=ts&"
+export * from "./AboutUsDialog.vue?vue&type=script&lang=ts&"
+import style0 from "./AboutUsDialog.vue?vue&type=style&index=0&id=de4bcfb8&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "de4bcfb8",
+  null
+  
+)
+
+export default component.exports

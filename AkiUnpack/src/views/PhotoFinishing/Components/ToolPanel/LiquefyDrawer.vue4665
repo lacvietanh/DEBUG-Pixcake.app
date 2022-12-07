@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./LiquefyDrawer.vue?vue&type=template&id=24bbd71e&scoped=true&"
+import script from "./LiquefyDrawer.vue?vue&type=script&setup=true&lang=ts&"
+export * from "./LiquefyDrawer.vue?vue&type=script&setup=true&lang=ts&"
+import style0 from "./LiquefyDrawer.vue?vue&type=style&index=0&id=24bbd71e&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "24bbd71e",
+  null
+  
+)
+
+export default component.exports

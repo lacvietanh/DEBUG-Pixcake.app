@@ -1,0 +1,30 @@
+
+import Vue, { Ref, computed, onMounted, onUnmounted, getCurrentInstance } from 'vue'
+
+import useRechargeRepositories from '../composables/useRechargeRepositories'
+import presetManager from '@/mixins/presetManager';
+import toast from '@/mixins/toast'
+import GlobalProcessTransport from '../components/GloablProcessTransport'
+
+export default {
+    name: 'UserLayout',
+    components: {
+        GlobalProcessTransport
+    },
+    mixins: [presetManager, toast],
+    setup(props: any): { KEEP_ALIVE_PAGE: string[], routeName: Ref<string> } {
+        // 会员充值提示
+        const { addRechargeEventListener, removeRechargeEventListener, checkMigrate } = useRechargeRepositories()
+        onMounted(addRechargeEventListener)
+        onUnmounted(removeRechargeEventListener)
+
+        const _that = getCurrentInstance()?.proxy as Vue
+
+        const routeName = computed(() => _that?.$route?.name)
+
+        return {
+            routeName,
+            KEEP_ALIVE_PAGE: []
+        }
+    }
+}

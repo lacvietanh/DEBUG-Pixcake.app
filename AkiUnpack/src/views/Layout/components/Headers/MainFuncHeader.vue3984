@@ -1,0 +1,82 @@
+
+import Vue, {
+    getCurrentInstance,
+    onMounted,
+    computed,
+    Ref,
+    SetupContext, ref
+} from 'vue'
+
+import { CLIENT_NAME } from '@/universal/types/config'
+import { LOGO_RELATIVE_PATH, TEXT_LOGO_RELATIVE_PATH } from '@/constants/config'
+
+import toast from '@/mixins/toast'
+import button from '@/mixins/button'
+
+import pointsMixin from '@/mixins/pointsMixin'
+
+import NavEntryGroup from '@/views/Layout/components/NavEntryGroup'
+import {ShareObjectModel} from "../../../../universal/model/ShareObjectModel/ShareObjectModel";
+
+interface ISetup {
+    TEXT_LOGO_RELATIVE_PATH,
+    LOGO_RELATIVE_PATH,
+    clientName: string,
+    showReturnBtn: Ref<boolean>,
+    exportListBack: () => void,
+    onLogoClick:() => void,
+    routerName: Ref<string>
+}
+
+export default {
+    name: 'MainFuncHeader',
+    mixins: [toast, button, pointsMixin],
+    components: {
+        NavEntryGroup
+    },
+
+    setup(props: {}, { refs }: SetupContext): ISetup {
+        const _that = getCurrentInstance()?.proxy as Vue
+        const routerName: Ref<string> = computed(() => _that?.$route.name as string)
+        const clickTime = ref(0)
+
+        const onLogoClick = () => {
+            clickTime.value++
+            if (clickTime.value > 3) {
+                ShareObjectModel.instance().openDevTool()
+            }
+        }
+
+        const exportListBack = () => {
+            if (!['photoFinishing'].includes(routerName.value)) {
+                _that?.$tsStat?.event('cake_export_list', {
+                    cake_operate: 'return'
+                })
+            }
+            _that?.$router.go(-1)
+        }
+
+        const showReturnBtn = computed(() => ['exportList'].includes(routerName.value))
+
+
+        const navEntryGroup = ref()
+        onMounted(() => {
+            navEntryGroup.value?.setShowPayTip()
+        })
+
+        return {
+            navEntryGroup,
+
+            TEXT_LOGO_RELATIVE_PATH,
+            LOGO_RELATIVE_PATH,
+            clientName: CLIENT_NAME,
+
+            routerName,
+            showReturnBtn,
+
+            exportListBack,
+            onLogoClick,
+            clickTime
+        }
+    }
+}

@@ -1,0 +1,233 @@
+
+import {
+    ref,
+    reactive,
+    computed,
+    watch,
+    toRefs,
+    nextTick, SetupContext, ComputedRef
+} from 'vue'
+
+import { throttle } from 'lodash'
+
+import { Collapse, CollapseItem, Tooltip } from 'element-ui'
+import TsItemCard from '@/components/ComponentCollection/components/TsItemCard'
+import TsNumberPlaceholder from '@/components/TsNumberPlaceholder'
+import TsSlider from '@/components/TsSlider'
+import store from '@/store'
+import { ICropAndRotateObject } from '@/types/refine'
+import { limitToPrecision } from '@/utils/tsMath'
+import useFocusAndBlurRepositories from '@/composables/useFocusAndBlurRepositories'
+
+class RotateInfo {
+    baseAngle = 0
+    angle = 0
+
+    // 分割旋转
+    static spliteRotateAngle (value: number) {
+        let rotate = value
+        if (value >= 315) {
+            rotate = value - 360
+        }
+
+        const baseIndex = Math.floor((rotate + 45) / 90)
+
+        let baseAngle = 90 * baseIndex
+        if (baseAngle === 360) {
+            baseAngle = 0
+        }
+
+        const angle = limitToPrecision(rotate - baseAngle, 2)
+
+        return [baseAngle, angle]
+    }
+
+    get rotate () {
+        return limitToPrecision(this.baseAngle + this.angle, 2)
+    }
+
+    set rotate (val) {
+        if (limitToPrecision(val, 2) === this.rotate) {
+            return
+        }
+
+        const [base, angle] = RotateInfo.spliteRotateAngle(val)
+        this.baseAngle = base
+        this.angle = angle
+    }
+
+    reset() {
+        this.baseAngle = 0
+        this.angle = 0
+    }
+
+    increaseBase(value: number) {
+        let baseAngle = this.baseAngle
+        baseAngle += value
+
+        if (baseAngle > 270) {
+            baseAngle = 0
+        }
+
+        if (baseAngle < 0) {
+            baseAngle = 270
+        }
+
+        this.baseAngle = baseAngle
+    }
+}
+
+enum Flip {
+    Default = 1,
+    Inverse = -1
+}
+
+export default {
+    name: 'ThumbCropTool',
+    components: {
+        'el-collapse': Collapse,
+        'el-collapse-item': CollapseItem,
+        'el-tooltip': Tooltip,
+        TsItemCard,
+        TsNumberPlaceholder,
+        TsSlider
+    },
+    props: {
+        rotate: {
+            type: Number,
+            default: 0
+        }
+    },
+    setup(props: any, { emit }: SetupContext) {
+
+        const { rotate } = toRefs(props)
+        const cropInitObject: ComputedRef<ICropAndRotateObject> = computed(() => store.getters['refine/cropInitObject'])
+
+        // 是否正在同步数据，同步时不emit数据
+        const isSyncFromQt = ref(false)
+
+        const params = reactive({
+            flipX: Flip.Default,
+            flipY: Flip.Default
+        })
+
+        const rotateObj = reactive({
+            model: new RotateInfo(),
+            angle: 0
+        })
+
+        const needReset = computed(() => params.flipX !== Flip.Default
+            || params.flipY !== Flip.Default
+            || rotateObj.angle !== 0
+            || rotateObj.model.rotate !== 0)
+        watch(needReset, (val) => emit('on-show-reset', val))
+
+        // 同步本地QT的Json数据
+        watch(cropInitObject, (obj) => {
+            isSyncFromQt.value = true
+            params.flipX = obj.flipX
+            params.flipY = obj.flipY
+
+            rotateObj.model.rotate = obj.rotate
+            rotateObj.angle = rotateObj.model.angle
+
+            nextTick(() => {
+                isSyncFromQt.value = false
+            })
+        })
+
+        // 实时同步角度
+        watch(rotate, (val) => {
+            isSyncFromQt.value = true
+
+            rotateObj.model.rotate = val
+            if (rotateObj.model.angle !== rotateObj.angle) {
+                rotateObj.angle = rotateObj.model.angle
+            }
+
+            nextTick(() => {
+                isSyncFromQt.value = false
+            })
+        })
+
+        // 通信间隔30ms
+        const emitRotateChange = throttle(function () {
+            emit('on-rotate', rotateObj.model.rotate)
+        }, 30)
+
+        const emitFlipChange = throttle(function () {
+            emit('on-flip', params.flipX, params.flipY)
+        }, 30)
+
+        // @ts-ignore
+        watch(() => rotateObj.angle, (val) => {
+            if (isSyncFromQt.value) {
+                return
+            }
+            rotateObj.model.angle = val
+            emitRotateChange()
+        })
+
+        const rotateButtons = computed(() => [
+            {
+                icon: 'turn-left',
+                tip: '逆时针旋转',
+                click: () => {
+                    rotateObj.model.increaseBase(-90)
+                    emitRotateChange()
+                }
+            },
+            {
+                icon: 'turn-right',
+                tip: '顺时针旋转',
+                click: () => {
+                    rotateObj.model.increaseBase(90)
+                    emitRotateChange()
+                }
+            },
+            {
+                icon: params.flipX === Flip.Default ? 'flip-x' : 'flip-x',
+                tip: '水平翻转',
+                click: () => {
+                    params.flipX = params.flipX === Flip.Default ? Flip.Inverse : Flip.Default
+                    emitFlipChange()
+                }
+            },
+            {
+                icon: params.flipY === Flip.Default ? 'flip-y' : 'flip-y',
+                tip: '垂直翻转',
+                click: () => {
+                    params.flipY = params.flipY === Flip.Default ? Flip.Inverse : Flip.Default
+                    emitFlipChange()
+                }
+            }
+        ])
+
+        const { onInputBlur, onInputFocus } = useFocusAndBlurRepositories()
+
+        return {
+            onInputBlur,
+            onInputFocus,
+
+            params,
+            rotateObj,
+            rotateButtons,
+            emitRotateChange,
+            reset: () => {
+                rotateObj.model.reset()
+                rotateObj.angle = 0
+                params.flipX = 1
+                params.flipY = 1
+
+                emitRotateChange()
+                emitFlipChange()
+            },
+
+            ondbclickRotate: () => {
+                rotateObj.angle = 0
+                rotateObj.model.angle = 0
+                emitRotateChange()
+            }
+        }
+    }
+}

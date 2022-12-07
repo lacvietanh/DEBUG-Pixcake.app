@@ -1,0 +1,56 @@
+
+import { onMounted, Ref, ref } from 'vue'
+import useUpdatePointsRepositories from '../../composables/points/useUpdatePointsRepositories'
+
+import { IOptionObject } from '../../types'
+
+import { Button } from 'element-ui'
+import {CLIENT_NAME} from "../../universal/types/config";
+
+
+interface ISetup {
+    onDataMigrateClick: () => void,
+    onCancelDataMigrateClick: () => void,
+    showConfirm: Ref<boolean>,
+	APP_CLIENT_NAME:Ref<string>
+}
+
+const _$ipcRenderer = (): { send: (eventId: string, data: IOptionObject<boolean>) => void } => {
+    // @ts-ignore
+    return window.$ipcRenderer
+}
+
+export default {
+    name: 'DataMigrate',
+    mixins: [],
+    components: {
+        'el-button': Button
+    },
+    setup(props): ISetup {
+        console.log('onDataMigrate show')
+
+        const { PointDataUpgrade, PointChooseQuitUpgrade, PointChooseUpgrade } = useUpdatePointsRepositories()
+
+        const showConfirm = ref(false)
+		const APP_CLIENT_NAME = ref(CLIENT_NAME)
+
+        const onCancelDataMigrateClick = () => {
+            PointChooseQuitUpgrade()
+            _$ipcRenderer().send('data-migrate', { doMigrate: false })
+        }
+
+        const onDataMigrateClick = () => {
+            PointChooseUpgrade()
+            _$ipcRenderer().send('data-migrate', { doMigrate: true })
+        }
+
+        onMounted(PointDataUpgrade)
+
+        return {
+            showConfirm,
+			APP_CLIENT_NAME,
+            onDataMigrateClick,
+            onCancelDataMigrateClick
+        }
+    }
+}

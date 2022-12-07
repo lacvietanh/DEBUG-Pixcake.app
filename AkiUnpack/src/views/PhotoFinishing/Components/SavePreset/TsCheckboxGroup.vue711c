@@ -1,0 +1,93 @@
+import { defineComponent as _defineComponent } from 'vue'
+import { computed, Ref, ref, watch } from 'vue'
+
+import { Checkbox as ElCheckbox, CheckboxGroup as ElCheckboxGroup } from 'element-ui'
+import { isEqual } from 'lodash'
+
+
+export default /*#__PURE__*/_defineComponent({
+  __name: 'TsCheckboxGroup',
+  props: {
+    data: {
+        type: Array,
+        default: () => []
+    },
+    selectAllLabel: {
+        type: String,
+        default: '全部'
+    },
+    value: {
+        type: Array,
+        default: () => []
+    }
+},
+  emits: ['input', 'on-change'],
+  setup(__props, { expose, emit: $emit }) {
+
+const props = __props
+
+
+
+
+
+const values = computed(() => {
+    return props.data.map((item: any) => item.value) as number[]
+})
+
+const checkAll = ref(false)
+const isIndeterminate = ref(true)
+const checkedValues: Ref<any[]> = ref([])
+const showCheckboxGroup = ref(false)
+
+// 重新检查选择全部按钮状态
+const reloadCheckAllBtnState = (value: number[]): void => {
+    const data = props.data
+
+    const checkedCount = value.length
+    checkAll.value = checkedCount === data.length
+    isIndeterminate.value = checkedCount > 0 && checkedCount < data.length
+}
+
+watch(() => props.value, (val) => {
+    if (isEqual(val, checkedValues.value)) {
+        reloadCheckAllBtnState(checkedValues.value)
+        return
+    }
+
+    checkedValues.value = val
+    reloadCheckAllBtnState(checkedValues.value)
+}, {
+    immediate: true
+})
+
+watch(checkedValues, (val) => $emit('input', val))
+
+
+const handleCheckAllChange = (val: boolean) => {
+    checkedValues.value = val ? values.value : []
+    isIndeterminate.value = false
+    // $emit('on-change', checkedValues.value)
+}
+
+const handleCheckedCitiesChange = (value: number[]) => {
+    reloadCheckAllBtnState(value)
+    $emit('on-change', checkedValues.value)
+}
+
+expose({
+    handleCheckAll: () => {
+        checkAll.value = true
+        isIndeterminate.value = false
+        handleCheckAllChange(true)
+    },
+    handleCancelAll: () => {
+        checkAll.value = false
+        isIndeterminate.value = false
+        handleCheckAllChange(false)
+    }
+})
+
+return { __sfc: true,props, $emit, values, checkAll, isIndeterminate, checkedValues, showCheckboxGroup, reloadCheckAllBtnState, handleCheckAllChange, handleCheckedCitiesChange, ElCheckbox, ElCheckboxGroup }
+}
+
+})

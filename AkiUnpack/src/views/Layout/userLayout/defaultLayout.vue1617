@@ -1,0 +1,19 @@
+
+import { Container, Header, Main } from 'element-ui'
+import MainFuncHeader from '../components/Headers/MainFuncHeader'
+
+export default {
+    name: 'DefaultLayout',
+    components: {
+        'el-container': Container,
+        'el-header': Header,
+        'el-main': Main,
+        MainFuncHeader
+    },
+    setup(props): { KEEP_ALIVE_PAGE: string[] } {
+        // 会员充值提示
+        return {
+            KEEP_ALIVE_PAGE: []
+        }
+    }
+}

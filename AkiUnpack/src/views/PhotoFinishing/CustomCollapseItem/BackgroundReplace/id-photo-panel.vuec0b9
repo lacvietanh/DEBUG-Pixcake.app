@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./id-photo-panel.vue?vue&type=template&id=d58eb162&scoped=true&"
+import script from "./id-photo-panel.vue?vue&type=script&lang=js&"
+export * from "./id-photo-panel.vue?vue&type=script&lang=js&"
+import style0 from "./id-photo-panel.vue?vue&type=style&index=0&id=d58eb162&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "d58eb162",
+  null
+  
+)
+
+export default component.exports

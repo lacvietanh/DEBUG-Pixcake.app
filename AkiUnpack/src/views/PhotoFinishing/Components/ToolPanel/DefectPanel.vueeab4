@@ -1,0 +1,108 @@
+
+import Vue, { ref,  onMounted, onUnmounted } from 'vue'
+import { debounce } from 'lodash'
+
+import TsSlider from '@/components/TsSlider'
+import ControlTools from '@/view-model/photoControl/controlTools/DefectToolControl'
+import { Tool } from '@/view-model/photoControl/controlTools/contants/config'
+import pointsMixin from '@/mixins/pointsMixin'
+import toast from '@/mixins/toast'
+
+// @ts-ignore
+export default Vue.extend({
+    mixins: [pointsMixin, toast],
+    components: {
+        'ts-slider': TsSlider
+    },
+    props: {
+        showResetMaskBtn: {
+            type: Boolean,
+            default: false
+        },
+        historyList: {
+            type: Array,
+            default: () => []
+        }
+    },
+    setup(props, { emit }) {
+        const activeNav = ref('tool')
+
+        const controlTools = ControlTools.getInstance()
+
+        const tools = ref(controlTools.createToolsOperationData())
+        const toolKey = ref(controlTools.tool)
+
+        const emitToolChange = debounce((val: string) => {
+            emit('change-tool', val)
+        }, 30) as Function
+
+        function changeTool(val: Tool) {
+            toolKey.value = val
+            controlTools.changeTool(val)
+            emitToolChange(val)
+        }
+
+        // 添加键盘监听事件
+        function addKeyDownEvent(event: KeyboardEvent) {
+            switch (event.code) {
+                case 'BracketLeft':
+                case 'BracketRight':
+                    const eventCode = event.code
+                    controlTools.activeTool?.increaseSize(eventCode === 'BracketLeft' ? -10 : 10)
+                    // @ts-ignore
+                    tools.value = controlTools.createToolsOperationData()
+                    changeTool(toolKey.value)
+                    break
+
+                case 'KeyX':
+                    if (controlTools.tool === Tool.Eraser) {
+                        changeTool(Tool.Brush)
+                    } else if (controlTools.tool === Tool.Brush) {
+                        changeTool(Tool.Eraser)
+                    }
+                    break
+            }
+        }
+
+        function listenerKeyboard(opt: string = 'destroy'): void {
+            if (opt === 'destroy') {
+                window.removeEventListener('keydown', addKeyDownEvent)
+            } else if (opt === 'add') {
+                window.addEventListener('keydown', addKeyDownEvent)
+            }
+        }
+
+        onMounted(() => {
+            listenerKeyboard('add')
+        })
+
+        onUnmounted(() => {
+            listenerKeyboard('destroy')
+        })
+
+        return {
+            activeNav,
+            tools,
+            toolKey,
+            changeTool,
+            resetTool: () => {
+                controlTools.activeTool?.reset()
+                tools.value = controlTools.createToolsOperationData()
+                changeTool(toolKey.value)
+            },
+            painterMouseDown: (event: MouseEvent) => {
+                const bodyDom = document.body
+                controlTools.addCursor(bodyDom)
+                controlTools.activeTool?.updateCursorElement(event.clientX, event.clientY)
+            },
+            painterMouseMove: (event: MouseEvent) => {
+                controlTools.activeTool?.updateCursorElement(event.clientX, event.clientY)
+            },
+            painterMouseUp: (event: MouseEvent) => {
+                controlTools.removeCursor()
+            },
+
+            changeHistory: (uuid: string) => emit('change-history', uuid)
+        }
+    }
+})

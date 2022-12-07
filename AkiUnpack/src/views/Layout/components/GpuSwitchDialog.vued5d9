@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./GpuSwitchDialog.vue?vue&type=template&id=4574a82c&scoped=true&"
+import script from "./GpuSwitchDialog.vue?vue&type=script&lang=js&"
+export * from "./GpuSwitchDialog.vue?vue&type=script&lang=js&"
+import style0 from "./GpuSwitchDialog.vue?vue&type=style&index=0&id=4574a82c&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "4574a82c",
+  null
+  
+)
+
+export default component.exports

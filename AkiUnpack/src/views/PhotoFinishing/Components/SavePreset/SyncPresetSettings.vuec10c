@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./SyncPresetSettings.vue?vue&type=template&id=8cddff06&scoped=true&"
+import script from "./SyncPresetSettings.vue?vue&type=script&setup=true&lang=ts&"
+export * from "./SyncPresetSettings.vue?vue&type=script&setup=true&lang=ts&"
+import style0 from "./SyncPresetSettings.vue?vue&type=style&index=0&id=8cddff06&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "8cddff06",
+  null
+  
+)
+
+export default component.exports

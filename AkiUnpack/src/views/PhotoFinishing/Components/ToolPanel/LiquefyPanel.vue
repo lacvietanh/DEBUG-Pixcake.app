@@ -1,0 +1,10 @@
+var render = function render(){var _vm=this,_c=_vm._self._c,_setup=_vm._self._setupProxy;return _c('div',{staticClass:"painter-sidebar"},[_c('div',{staticClass:"nav"},[_c('span',{staticClass:"nav-item",class:{ 'active': _setup.activeNav === 'history' },on:{"click":function($event){_setup.activeNav = 'history'}}},[_c('i',{staticClass:"ts-icon ts-icon-history"})])]),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_setup.activeNav === 'history'),expression:"activeNav === 'history'"}],staticClass:"tool"},[_c('div',{staticClass:"tool-title"},[_c('span',[_vm._v("历史记录")]),_c('i',{directives:[{name:"show",rawName:"v-show",value:(_vm.showResetBtn),expression:"showResetBtn"}],staticClass:"el-icon-refresh-right reset-btn-icon",staticStyle:{"font-size":"16px"},on:{"click":function($event){$event.stopPropagation();return _vm.$emit('on-reset')}}})]),_c('ul',{staticClass:"tool-content history global__scroll-style"},[(_vm.historyList.length > 0)?[_vm._l((_vm.historyList),function(item){return [_c('li',{key:item.uuid,staticClass:"history-item",class:{ disabled: item.disabled, active: item.active },on:{"click":function($event){item.disabled ? _setup.tsNotify('暂仅支持撤销至最近10步') : _setup.changeHistory(item.uuid)}}},[(item.type === 'liquefy')?[_c('svg-icon',{attrs:{"class-name":"ts-icon","icon-class":"liquefy"}})]:[_c('i',{staticClass:"ts-icon",class:{
+                                'ts-icon-brush': item.type === 'brush',
+                                'ts-icon-liquefy': item.type === 'liquefy',
+                                'ts-icon-eraser': item.type === 'eraser',
+                                'el-icon-refresh-right': item.type === 'reset'
+                            }})],_vm._v(" "+_vm._s(item.name)+" ")],2)]})]:_c('li',{staticClass:"history-empty"},[_vm._v(" 暂无操作记录 ")])],2),_vm._t("bottom")],2)])
+}
+var staticRenderFns = []
+
+export { render, staticRenderFns }

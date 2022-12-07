@@ -1,0 +1,19 @@
+import { render, staticRenderFns } from "./TsSelectBox.vue?vue&type=template&id=a2952e3c&scoped=true&"
+var script = {}
+import style0 from "./TsSelectBox.vue?vue&type=style&index=0&id=a2952e3c&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "a2952e3c",
+  null
+  
+)
+
+export default component.exports

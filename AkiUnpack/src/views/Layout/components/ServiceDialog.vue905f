@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./ServiceDialog.vue?vue&type=template&id=12f0bd6a&scoped=true&"
+import script from "./ServiceDialog.vue?vue&type=script&lang=js&"
+export * from "./ServiceDialog.vue?vue&type=script&lang=js&"
+import style0 from "./ServiceDialog.vue?vue&type=style&index=0&id=12f0bd6a&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "12f0bd6a",
+  null
+  
+)
+
+export default component.exports

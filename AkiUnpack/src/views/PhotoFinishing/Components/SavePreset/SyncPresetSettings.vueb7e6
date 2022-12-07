@@ -1,0 +1,124 @@
+import { defineComponent as _defineComponent } from 'vue'
+import { computed, WritableComputedRef, ref, watch } from 'vue'
+import store from '@/store'
+
+import { IS_WIN } from '@/universal/types/config'
+import { ICheckboxCacheObject, IFormatCheckJson } from '@/types/preset'
+
+import { Button as ElButton } from 'element-ui'
+// @ts-ignore
+import PresetSetting from './PresetSetting'
+import TsDialog from '@/components/TsDialog/ts-dialog'
+import BeautifyParamsViewModel from '@/view-model/beautifyParamsViewModel'
+import PaletteParamsViewModel from '@/view-model/paletteParamsViewModel'
+import { getCustomCheckboxSettings } from '@/constants/presetParams/presetParamsGroup'
+import refine from '@/qt-ipc/business/refine'
+import useRefinePointsRepositories from '@/composables/points/useRefinePointsRepositories'
+
+
+export default /*#__PURE__*/_defineComponent({
+  __name: 'SyncPresetSettings',
+  props: {
+    value: {
+        type: Boolean,
+        default: false
+    },
+    refineUUID: {
+        type: String,
+        default: ''
+    },
+    justSave: {
+        type: Boolean,
+        default: false
+    }
+},
+  emits: ['input', 'on-apply'],
+  setup(__props, { expose, emit: $emit }) {
+
+const props = __props
+
+
+
+
+
+let visible = ref(props.value)
+watch(() => props.value, async (val) => {
+    visible.value = val
+
+    if (val) {
+        await initCustomCheckboxSettings()
+    }
+})
+watch(visible, (val) => $emit('input', val))
+
+
+const customSettings = ref()
+const initCustomCheckboxSettings = async (): Promise<void> => {
+    if (!props.refineUUID) {
+        return
+    }
+
+    const { beautifyJsonStr, paletteJsonStr } = await refine.getPresetSuitJson(props.refineUUID)
+    try {
+        const beautifyJson = JSON.parse(beautifyJsonStr)
+        const paletteJson = JSON.parse(paletteJsonStr)
+        const model = new BeautifyParamsViewModel(beautifyJson, null, -1)
+        const paletteModel = new PaletteParamsViewModel({ json: paletteJson, userId: -1 })
+
+        const config = model.getHasEffectConfig()
+        const ptConfig = paletteModel.getHasEffectConfig()
+
+        config.params = [...config.params, ...ptConfig.params]
+        config.effects = [...config.effects, ...ptConfig.effects]
+
+        customSettings.value = getCustomCheckboxSettings(config)
+    } catch (e) {
+    }
+}
+
+const presetSettingCache: WritableComputedRef<IFormatCheckJson> = computed({
+    get: (): IFormatCheckJson => store.getters['refine/syncPresetSettingCache'],
+    set: (val) => store.commit('refine/_SetSyncPresetSettingCache', val)
+})
+
+const presetCheckboxCache: WritableComputedRef<ICheckboxCacheObject> = computed({
+    get: (): ICheckboxCacheObject => store.getters['refine/syncPresetCheckboxCache'],
+    set: (val) => store.commit('refine/_SetSyncPresetCheckboxCache', val)
+})
+
+const isSaveSyncSetting = computed(() => store.getters['refine/isSaveSyncSetting'])
+
+const onPresetSettingChange = (data: IFormatCheckJson) => presetSettingCache.value = data
+const needSyncPreset = computed(() => !props.justSave && !isSaveSyncSetting.value)
+
+let loading = ref(false)
+
+const selectType = ref(0)
+const { PointSynchronizeSettings } = useRefinePointsRepositories()
+
+const onSubmit = async () => {
+    if (!visible.value || loading.value) {
+        return
+    }
+    loading.value = true
+    if (needSyncPreset.value) {
+        store.commit('refine/_SetIsSaveSyncSetting')
+        $emit('on-apply')
+    }
+    PointSynchronizeSettings(selectType.value)
+    visible.value = false
+    loading.value = false
+}
+
+expose({
+    show: () => {
+        visible.value = true
+        initCustomCheckboxSettings()
+    }
+})
+
+
+return { __sfc: true,props, $emit, visible, customSettings, initCustomCheckboxSettings, presetSettingCache, presetCheckboxCache, isSaveSyncSetting, onPresetSettingChange, needSyncPreset, loading, selectType, PointSynchronizeSettings, onSubmit, IS_WIN, ElButton, PresetSetting, TsDialog }
+}
+
+})

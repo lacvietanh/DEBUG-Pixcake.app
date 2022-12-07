@@ -1,0 +1,45 @@
+import { defineComponent as _defineComponent } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
+import store from '@/store'
+
+import { QtEventFilter, QtEventFilterType } from '@/utils/QtEventFilter'
+import { dialogIpc, SHOW_PRESET_SETTING } from '@/qt-ipc/dialog/DialogIpcImpl'
+
+// @ts-ignore
+import FuncHeader from '../components/Headers/FuncHeader'
+// @ts-ignore
+import SyncPresetSettings from '@/views/PhotoFinishing/Components/SavePreset/SyncPresetSettings'
+
+
+// 是否禁用头部按钮
+
+export default /*#__PURE__*/_defineComponent({
+  __name: 'ProjectLayout',
+  setup(__props) {
+
+const isDisableHeadView = computed(() => !!(store.getters['refine/isDisableHeadView']))
+
+// 导出时候，loading，需要屏蔽键盘、鼠标事件
+// @ts-ignore
+const exportTip = computed(() => store.state.export.exportLoadingProgress)
+// @ts-ignore
+const showExportLoading = computed(() => !store.state.export.isDownloadFree)
+watch(showExportLoading, (value: boolean) => {
+    new QtEventFilter().process([QtEventFilterType.Mouse, QtEventFilterType.KeyBoard], !value)
+})
+
+// 预设同步设置
+const refineUUID = computed(() => store.getters['project/refineUUID'])
+const syncPresetSettingsRefs = ref()
+onMounted(() => {
+    dialogIpc.addListener(SHOW_PRESET_SETTING, () => {
+        console.debug('SHOW_PRESET_SETTING', syncPresetSettingsRefs.value)
+        nextTick(() => syncPresetSettingsRefs.value?.show())
+    })
+})
+onUnmounted(() => dialogIpc.removeListener(SHOW_PRESET_SETTING))
+
+return { __sfc: true,isDisableHeadView, exportTip, showExportLoading, refineUUID, syncPresetSettingsRefs, FuncHeader, SyncPresetSettings }
+}
+
+})

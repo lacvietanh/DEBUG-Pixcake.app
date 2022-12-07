@@ -1,0 +1,227 @@
+
+import {
+    ref,
+    computed,
+    watch,
+    onMounted,
+    onUnmounted,
+    PropType,
+    SetupContext, Ref, ComputedRef, reactive, toRefs
+} from 'vue'
+import store from '@/store'
+import {INavbarBackgroundDots, INavbarDots} from '@/types/refine-store'
+
+import useRefinePointsRepositories from '@/composables/points/useRefinePointsRepositories'
+import useRefineGuideRepositories, { GuideId } from '@/composables/guide/useRefineGuideRepositories'
+import useMouseStayRepositories, { IRepositories } from '@/composables/useMouseStayRepositories'
+import {checkHasGuideRecord, DictionaryKeys, insertGuideRecord} from '@/universal/datastore/dictionaryDao'
+
+import { Tooltip } from 'element-ui'
+import { RefineNavName } from '@/constants/refine'
+
+interface IProps {
+    value: string,
+    banShortcut: boolean
+    imageLoading: boolean
+    imageInit: boolean
+    beforeChange?: (fromKey: string, toKey: string) => boolean
+}
+
+interface IMenu {
+    key: string,
+    name: string,
+    icon: string,
+    shortcut?: string,
+    dot: boolean,
+    guideId?: string,
+    point?: () => void
+    backgroundDot: boolean
+    disabled?: boolean
+}
+
+interface ISetup extends IRepositories {
+    handleClick: (key: string) => void
+    currValue: Ref<string>
+    navMenuList: ComputedRef<IMenu[]>
+    checkBackgroundShow: () => void
+}
+
+export default {
+    components: {
+        'el-tooltip': Tooltip
+    },
+    props: {
+        value: {
+            type: String,
+            default: ''
+        },
+        banShortcut: {
+            type: Boolean,
+            default: false
+        },
+        beforeChange: {
+            type: Function
+        },
+        imageLoading: {
+            type: Boolean,
+            default: false
+        },
+        imageInit: {
+            type: Boolean,
+            default: false
+        }
+    },
+
+    setup(props: IProps, { emit }: SetupContext): ISetup {
+        const {
+            PointPortraitBeautification,
+            PointImageAdjustment,
+            PointBackgroundAdjustment,
+            PointOperationHistory,
+            PointCropIcon
+        } = useRefinePointsRepositories()
+
+        const currValue = ref(props.value || '')
+        watch(currValue, (val) => emit('input', val))
+        watch(() => props.value, (val) => {
+            currValue.value = val
+        })
+
+        const navbarDot = computed(() => store.getters['refine/navbarDots'] as INavbarDots)
+
+        const newDotTip = reactive({
+            background: false
+        })
+        onMounted(async () => {
+            const result = await checkHasGuideRecord(DictionaryKeys.NavbarBackgroundDot)
+            if (!result) {
+                newDotTip.background = true
+            }
+        })
+
+        const navMenuList = computed(() => {
+            return [
+                {
+                    key: RefineNavName.Palette,
+                    name: '色彩调节',
+                    icon: 'ts-icon-adjust',
+                    // shortcut: 'E',
+                    dot: navbarDot.value[RefineNavName.Palette] || false,
+                    guideId: GuideId.NavBarColor,
+                    point: PointImageAdjustment
+                },
+                {
+                    name: '人像美化',
+                    key: RefineNavName.Beauty,
+                    icon: 'ts-icon-beautify',
+                    // shortcut: 'B'
+                    dot: navbarDot.value[RefineNavName.Beauty] || false,
+                    point: PointPortraitBeautification
+                },
+                {
+                    name: '图像美化',
+                    key: RefineNavName.Background,
+                    icon: 'ts-icon-background',
+                    // shortcut: 'A',
+                    dot: navbarDot.value[RefineNavName.Background] || false,
+                    newDot: newDotTip.background,
+                    guideId: GuideId.NavBarBackground,
+                    point: PointBackgroundAdjustment
+                },
+                {
+                    name: '裁剪、旋转',
+                    key: 'crop',
+                    icon: 'ts-icon-crop',
+                    // shortcut: 'A',
+                    dot: navbarDot.value['crop'] || false,
+                    guideId: GuideId.NavBarCrop,
+                    disabled: props.imageLoading || !props.imageInit,
+                    point: PointCropIcon
+                },
+
+                // {
+                //     name: '手动液化',
+                //     key: RefineNavName.Liquefy,
+                //     icon: 'ts-icon-liquefy',
+                //     // shortcut: 'A',
+                //     dot: navbarDot.value[RefineNavName.Liquefy] || false,
+                //     newDot: newDotTip.background,
+                //     disabled: props.imageLoading
+                //     // guideId: GuideId.NavBarBackground,
+                //     // point: PointBackgroundAdjustment
+                // },
+
+                {
+                    key: RefineNavName.History,
+                    name: '历史记录',
+                    icon: 'ts-icon-history',
+                    // shortcut: 'H',
+                    dot: navbarDot.value[RefineNavName.History] || false,
+                    guideId: GuideId.NavBarHistory,
+                    point: PointOperationHistory
+                }
+            ]
+        })
+
+        const { handleGuideStart, destroy } = useRefineGuideRepositories()
+        onMounted(handleGuideStart)
+        onUnmounted(destroy)
+
+        // const onShortcut = (e) => {
+        //     const { altKey, metaKey, shiftKey, ctrlKey, code } = e
+        //     if (altKey || metaKey || shiftKey || ctrlKey || props.banShortcut) {
+        //         return
+        //     }
+        //
+        //     switch (code) {
+        //         case 'KeyB':
+        //             currValue.value = 'beauty'
+        //             break
+        //         case 'KeyE':
+        //             currValue.value = 'color'
+        //             break
+        //         case 'KeyA':
+        //             currValue.value = 'background'
+        //             break
+        //         case 'KeyH':
+        //             currValue.value = 'history'
+        //             break
+        //     }
+        // }
+
+        // onMounted(() => window.addEventListener('keydown', onShortcut))
+        // onUnmounted(() => window.removeEventListener('keydown', onShortcut))
+
+        const handleClick = async (key) => {
+            if (currValue.value === key) {
+                return
+            }
+
+            if (key === RefineNavName.Background) {
+                await insertGuideRecord(DictionaryKeys.NavbarBackgroundDot)
+                newDotTip.background = false
+            }
+
+            if (props.beforeChange) {
+                const bool = props.beforeChange(currValue.value, key)
+                if (!bool) {
+                    return
+                }
+            }
+
+            currValue.value = key
+        }
+
+        const { onMouseEnter, onMouseLeave, isStaying } = useMouseStayRepositories()
+
+        return {
+            handleClick,
+            currValue,
+            navMenuList,
+            isStaying,
+            onMouseEnter,
+            onMouseLeave
+        }
+    }
+}
+

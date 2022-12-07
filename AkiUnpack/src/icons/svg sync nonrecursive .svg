@@ -1,0 +1,30 @@
+var map = {
+	"./alipay.svg": "2287",
+	"./drag.svg": "9bbf",
+	"./exchange.svg": "7367",
+	"./flip-x.svg": "b99b",
+	"./flip-y.svg": "b6fa",
+	"./liquefy.svg": "d105",
+	"./turn-left.svg": "d4b5",
+	"./turn-right.svg": "8f3c"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "51ff";

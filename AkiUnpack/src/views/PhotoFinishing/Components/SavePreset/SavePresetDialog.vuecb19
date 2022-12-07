@@ -1,0 +1,302 @@
+import { defineComponent as _defineComponent } from 'vue'
+import { computed, nextTick, reactive, Ref, ref, watch } from 'vue'
+import store from '@/store'
+
+import { IFormatCheckJson } from '@/types/preset'
+
+import refine from '@/qt-ipc/business/refine'
+
+import { defaultSyncCheckboxSettings, getCustomCheckboxSettings } from '@/constants/presetParams/presetParamsGroup'
+import { createPresetSuit } from '@/api/settingApi'
+
+import moment from 'moment-timezone'
+import { delay } from '@/universal/utils/common'
+import { presetCheckHasMineIdPhoto } from '@/utils/preset/PresetSuitManager'
+
+import useRefinePointsRepositories from '@/composables/points/useRefinePointsRepositories'
+import useToastRepositories from '@/composables/useToastRepositories'
+
+import {
+    Button as ElButton,
+    Select as ElSelect,
+    Option as ElOption,
+    Divider as ElDivider
+} from 'element-ui'
+
+import TsDialog from '@/components/TsDialog/ts-dialog'
+// @ts-ignore
+import PresetSetting from './PresetSetting'
+// @ts-ignore
+import TsSelectBox from '@/components/TsSelect/TsSelectBox'
+import BeautifyParamsViewModel from '@/view-model/beautifyParamsViewModel'
+import PaletteParamsViewModel from '@/view-model/paletteParamsViewModel'
+
+
+export default /*#__PURE__*/_defineComponent({
+  __name: 'SavePresetDialog',
+  props: {
+    value: {
+        type: Boolean,
+        default: false
+    },
+    getParamsJson: {
+        type: Function
+    },
+    isRecommendPreset: Boolean,
+    preset_label: Object,
+    deletePresetSuitId: [String, Number],
+    refineUUID: {
+        type: String,
+        default: ''
+    }
+},
+  emits: ['input', 'newPresetClass', 'saveSuccess'],
+  setup(__props, { emit: $emit }) {
+
+const props = __props
+
+
+
+
+
+const checkboxSettings = ref()
+const inputPresetNameRefs = ref()
+
+let visible = ref(props.value)
+watch(() => props.value, (val) => {
+    visible.value = val
+    if (val) {
+        checkboxSettings.value = defaultSyncCheckboxSettings
+        checkHasMineIdPhoto()
+        getPresetClass()
+        nextTick(() => {
+            inputPresetNameRefs.value.focus()
+            // this.whichPresetClass = null
+            // this.whichPresetClass = this.allPreset[0] ? this.allPreset[0].value : null
+        })
+    } else {
+        checkboxSettings.value = {}
+    }
+})
+watch(visible, (val) => $emit('input', val))
+
+let loading = ref(false)
+let coverLoading = ref(false)
+let hasMineIdPhoto = ref(false)
+let whichPresetClass = ref(null)
+
+const userId = computed(() => store.getters.userId)
+
+const form = reactive({
+    cover: '',
+    name: '预设1'
+})
+
+const allPreset = computed(() => {
+    let class_list = JSON.parse(JSON.stringify((store.state as any).presetting.preset_class))
+    class_list = class_list.filter((item: any) => {
+        return item.type !== 1
+    })
+    return class_list
+})
+
+watch(() => props.preset_label, (val: any) => {
+    if (val === null) {
+        form.name = '预设1'
+        whichPresetClass.value = allPreset.value[0] ? allPreset.value[0].value : null
+    } else {
+        form.name = val.name // 弹窗使用
+        whichPresetClass.value = val.classId
+    }
+})
+
+const presetIncludeJson: Ref<IFormatCheckJson> = ref({
+    params: [],
+    effects: [],
+    crop: [],
+    algoVersion: []
+})
+
+const customSettings = ref()
+
+const initCustomCheckboxSettings = (beautifyJson: any, paletteJson: any) => {
+    const model = new BeautifyParamsViewModel(beautifyJson, null, -1)
+    const paletteModel = new PaletteParamsViewModel({ json: paletteJson, userId: -1 })
+
+    const config = model.getHasEffectConfig()
+    const ptConfig = paletteModel.getHasEffectConfig()
+
+    config.params = [...config.params, ...ptConfig.params]
+    config.effects = [...config.effects, ...ptConfig.effects]
+
+    customSettings.value = getCustomCheckboxSettings(config)
+}
+
+const checkHasMineIdPhoto = async (): Promise<void> => {
+    const { beautifyJsonStr, paletteJsonStr } = await refine.getPresetSuitJson(props.refineUUID)
+    if (!beautifyJsonStr) {
+        hasMineIdPhoto.value = false
+        return
+    }
+    try {
+        const beautifyJson = JSON.parse(beautifyJsonStr)
+        const paletteJson = JSON.parse(paletteJsonStr)
+        initCustomCheckboxSettings(beautifyJson, paletteJson)
+
+        hasMineIdPhoto.value = presetCheckHasMineIdPhoto(beautifyJson)
+    } catch (e) {
+    }
+}
+
+const getPresetClass = (): void => {
+    store.dispatch('getPresetClass')
+}
+
+const handleAddPresetClass = (): void => {
+    $emit('newPresetClass')
+}
+
+const onPresetSettingChange = (data: IFormatCheckJson) => {
+    presetIncludeJson.value.params = data.params
+    presetIncludeJson.value.effects = data.effects
+    presetIncludeJson.value.crop = data.crop
+    presetIncludeJson.value.algoVersion = data.algoVersion
+}
+
+const getParamsJson = async () => {
+    const json = await refine.getPresetSuitJson(props.refineUUID, presetIncludeJson.value)
+    let beautifyJson = null
+    let paletteJson = null
+    try {
+        beautifyJson = JSON.parse(json.beautifyJsonStr)
+        paletteJson = JSON.parse(json.paletteJsonStr)
+    } catch (e) {
+    }
+    return { beautifyJson, paletteJson }
+}
+
+const { tsNotify } = useToastRepositories()
+
+const onSubmit = async (type: string, createdTime: any = null) => {
+    if (whichPresetClass.value === null || whichPresetClass.value === '') {
+        tsNotify({
+            type: 'error',
+            message: '请先选择分类'
+        })
+        return
+    }
+    let { cover, name } = form
+    name = name.trim().replace(/ +/g, ' ')
+    let isSaveBtnClick = type === 'savePresetBtn' || type === 'CreatedNewPresetBtn'
+    if (isSaveBtnClick) loading.value = true
+
+    const {
+        beautifyJson: fsParams,
+        paletteJson: paletteParams
+    } = await getParamsJson()
+
+    try {
+        const jsonObject = {
+            beautify: { cover, configJson: fsParams },
+            palette: { cover, configJson: paletteParams }
+        }
+        const res: any = await createPresetSuit(jsonObject, name, whichPresetClass.value, createdTime)
+
+        if (res) {
+            try {
+                await store.dispatch('loadAllPresents', { userId: userId.value, loadDb: true })
+                const model = await store.dispatch('getPresetSuitByCache', res.setting_id)
+                $emit('saveSuccess', model)
+            } catch (e) {
+                tsNotify({
+                    type: 'error',
+                    message: e.message
+                })
+            }
+        }
+        let message = type === 'coverOldPreset' ? '预设覆盖成功。您可以在【预设】中查看。' : '预设保存成功。您可以在【预设】中查看。'
+        PointSavePresetEvent(type)
+        tsNotify({
+            type: 'success',
+            message: message
+        })
+        visible.value = false
+        delay(300).then(() => {
+            if (isSaveBtnClick) loading.value = false
+        })
+    } catch (err) {
+        if (err && err.message) {
+            tsNotify({
+                type: 'error',
+                message: err.message
+            })
+        }
+    }
+    if (isSaveBtnClick) loading.value = false
+}
+
+/**
+ * 覆盖预设（本质删除旧预设，创建新的预设，对之前应用过的预设不产生影响）
+ * @returns {Promise<void>}
+ */
+const onCover = async () => {
+    //1、获取即将删除预设的创建时间
+    let presetItems = (store.state as any).presetting.preItems
+    let deletePresetSuitId = props.deletePresetSuitId
+    let createdAt
+    for (const i of presetItems) {
+        if (Number(i.id) === Number(deletePresetSuitId)) {
+            createdAt = i.created_at
+            if (!createdAt) { //兼容之前没有created_at字段
+                createdAt = i.updated_at
+            }
+            break
+        }
+    }
+    createdAt = moment(createdAt).format('YYYY-MM-DD HH:mm:ss')
+
+    //2、删除原来的预设
+    coverLoading.value = true
+    await store.dispatch('deletePreset', { id: deletePresetSuitId })
+
+    //3、添加新的预设
+    await onSubmit('coverOldPreset', createdAt)
+    coverLoading.value = false
+}
+
+const selectType = ref(0)
+const {
+    PointSavePresetSubmit1,
+    PointSavePresetCover,
+    PointSavePresetSubmit2
+} = useRefinePointsRepositories()
+
+//保存预设、创建新预设、覆盖旧预设埋点
+const PointSavePresetEvent = (type: string): void => {
+    if (type === 'savePresetBtn') {
+        PointSavePresetSubmit1(selectType.value)
+        return
+    }
+    let pointStr = 'name_1_sort_1'
+    if (props.preset_label) {
+        const oldName = props.preset_label.name
+        const oldClassId = props.preset_label.classId
+        const name = form.name
+        const classId = whichPresetClass.value
+        const nameStr = oldName === name ? 'name_1' : 'name_2'
+        const classIdStr = oldClassId === classId ? 'sort_1' : 'sort_2'
+        pointStr = nameStr + '_' + classIdStr
+    }
+
+    if (type === 'coverOldPreset') {
+        PointSavePresetCover(pointStr, selectType.value)
+    } else {
+        PointSavePresetSubmit2(pointStr, selectType.value)
+    }
+}
+
+
+return { __sfc: true,props, $emit, checkboxSettings, inputPresetNameRefs, visible, loading, coverLoading, hasMineIdPhoto, whichPresetClass, userId, form, allPreset, presetIncludeJson, customSettings, initCustomCheckboxSettings, checkHasMineIdPhoto, getPresetClass, handleAddPresetClass, onPresetSettingChange, getParamsJson, tsNotify, onSubmit, onCover, selectType, PointSavePresetSubmit1, PointSavePresetCover, PointSavePresetSubmit2, PointSavePresetEvent, ElButton, ElSelect, ElOption, ElDivider, TsDialog, PresetSetting, TsSelectBox }
+}
+
+})

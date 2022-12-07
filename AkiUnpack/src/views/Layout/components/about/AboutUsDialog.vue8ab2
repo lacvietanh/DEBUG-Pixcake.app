@@ -1,0 +1,103 @@
+
+import ipcRenderer from '../../../../qt-ipc/Ipc-renderer'
+
+import { computed, ref, watch, getCurrentInstance, nextTick } from 'vue'
+import store from '../../../../store'
+
+import toast from '../../../../mixins/toast'
+import { checkServerUpdater } from '../../../../api/commonApi'
+import { CLIENT_NAME_EN, IS_BAN_UPDATE, APP_VERSION, IS_CLIENT_PIX_PIE } from '../../../../universal/types/config'
+import { LOGO_ABOUT_US } from '../../../../constants/config'
+
+import { Button, Link } from 'element-ui'
+import TsDialog from '@/components/TsDialog/ts-dialog'
+
+const version = APP_VERSION
+
+export default {
+    mixins: [toast as any],
+    name: 'AboutUsDialog',
+    components: {
+        'el-link': Link,
+        'el-dialog':TsDialog,
+        'el-button': Button
+    },
+    props: {
+        value: {
+            type: Boolean,
+            default: false
+        }
+    },
+    setup(props, { emit }) {
+        const vueInstance = getCurrentInstance()?.proxy as any
+        let visible = ref(props.value)
+
+        watch(() => props.value, (val: any): void => {
+            visible.value = val
+            if (val && !IS_CLIENT_PIX_PIE) {
+                store.dispatch('fetchUserProtocol')
+            }
+        })
+
+        watch(visible, (val) => emit('input', val))
+
+        function checkProtocol(url: string): void {
+            if (!url) {
+                vueInstance.tsNotify({
+                    message: '协议不存在，请联系客服获取协议!',
+                    type: 'error'
+                })
+
+                return
+            }
+            //@ts-ignore
+            vueInstance.$openExternal(url)
+        }
+
+        const checkLoading = ref(false)
+        function handleCheckUpdate(): void {
+            checkLoading.value = true
+            nextTick(async () => {
+                try {
+                    const result = await checkServerUpdater(true)
+                    if (!result.is_need_update) {
+                        vueInstance.tsNotify({
+                            message: '已是最新版本，无须更新哦～～'
+                        })
+                        setTimeout(() => {
+                            checkLoading.value = false
+                        }, 300)
+                        return
+                    }
+                    await ipcRenderer.send('check-server-updater')
+                } catch (e) {
+                }
+                setTimeout(() => {
+                    checkLoading.value = false
+                }, 300)
+            })
+        }
+
+        return {
+            IS_BAN_UPDATE,
+            LOGO_ABOUT_US,
+            clientName: CLIENT_NAME_EN,
+            version,
+            visible,
+
+            privacyProtocol: computed(() => {
+                //@ts-ignore
+                return store.getters.privacyProtocol
+            }
+            ),
+            userProtocol: computed(() => {
+                //@ts-ignore
+                return store.getters.userProtocol
+            }),
+
+            checkProtocol,
+            handleCheckUpdate,
+            checkLoading
+        }
+    }
+}

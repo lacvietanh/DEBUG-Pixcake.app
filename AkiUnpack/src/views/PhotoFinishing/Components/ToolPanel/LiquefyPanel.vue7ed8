@@ -1,0 +1,34 @@
+import { defineComponent as _defineComponent } from 'vue'
+import { ref } from 'vue'
+import useToastRepositories from '@/composables/useToastRepositories'
+
+
+export default /*#__PURE__*/_defineComponent({
+  __name: 'LiquefyPanel',
+  props: {
+    showResetBtn: {
+        type: Boolean,
+        default: false
+    },
+    historyList: {
+        type: Array,
+        default: () => []
+    }
+},
+  emits: ['change-history'],
+  setup(__props, { emit }) {
+
+
+
+
+
+
+const activeNav = ref('history')
+const { tsNotify } = useToastRepositories()
+const changeHistory = (uuid: string) => emit('change-history', uuid)
+
+
+return { __sfc: true,emit, activeNav, tsNotify, changeHistory }
+}
+
+})

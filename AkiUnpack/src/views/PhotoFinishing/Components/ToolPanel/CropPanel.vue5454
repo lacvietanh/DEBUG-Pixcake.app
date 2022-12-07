@@ -1,0 +1,54 @@
+import { defineComponent as _defineComponent } from 'vue'
+import { ref, watch } from 'vue'
+
+import { Collapse as ElCollapse, CollapseItem as ElCollapseItem, Tooltip as ElTooltip } from 'element-ui'
+import CropArea from './components/CropArea'
+import RotateArea from './components/RotateArea'
+
+
+export default /*#__PURE__*/_defineComponent({
+  __name: 'CropPanel',
+  props: {
+    rotate: {
+        type: Number,
+        default: 0
+    },
+    showCropResetBtn: {
+        type: Boolean,
+        default: false
+    }
+},
+  emits: ['on-crop-reset'],
+  setup(__props, { emit: $emit }) {
+
+const props = __props
+
+
+
+
+
+
+const activeNames = ref(['crop', 'rotate'])
+const cropRef = ref()
+const rotateRef = ref()
+const isShowCropReset = ref(false)
+const isShowRotateReset = ref(false)
+
+watch(() => props.showCropResetBtn, (val: boolean) => {
+    if (val) {
+        isShowCropReset.value = true
+    }
+})
+
+const resetCrop = () => {
+    const obj = cropRef.value?.reset()
+    $emit('on-crop-reset', obj)
+}
+
+const resetRotate = () => rotateRef.value?.reset()
+
+
+return { __sfc: true,$emit, props, activeNames, cropRef, rotateRef, isShowCropReset, isShowRotateReset, resetCrop, resetRotate, ElCollapse, ElCollapseItem, CropArea, RotateArea }
+}
+
+})

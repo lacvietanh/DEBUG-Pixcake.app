@@ -1,0 +1,78 @@
+import { defineComponent as _defineComponent } from 'vue'
+import { computed, ref } from 'vue'
+import store from '@/store'
+import { debounce } from 'lodash'
+import { SHOW_EXPORT_CALC_RULE } from '#/types/config'
+
+import MenuModel from '@/model/MenuModel'
+import useExportPointsRepositories from '@/composables/points/useExportPointsRepositories'
+
+import { Header as ElHeader, Tooltip as ElTooltip, Button as ElButton } from 'element-ui'
+// @ts-ignore
+import ExportTable from './exportTable'
+
+
+export default /*#__PURE__*/_defineComponent({
+  __name: 'index',
+  setup(__props) {
+
+const showExportCalcRule = ref(SHOW_EXPORT_CALC_RULE)
+
+const {
+    PointExportListExportingTab,
+    PointExportListExportedTab,
+    PointExportListBillingRulesPopup,
+    PointClickExportDetail
+} = useExportPointsRepositories()
+
+const groupList = computed(() => {
+    return [
+        {
+            name: '正在导出',
+            key: 'exporting',
+            icon: 'el-icon-s-custom',
+            point: PointExportListExportingTab
+        },
+        {
+            key: 'export-complete',
+            name: '导出完成',
+            icon: 'el-icon-s-opportunity',
+            point: PointExportListExportedTab
+        }
+    ]
+})
+
+const currGroupTitle = computed(() => {
+    let isOnExportingBtn = store.state.export.isOnExportingBtn
+    let key = ''
+    if (isOnExportingBtn) {
+        key = 'exporting'
+    } else {
+        key = 'export-complete'
+    }
+
+    const group = groupList.value.find(item => item.key === key)
+    return group && group.name || ''
+})
+
+const exportMenu = computed(() => store.getters.exportMenu as MenuModel)
+
+const changeExportView = debounce(async function (item) {
+    let isOnExportingBtn = store.state.export.isOnExportingBtn
+    if (item.key === 'exporting' && isOnExportingBtn) {
+        return
+    }
+
+    if (item.key === 'export-complete' && !isOnExportingBtn) {
+        return
+    }
+
+    console.log(`changeExportView : `, item)
+    store.commit('changeExportScene')
+}, 10)
+
+
+return { __sfc: true,showExportCalcRule, PointExportListExportingTab, PointExportListExportedTab, PointExportListBillingRulesPopup, PointClickExportDetail, groupList, currGroupTitle, exportMenu, changeExportView, ElHeader, ElTooltip, ElButton, ExportTable }
+}
+
+})

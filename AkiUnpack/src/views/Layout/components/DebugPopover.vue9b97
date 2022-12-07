@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./DebugPopover.vue?vue&type=template&id=8f6776c0&scoped=true&"
+import script from "./DebugPopover.vue?vue&type=script&lang=js&"
+export * from "./DebugPopover.vue?vue&type=script&lang=js&"
+import style0 from "./DebugPopover.vue?vue&type=style&index=0&id=8f6776c0&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "8f6776c0",
+  null
+  
+)
+
+export default component.exports

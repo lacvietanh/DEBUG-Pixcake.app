@@ -1,0 +1,10 @@
+import SpriteSymbol from "../../../node_modules/svg-baker-runtime/browser-symbol.js";
+import sprite from "../../../node_modules/svg-sprite-loader/runtime/browser-sprite.build.js";
+var symbol = new SpriteSymbol({
+  "id": "icon-turn-left",
+  "use": "icon-turn-left-usage",
+  "viewBox": "0 0 17 17",
+  "content": "<symbol viewBox=\"0 0 17 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" id=\"icon-turn-left\">\n<rect x=\"12\" y=\"6.5\" width=\"10\" height=\"10\" rx=\"1\" transform=\"rotate(90 12 6.5)\" stroke=\"white\" stroke-opacity=\"0.85\" />\n<path d=\"M15 10.5L15 5.5C15 3.84315 13.6569 2.5 12 2.5L7.28508 2.5C7.19055 2.5 7.1488 2.38096 7.22261 2.32191L9.5 0.5\" stroke=\"white\" stroke-opacity=\"0.85\" />\n</symbol>"
+});
+var result = sprite.add(symbol);
+export default symbol

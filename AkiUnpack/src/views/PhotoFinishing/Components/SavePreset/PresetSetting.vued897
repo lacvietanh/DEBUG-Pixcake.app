@@ -1,0 +1,187 @@
+import { defineComponent as _defineComponent } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
+
+import { IFormatCheckJson } from '@/types/preset'
+import {
+    presetGroup,
+    defaultSyncCheckboxSettings,
+    selectAllCheckboxSettings,
+    nonSelectCheckboxSettings
+} from '@/constants/presetParams/presetParamsGroup'
+
+import { cloneDeep, debounce, isEqual } from 'lodash'
+
+import { Select as ElSelect, Option as ElOption } from 'element-ui'
+// @ts-ignore
+import TsCheckboxGroup from './TsCheckboxGroup'
+// @ts-ignore
+import TsSelectBox from '@/components/TsSelect/TsSelectBox'
+import { SelectTypeEnum } from '@/constants/refine'
+
+
+export default /*#__PURE__*/_defineComponent({
+  __name: 'PresetSetting',
+  props: {
+    checkboxObject: {
+        type: Object,
+        default: () => {}
+    },
+
+    customCheckboxSettings: {
+        type: Object,
+        default: () => {}
+    }
+},
+  emits: ['on-change', 'update:checkboxObject', 'on-select-change', 'on-select-input'],
+  setup(__props, { emit: $emit }) {
+
+const props = __props
+
+
+
+
+const selectType = ref(0)
+const checkboxRefs = ref([])
+const customCheckObj = ref({})
+
+const recheckSelectType = debounce(function (val) {
+    console.log(val, defaultSyncCheckboxSettings)
+    if (isEqual(val, defaultSyncCheckboxSettings)) {
+        selectType.value = SelectTypeEnum.Default
+    } else if (isEqual(val, selectAllCheckboxSettings)) {
+        selectType.value = SelectTypeEnum.All
+    } else if (isEqual(val, nonSelectCheckboxSettings)) {
+        selectType.value = SelectTypeEnum.Cancel
+    } else if (isEqual(val, props.customCheckboxSettings)) {
+        selectType.value = SelectTypeEnum.Spec
+    } else {
+        selectType.value = SelectTypeEnum.Custom
+        customCheckObj.value = cloneDeep(val)
+    }
+}, 300)
+
+const checkObj = ref(cloneDeep(nonSelectCheckboxSettings))
+watch(() => props.checkboxObject, (val) => {
+    if (!val) {
+        return
+    }
+
+    if (Object.keys(val).length === 0) {
+        checkObj.value = cloneDeep(nonSelectCheckboxSettings)
+    } else {
+        if (isEqual(val, checkObj.value)) {
+            return
+        }
+        checkObj.value = cloneDeep(val)
+    }
+
+    recheckSelectType(checkObj.value)
+}, {
+    immediate: true
+})
+
+watch(() => props.customCheckboxSettings, (obj) => {
+    if (Object.keys(obj).length > 0) {
+        recheckSelectType(checkObj.value)
+    }
+})
+
+watch(checkObj, (res) => {
+    recheckSelectType(res)
+    $emit('update:checkboxObject', res)
+},{
+    deep: true
+})
+
+// 格式化选中参数所需的配置信息
+const checkParamsJson = computed(() => {
+    const obj: IFormatCheckJson = {
+        effects: [],
+        params: [],
+        crop: [],
+        algoVersion: []
+    }
+
+    for (const key in checkObj.value) {
+        const groupItem = presetGroup.find(item => item.value === Number(key))
+        const flags = checkObj.value[key]
+        groupItem?.children.forEach(item => {
+            if (item.includes && flags.includes(item.value)) {
+                obj.effects.push(...(item.includes.effects || []))
+                obj.params.push(...(item.includes.params || []))
+                obj.crop.push(...(item.includes.crop || []))
+                obj.algoVersion.push(...(item.includes.algoVersion || []))
+            }
+        })
+    }
+
+    return obj
+})
+
+watch(checkParamsJson, (val) => {
+    $emit('on-change', val)
+}, {
+    immediate: true,
+    deep: true
+})
+
+const selectOptions = computed(() => {
+    const list = [
+        { name: '默认', value: SelectTypeEnum.Default },
+        { name: '已调整', value: SelectTypeEnum.Spec },
+        { name: '全选', value: SelectTypeEnum.All },
+        { name: '全部取消', value: SelectTypeEnum.Cancel }
+    ]
+
+    if (selectType.value === SelectTypeEnum.Custom || Object.keys(customCheckObj.value).length > 0) {
+        list.push({ name: '自定义', value: SelectTypeEnum.Custom })
+    }
+
+    return list
+})
+
+const handleSelectAll = (val: boolean) => {
+    nextTick(() => {
+        checkboxRefs.value?.forEach((elem: TsCheckboxGroup) => {
+            if (val) {
+                elem.handleCheckAll()
+            } else {
+                elem.handleCancelAll()
+            }
+        })
+    })
+}
+
+const onSelectChange = (value: number) => {
+    switch (value) {
+        case SelectTypeEnum.Default:
+            checkObj.value = cloneDeep(defaultSyncCheckboxSettings)
+            break
+        case SelectTypeEnum.All:
+            handleSelectAll(true)
+            break
+        case SelectTypeEnum.Cancel:
+            handleSelectAll(false)
+            break
+        case SelectTypeEnum.Spec:
+            if (Object.keys(props.customCheckboxSettings).length > 0) {
+                checkObj.value = cloneDeep(props.customCheckboxSettings)
+            } else {
+                handleSelectAll(false)
+            }
+            break
+        case SelectTypeEnum.Custom:
+            checkObj.value = cloneDeep(customCheckObj.value)
+            break
+    }
+
+    $emit('on-select-change', value)
+}
+
+watch(selectType, (val) => $emit('on-select-input', val))
+
+
+return { __sfc: true,$emit, props, selectType, checkboxRefs, customCheckObj, recheckSelectType, checkObj, checkParamsJson, selectOptions, handleSelectAll, onSelectChange, presetGroup, ElSelect, ElOption, TsCheckboxGroup, TsSelectBox }
+}
+
+})

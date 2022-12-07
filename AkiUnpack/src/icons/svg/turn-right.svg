@@ -1,0 +1,10 @@
+import SpriteSymbol from "../../../node_modules/svg-baker-runtime/browser-symbol.js";
+import sprite from "../../../node_modules/svg-sprite-loader/runtime/browser-sprite.build.js";
+var symbol = new SpriteSymbol({
+  "id": "icon-turn-right",
+  "use": "icon-turn-right-usage",
+  "viewBox": "0 0 17 17",
+  "content": "<symbol viewBox=\"0 0 17 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" id=\"icon-turn-right\">\n<rect width=\"10\" height=\"10\" rx=\"1\" transform=\"matrix(4.37114e-08 1 1 -4.37114e-08 5 6.5)\" stroke=\"white\" stroke-opacity=\"0.85\" />\n<path d=\"M2 10.5L2 5.5C2 3.84315 3.34315 2.5 5 2.5L9.71492 2.5C9.80945 2.5 9.8512 2.38096 9.77739 2.32191L7.5 0.5\" stroke=\"white\" stroke-opacity=\"0.85\" />\n</symbol>"
+});
+var result = sprite.add(symbol);
+export default symbol

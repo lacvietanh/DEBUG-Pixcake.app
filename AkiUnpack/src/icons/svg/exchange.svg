@@ -1,0 +1,10 @@
+import SpriteSymbol from "../../../node_modules/svg-baker-runtime/browser-symbol.js";
+import sprite from "../../../node_modules/svg-sprite-loader/runtime/browser-sprite.build.js";
+var symbol = new SpriteSymbol({
+  "id": "icon-exchange",
+  "use": "icon-exchange-usage",
+  "viewBox": "0 0 8 8",
+  "content": "<symbol viewBox=\"0 0 8 8\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" id=\"icon-exchange\">\n<path d=\"M0 2.5H7.5L5.75 0.500488\" stroke=\"white\" stroke-opacity=\"0.55\" stroke-linejoin=\"round\" />\n<path d=\"M8 5.5H0.5L2.25 7.49951\" stroke=\"white\" stroke-opacity=\"0.55\" stroke-linejoin=\"round\" />\n</symbol>"
+});
+var result = sprite.add(symbol);
+export default symbol

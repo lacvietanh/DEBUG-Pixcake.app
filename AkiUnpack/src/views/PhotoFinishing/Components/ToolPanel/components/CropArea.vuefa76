@@ -1,0 +1,339 @@
+import { defineComponent as _defineComponent } from 'vue'
+import { ref, computed, nextTick, ComputedRef, watch, UnwrapNestedRefs, reactive } from 'vue'
+import store from '@/store'
+
+import { cm2pix, limitToPrecision, pix2cm } from '@/utils/tsMath'
+import tailorTypeList, {
+    OriginType,
+    RatioType,
+    DefaultIdPhotoType,
+    cropTypes,
+    idPhotoTypes,
+    needSetRecommendCropType,
+    recommendRadioOptions,
+    recommendRadioTypes,
+    allIdPhotoTypes,
+    FixedRatioType,
+    showRatioInputTypes
+} from '@/constants/crop-types'
+
+// @ts-ignore
+import TsSelect from '@/components/TsSelect'
+// @ts-ignore
+import TsSelectOption from '@/components/TsSelect/src/ts-select-option'
+import useFocusAndBlurRepositories from '@/composables/useFocusAndBlurRepositories'
+import { InputNumber as ElInputNumber, Select as ElSelect, Option as ElOption } from 'element-ui'
+
+import { ICropAndRotateObject } from '@/types/refine'
+
+interface ICache {
+    width: number | undefined
+    height: number | undefined
+}
+
+interface IParams {
+    type: number
+    rWidth: number | undefined
+    rHeight: number | undefined
+
+    width: number | undefined
+    height: number | undefined
+    dpi: number
+    unit: number
+}
+
+enum Unit {
+    Pix = 1,
+    Cm = 2
+}
+
+
+export default /*#__PURE__*/_defineComponent({
+  __name: 'CropArea',
+  emits: [
+    'on-show-reset',
+    'on-change'
+],
+  setup(__props, { expose, emit }) {
+
+
+
+const cropInitObject: ComputedRef<ICropAndRotateObject> = computed(() => store.getters['refine/cropInitObject'])
+const isSyncFromQt = ref(false)
+
+const params: UnwrapNestedRefs<IParams> = reactive({
+    type: OriginType,
+    rWidth: undefined,
+    rHeight: undefined,
+
+    width: undefined,
+    height: undefined,
+    dpi: 30,
+    unit: Unit.Cm
+})
+
+const cache: UnwrapNestedRefs<ICache> = reactive({
+    width: undefined,
+    height: undefined
+})
+
+const showRadioInput = computed(() => showRatioInputTypes.includes(params.type))
+const showIdPhotoInput = computed(() => allIdPhotoTypes.includes(params.type))
+
+const maxDPI = computed(() => {
+    return 30000
+    // const { width, height, dpi } = imageData.value
+    //
+    // if (params.width && params.height) {
+    //     const cmWidth = params.unit === Unit.Cm ? params.width : pix2cm(params.dpi, params.width)
+    //     const cmHeight = params.unit === Unit.Cm ? params.height : pix2cm(params.dpi, params.height)
+    //     return Math.min(pix2dpi(width, cmWidth), pix2dpi(height, cmHeight))
+    // } else {
+    //     return dpi
+    // }
+})
+
+const min = computed(() => params.unit === Unit.Pix ? 1 : 0.01)
+
+const imageData = computed(() => store.getters['refine/originImgData'])
+const imageOriFaceNum = computed(() => imageData.value && imageData.value.face && imageData.value.face.length)
+
+const needReset = computed(() => !(params.type === RatioType && params.rHeight === undefined && params.rWidth === undefined))
+watch(needReset, (val) => emit('on-show-reset', val), { immediate: true })
+
+// 同步数据
+const syncFromJson = (obj: ICropAndRotateObject) => {
+    params.type = obj.type
+    // 默认值时，现实原始原图比例
+    params.dpi = obj.dpi ? obj.dpi : imageData.value.dpi
+    params.unit = obj.unit || Unit.Cm
+
+    if (params.type === OriginType) {
+        params.rWidth = undefined
+        params.rHeight = undefined
+    } else if ([RatioType, FixedRatioType, ...recommendRadioTypes].includes(obj.type)) {
+        // 如果是比例类型，同步比例
+        params.rWidth = obj.width || undefined
+        params.rHeight = obj.height || undefined
+    }
+
+    // 如果是证件照比类型，同步证件照宽高
+    if ([DefaultIdPhotoType, ...idPhotoTypes].includes(obj.type)) {
+        params.width = obj.width || undefined
+        params.height = obj.height || undefined
+    } else {
+        params.width = undefined
+        params.height = undefined
+    }
+
+    cache.width = undefined
+    cache.height = undefined
+}
+
+// 同步本地QT的Json数据
+watch(cropInitObject, (obj) => {
+    isSyncFromQt.value = true
+    syncFromJson(obj)
+    nextTick(() => isSyncFromQt.value = false)
+})
+
+const emitRadioChange = () => {
+    let obj = {
+        width: params.rWidth,
+        height: params.rHeight,
+        type: params.type
+    }
+    console.debug('emitRadioChange: ', obj)
+    emit('on-change', obj)
+}
+
+const emitIdPhotoChange = () => {
+    // 格式化dpi
+    const dpi = params.dpi > maxDPI.value ? maxDPI.value : params.dpi
+    params.dpi = dpi
+
+    let obj = {
+        type: params.type,
+        width: params.width,
+        height: params.height,
+        dpi: dpi === imageData.value.dpi ? 0 : dpi,
+        unit: params.unit
+    }
+    console.debug('emitIdPhotoChange: ', obj)
+    emit('on-change', obj)
+}
+
+const onTypeChange = (value: number) => {
+    const obj = tailorTypeList.find(item => item.type === value)
+    if (recommendRadioTypes.includes(value)) {
+        // @ts-ignore
+        params.rWidth = obj.size.width
+        // @ts-ignore
+        params.rHeight = obj.size.height
+    } else if (idPhotoTypes.includes(value)) {
+        // @ts-ignore
+        params.width = obj.size.width
+        // @ts-ignore
+        params.height = obj.size.height
+        params.unit = Unit.Cm
+    }
+
+    if (cropTypes.includes(value)) {
+        if (value === OriginType) {
+            params.rWidth = undefined
+            params.rHeight = undefined
+        } else {
+            if (!params.rWidth && !params.rHeight) {
+                params.rWidth = cache.width
+                params.rHeight = cache.height
+            }
+        }
+
+        emitRadioChange()
+
+        if (params.rWidth && params.rHeight) {
+            cache.width = params.rWidth
+            cache.height = params.rHeight
+        }
+
+    } else if (allIdPhotoTypes.includes(value)) {
+        emitIdPhotoChange()
+    }
+}
+
+const onIdPhotoChange = () => {
+    nextTick(() => {
+        if (params.width) {
+            params.width = limitToPrecision(params.width, 3)
+        }
+        if (params.height) {
+            params.height = limitToPrecision(params.height, 3)
+        }
+
+        if (params.type !== DefaultIdPhotoType) {
+            params.type = DefaultIdPhotoType
+        }
+
+        emitIdPhotoChange()
+    })
+}
+
+// 检测比例是否时推荐比例
+const checkHasRecommendRatio = (width: number, height: number) => {
+    const obj = recommendRadioOptions.find(item => item.valid && item.valid.includes(`${ width }:${ height }`))
+    if (obj) {
+        return obj.type
+    }
+    return FixedRatioType
+}
+
+// 修改数值
+const onRatioChange = (width: number, height: number) => {
+    nextTick(() => {
+        if (params.rWidth) {
+            params.rWidth = limitToPrecision(params.rWidth, 3)
+        }
+        if (params.rHeight) {
+            params.rHeight = limitToPrecision(params.rHeight, 3)
+        }
+
+        if (needSetRecommendCropType.includes(params.type)) {
+            if (width && height) {
+                params.type = checkHasRecommendRatio(width, height)
+            } else {
+                if (!height || !width) {
+                    return
+                }
+            }
+            emitRadioChange()
+        }
+    })
+}
+
+// 交换宽高比
+const handleExchange = () => {
+    const temp = [params.rWidth, params.rHeight]
+    params.rWidth = temp[1]
+    params.rHeight = temp[0]
+
+    emitRadioChange()
+}
+
+// 交换宽高比
+const handleIdPhotoExchange = () => {
+    const temp = [params.width, params.height]
+    params.width = temp[1]
+    params.height = temp[0]
+    params.type = DefaultIdPhotoType
+
+    emitIdPhotoChange()
+}
+
+const onUnitChange = (value: number) => {
+    const { dpi, width, height } = params
+    if (value === Unit.Pix) {
+        if (params.width) {
+            params.width = cm2pix(dpi, width || 0)
+        }
+        if (params.height) {
+            params.height = cm2pix(dpi, height || 0)
+        }
+    } else {
+        if (params.width) {
+            params.width = pix2cm(dpi, width || 0)
+        }
+        if (params.height) {
+            params.height = pix2cm(dpi, height || 0)
+        }
+    }
+    onIdPhotoChange()
+}
+
+const limitMax = (value: number, max: number, min?: number) => {
+    const fValue = Number(value) || 0
+    if (fValue > max) {
+        return max
+    }
+
+    if (typeof min === 'number' && fValue < min) {
+        return min
+    }
+
+    return fValue
+}
+
+const reset = () => {
+    params.type = RatioType
+    params.rWidth = undefined
+    params.rHeight = undefined
+    cache.width = undefined
+    cache.height = undefined
+
+    return {
+        width: params.rWidth,
+        height: params.rHeight,
+        type: params.type
+    }
+}
+
+const limitDpi = (value: string, max: number) => {
+    const fValue = (value + '').replace(/[^\d]/g, '')
+    if (fValue) {
+        params.dpi = limitMax(Number(fValue), max)
+    } else {
+        params.dpi = Number(fValue)
+    }
+}
+
+const onDpiChange = (max: number, min: number) => {
+    params.dpi = limitMax(params.dpi, max, min)
+    emitIdPhotoChange()
+}
+
+const { onInputBlur, onInputFocus } = useFocusAndBlurRepositories()
+expose({ reset })
+
+return { __sfc: true,Unit, emit, cropInitObject, isSyncFromQt, params, cache, showRadioInput, showIdPhotoInput, maxDPI, min, imageData, imageOriFaceNum, needReset, syncFromJson, emitRadioChange, emitIdPhotoChange, onTypeChange, onIdPhotoChange, checkHasRecommendRatio, onRatioChange, handleExchange, handleIdPhotoExchange, onUnitChange, limitMax, reset, limitDpi, onDpiChange, onInputBlur, onInputFocus, tailorTypeList, TsSelect, TsSelectOption, ElInputNumber, ElSelect, ElOption }
+}
+
+})

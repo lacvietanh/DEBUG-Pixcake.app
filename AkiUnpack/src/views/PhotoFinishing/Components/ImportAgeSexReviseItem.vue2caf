@@ -1,0 +1,19 @@
+import { render, staticRenderFns } from "./ImportAgeSexReviseItem.vue?vue&type=template&id=29e91d92&scoped=true&"
+import script from "./ImportAgeSexReviseItem.vue?vue&type=script&lang=js&"
+export * from "./ImportAgeSexReviseItem.vue?vue&type=script&lang=js&"
+
+
+/* normalize component */
+import normalizer from "!../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "29e91d92",
+  null
+  
+)
+
+export default component.exports

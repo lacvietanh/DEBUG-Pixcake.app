@@ -1,0 +1,231 @@
+
+import { ref, watch, onMounted, nextTick, PropType, Ref, SetupContext } from 'vue'
+
+import { isEqual } from 'lodash'
+
+import { IObject } from './types/types'
+import DataCollection from './model/Collection'
+
+import { Switch, Checkbox, Select, Option } from 'element-ui'
+import TsItemCard from './components/TsItemCard'
+import TsSlider from '@/components/TsSlider'
+import TsSliderGroup from '../TsSliderGroup'
+import TsNumberPlaceholder from '@/components/TsNumberPlaceholder'
+
+interface IProps {
+    data: [],
+    value: IObject,
+    disabled: boolean,
+    singleResetFunction?: Function
+}
+
+interface ISetup {
+    allRecordObject: Ref<IObject>
+    filterObject: Ref<IObject>
+    collapseObj: Ref<IObject<boolean>>
+
+    isVisible: (IObject) => boolean
+    onFocus: () => void
+    onBlur: () => void
+    onChange: (data: IObject, opt?: string) => void
+    onInput: (data: IObject) => void
+    reset: (data: IObject) => void,
+    emitResetSingle: (data: IObject, comName: string) => void
+    onFilterObjectChange: (data: IObject) => void
+    onSliderGroupChange: (values: number[], indexs: number[], keys: string[]) => void
+}
+
+export default {
+    name: 'ComponentCollection',
+    components: {
+        'el-switch': Switch,
+        'el-checkbox': Checkbox,
+        'el-select': Select,
+        'el-option': Option,
+        'ts-slider': TsSlider,
+        'ts-slider-group': TsSliderGroup,
+        TsItemCard,
+        TsNumberPlaceholder
+    },
+    props: {
+        data: {
+            type: Array,
+            default: (): [] => []
+        },
+        value: {
+            type: Object,
+            default: (): IObject => ({})
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        singleResetFunction: {
+            type: Function
+        }
+    },
+
+    setup(props: PropType<IProps>, { emit }: SetupContext): ISetup {
+        const obj = props.value as IObject
+
+        const collection = ref(new DataCollection(props.data, obj))
+
+        const filterObject = ref(collection.value.toFilterObject())
+        const allRecordObject = ref(collection.value.toObject())
+        const collapseObj = ref(collection.value.toCollapseObject())
+
+        emit('on-keys', Object.keys(allRecordObject.value))
+
+        const hasMounted = ref(false)
+        const isResetting = ref(false)
+
+        // 数值变更，同步数据集
+        watch(() => props.value, (val: IObject) => {
+            // todo 过滤不存在是数据再比较
+            if (isEqual(allRecordObject.value, val)) {
+                return
+            }
+
+            const obj = collection.value.updateByObject(val)
+            const needUpdate = Object.keys(obj).length > 0
+
+            if (needUpdate) {
+                allRecordObject.value = collection.value.toObject()
+            }
+        }, { deep: true })
+
+        watch(allRecordObject, (value) => {
+            const result = { ...props.value }
+
+            let isNeedInput = false
+            for (const key in value) {
+                if (result[key] !== value[key]) {
+                    isNeedInput = true
+                    result[key] = value[key]
+                }
+            }
+
+            if (isNeedInput) {
+                emit('input', result)
+            }
+        }, { deep: true, immediate: true })
+
+        // 组件变更，重载数据集
+        watch(() => props.data, (val) => {
+            const obj = props.value as IObject
+            collection.value = new DataCollection(val, obj)
+
+            const collectionObj = collection.value.toObject()
+            emit('on-keys', Object.keys(collectionObj))
+
+            allRecordObject.value = collectionObj
+        })
+
+        onMounted(() => {
+            nextTick(() => {
+                hasMounted.value = true
+            })
+        })
+
+        const onChange = (data: IObject) => {
+            collection.value.updateByObject(data)
+            emit('on-change', data)
+        }
+
+        const onInput = (data: IObject) => {
+            // 未挂载或重置情况 不触发input
+            if (!hasMounted.value || isResetting.value) {
+                return
+            }
+
+            const resultObj = collection.value.updateByObject(data)
+            if (Object.keys(resultObj).length > 0) {
+                emit('on-input', resultObj)
+            }
+        }
+
+        function isVisible (data): boolean {
+            if (typeof data.visible === 'function') {
+                return data.visible(props.value)
+            } else if (data.visible === 'boolean') {
+                return data.visible
+            } else {
+                return true
+            }
+        }
+
+        return {
+            allRecordObject,
+            filterObject,
+            collapseObj,
+
+            isVisible,
+            onFocus: () => {
+                emit('on-focus')
+            },
+            onBlur: () => {
+                emit('on-blur')
+            },
+            onChange,
+            onInput,
+            onFilterObjectChange: (data) => {
+                collection.value.updateByObject(data)
+            },
+            reset(data) {
+                isResetting.value = true
+                const resultObj = collection.value.updateByObject(data)
+                if (Object.keys(resultObj).length > 0) {
+                    allRecordObject.value = collection.value.toObject()
+                }
+                nextTick(() => {
+                    isResetting.value = false
+                })
+                return resultObj
+            },
+
+            // 单滑竿自定义重置逻辑
+            emitResetSingle: (item, comName) => {
+                if (typeof allRecordObject.value[item.key] === 'undefined') {
+                    return
+                }
+
+                let value = item.value
+                if (props.singleResetFunction) {
+                    const v = props.singleResetFunction(item)
+                    if (typeof v !== 'undefined' && typeof v !== 'object') {
+                        value = v
+                    }
+                }
+
+                if (allRecordObject.value[item.key] !== value) {
+                    allRecordObject.value[item.key] = value
+                    onChange({ [item.key]: value })
+
+                    if (comName === 'label') {
+                        emit('user-behavior', 'double-click-label')
+                    }
+
+                    if (comName === 'slider') {
+                        emit('user-behavior', 'double-click-slider')
+                    }
+                }
+            },
+
+            onSliderGroupChange: (values, indexs, keys) => {
+                const obj = {}
+                indexs.forEach(index => {
+                    const key = keys[index]
+                    const value = values[index]
+                    if (key && typeof value !== 'undefined') {
+                        obj[key] = value
+                    }
+                })
+                if (Object.keys(obj).length === 0) {
+                    return
+                }
+                onChange(obj)
+            }
+        }
+    }
+}
+

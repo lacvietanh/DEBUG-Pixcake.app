@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./ProjectLayout.vue?vue&type=template&id=7878bad0&scoped=true&"
+import script from "./ProjectLayout.vue?vue&type=script&lang=ts&setup=true&"
+export * from "./ProjectLayout.vue?vue&type=script&lang=ts&setup=true&"
+import style0 from "./ProjectLayout.vue?vue&type=style&index=0&id=7878bad0&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "7878bad0",
+  null
+  
+)
+
+export default component.exports

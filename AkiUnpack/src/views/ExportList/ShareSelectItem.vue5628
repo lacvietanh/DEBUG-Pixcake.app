@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./ShareSelectItem.vue?vue&type=template&id=4fa0485a&scoped=true&"
+import script from "./ShareSelectItem.vue?vue&type=script&lang=js&"
+export * from "./ShareSelectItem.vue?vue&type=script&lang=js&"
+import style0 from "./ShareSelectItem.vue?vue&type=style&index=0&id=4fa0485a&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "4fa0485a",
+  null
+  
+)
+
+export default component.exports

@@ -1,0 +1,28 @@
+
+import { Ref, onMounted, onUnmounted } from 'vue'
+import useProcessRepositories from '../composables/useProcessTransport'
+
+import { Progress} from 'element-ui'
+
+interface ISetup {
+    showProcess: Ref<boolean>
+    percentage: Ref<number>
+}
+
+export default {
+    components: {
+        'el-progress': Progress
+    },
+    setup(props): ISetup {
+        const { showProcess, percentage, addListener, removeListener, checkMigrate } = useProcessRepositories()
+
+        onMounted(addListener)
+        onUnmounted(removeListener)
+        onMounted(checkMigrate)
+
+        return {
+            showProcess,
+            percentage
+        }
+    }
+}

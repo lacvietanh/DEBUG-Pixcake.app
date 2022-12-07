@@ -1,0 +1,10 @@
+import SpriteSymbol from "../../../node_modules/svg-baker-runtime/browser-symbol.js";
+import sprite from "../../../node_modules/svg-sprite-loader/runtime/browser-sprite.build.js";
+var symbol = new SpriteSymbol({
+  "id": "icon-flip-y",
+  "use": "icon-flip-y-usage",
+  "viewBox": "0 0 17 20",
+  "content": "<symbol viewBox=\"0 0 17 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" id=\"icon-flip-y\">\n<path d=\"M8.10228 13.0218C8.30239 12.7592 8.69753 12.7592 8.89763 13.0218L12.6511 17.9469C12.9019 18.276 12.6672 18.75 12.2534 18.75H4.74652C4.33272 18.75 4.09802 18.276 4.34884 17.9469L8.10228 13.0218Z\" stroke=\"white\" stroke-opacity=\"0.85\" />\n<path d=\"M8.10228 6.97818C8.30239 7.24075 8.69753 7.24075 8.89763 6.97818L12.6511 2.05307C12.9019 1.72395 12.6672 1.25 12.2534 1.25L4.74652 1.25C4.33272 1.25 4.09802 1.72396 4.34884 2.05307L8.10228 6.97818Z\" stroke=\"white\" stroke-opacity=\"0.85\" />\n<line x1=\"-2.18557e-08\" y1=\"10\" x2=\"17\" y2=\"10\" stroke=\"white\" stroke-opacity=\"0.85\" stroke-dasharray=\"2 2\" />\n</symbol>"
+});
+var result = sprite.add(symbol);
+export default symbol

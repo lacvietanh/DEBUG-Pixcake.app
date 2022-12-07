@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./id-photo.vue?vue&type=template&id=cdc16282&scoped=true&"
+import script from "./id-photo.vue?vue&type=script&lang=js&"
+export * from "./id-photo.vue?vue&type=script&lang=js&"
+import style0 from "./id-photo.vue?vue&type=style&index=0&id=cdc16282&prod&lang=scss&scoped=true&"
+
+
+/* normalize component */
+import normalizer from "!../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "cdc16282",
+  null
+  
+)
+
+export default component.exports

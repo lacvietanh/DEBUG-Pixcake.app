@@ -1,0 +1,76 @@
+import { defineComponent as _defineComponent } from 'vue'
+import { debounce } from 'lodash'
+import { ref, onMounted, onUnmounted, watch, nextTick, Ref } from 'vue'
+
+import { IToolComponentData } from '@/view-model/photoControl/controlTools/types/tool'
+import ControlTools from '@/view-model/photoControl/controlTools/LiquefyToolControl'
+import { Tool } from '@/view-model/photoControl/controlTools/contants/config'
+import useParamsPointsRepositories from '@/composables/points/useParamsPointsRepositories'
+
+import { Switch as ElSwitch, Drawer } from 'element-ui'
+import TsSlider from '@/components/TsSlider'
+
+
+export default /*#__PURE__*/_defineComponent({
+  __name: 'LiquefyDrawer',
+  props: {
+    value: {
+        type: Boolean,
+        default: false
+    }
+},
+  emits: ['change-tool', 'input', 'before-close'],
+  setup(__props, { emit: $emit }) {
+
+const props = __props
+
+
+
+
+
+const visible = ref(props.value)
+watch(() => props.value, (val) => {
+    visible.value = val
+    if (val) {
+        initTool()
+    }
+})
+watch(visible, (val) => $emit('input', val))
+
+const isMounted = ref(false)
+const controlTools = ControlTools.getInstance()
+const tools: Ref<{ [key: string]: IToolComponentData[] } | {}> = ref({})
+const toolKey = ref('')
+
+const { PointLiquefyOperate } = useParamsPointsRepositories()
+
+const initTool = (): void => {
+    isMounted.value = false
+    tools.value = controlTools.createToolsOperationData()
+    toolKey.value = controlTools.tool
+    nextTick(() => isMounted.value = true)
+}
+
+const emitToolChange = debounce((val: Tool) => $emit('change-tool', val), 30)
+const changeTool = (val: Tool) => {
+    // 未挂载时不触发数值修改
+    if (!isMounted.value) {
+        return
+    }
+
+    toolKey.value = val
+    controlTools.changeTool(val)
+    emitToolChange(controlTools.tool)
+}
+
+const onBeforeClose = (done: Function) => $emit('before-close', done)
+
+const updateToolByKeydown = () => tools.value = controlTools.createToolsOperationData()
+onMounted(() => controlTools.on('on-update', updateToolByKeydown))
+onUnmounted(() => controlTools.off('on-update', updateToolByKeydown))
+
+
+return { __sfc: true,props, $emit, visible, isMounted, controlTools, tools, toolKey, PointLiquefyOperate, initTool, emitToolChange, changeTool, onBeforeClose, updateToolByKeydown, ElSwitch, Drawer, TsSlider }
+}
+
+})

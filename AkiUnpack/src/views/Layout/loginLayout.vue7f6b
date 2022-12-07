@@ -1,0 +1,47 @@
+
+import { Container, Header, Main } from 'element-ui'
+import HelperMenu from '@/views/Layout/components/HelperMenu'
+import GpuSwitchDialog from '@/views/Layout/components/GpuSwitchDialog'
+import { TEXT_LOGO_RELATIVE_PATH } from '@/constants/config'
+import {IS_CLIENT_PIX_PIE, IS_CLIENT_PixCake_EXPO} from '@/universal/types/config'
+import ipcRenderer from '@/qt-ipc/Ipc-renderer'
+import useUserPointsRepositories from '@/composables/points/useUserPointsRepositories'
+import { ref } from 'vue'
+
+export default {
+    name: 'LoginLayout',
+    // mixins: [pointsMixin],
+    components: {
+        'el-container': Container,
+        'el-header': Header,
+        'el-main': Main,
+        HelperMenu,
+        GpuSwitchDialog
+    },
+    setup(): any {
+
+        const { PointLogin } = useUserPointsRepositories()
+		let showGpuSwitchSetting = ref(false)
+        const handleClickMember = () => {
+            PointLogin('click_member_price')
+            // 此处是通知主进程打开会员计划的对话框
+            ipcRenderer?.send('open-member-plan-window', null)
+        }
+        const onSettingClick = ()=>{
+			showGpuSwitchSetting.value = true
+		}
+
+        return {
+            showVipPlan: false,
+            IS_CLIENT_PIX_PIE,
+			IS_CLIENT_PixCake_EXPO,
+            TEXT_LOGO_RELATIVE_PATH,
+            height: 700,
+            KEEP_ALIVE_PAGE: [],
+            showGpuSwitchSetting: showGpuSwitchSetting,
+
+            handleClickMember,
+			onSettingClick
+        }
+    }
+}
