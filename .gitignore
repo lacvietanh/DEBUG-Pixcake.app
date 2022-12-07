@@ -1,0 +1,16 @@
+*/.DS_Store
+AkiUnpack/node_modules/
+AkiUnpack/(webpack)/
+AkiUnpack/webpack/
+source/pixcake.app/Contents/MacOS
+source/pixcake.app/Contents/PlugIns
+source/pixcake.app/Contents/Frameworks
+source/pixcake.app/Contents/Resources/effect
+source/pixcake.app/Contents/Resources/pixcook
+source/pixcake.app/Contents/Resources/qt.conf
+source/pixcake.app/Contents/Resources/www/css
+source/pixcake.app/Contents/Resources/www/img
+source/pixcake.app/Contents/Resources/www/static
+source/pixcake.app/Contents/Resources/www/fonts
+source/pixcake.app/Contents/Resources/www/favicon.ico
+
