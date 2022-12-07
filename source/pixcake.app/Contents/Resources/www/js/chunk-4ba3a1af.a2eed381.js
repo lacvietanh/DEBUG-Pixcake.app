@@ -21704,7 +21704,7 @@
                     g = (t, e) => {
                         if (d.value) return;
                         d.value = !0;
-                        let i = t <= 1 ? "Xác nhận删除该图片" : "",
+                        let i = t <= 1 ? "确认删除该图片" : "",
                             o = null;
                         if (!i) {
                             let e = {
@@ -21713,12 +21713,12 @@
                                 i = {
                                     style: "font-size: 15px;font-weight: 500; margin: 12px 2px 16px 2px;color:#F5D228"
                                 };
-                            o = n("div", e, [n("span", e, "Xác nhận删除"), n("span", i, "" + t), n("span", e, "Ảnh")])
+                            o = n("div", e, [n("span", e, "确认删除"), n("span", i, "" + t), n("span", e, "张图片")])
                         }
                         h({
                             title: i,
                             customTitleEl: o,
-                            message: `删除操作是将图片从${a["b"]}中移除，但磁盘中的Ban đầuTập tin仍然还在。`,
+                            message: `删除操作是将图片从${a["b"]}中移除，但磁盘中的原始文件仍然还在。`,
                             customMessageStyle: "textAlign: left"
                         }).then(() => {
                             u("delete"), d.value = !1, f.value = !0, s["a"].handlerConfirmDeleteDialog(e, !0).then(() => {}), r["a"].commit("project/_SetLastProjectUpdateTime", new Date)
@@ -28722,7 +28722,7 @@
                         },
                         emptyText: {
                             type: String,
-                            default: "Đặt trước载入中"
+                            default: "预设载入中"
                         },
                         currentNodeId: {
                             value: -1
@@ -29007,7 +29007,7 @@
                                     this.renameType = 0, this.inputRenameText = t[1].label, this.inputRenameClass = t[1].id, this.showRenameDialog = !0
                                 }
                             }).push({
-                                label: "删除Phân loại",
+                                label: "删除分类",
                                 action: "class-delete",
                                 disabled: !1,
                                 data: null,
@@ -29036,7 +29036,7 @@
                         presetItemSet(t) {
                             const e = new v["a"];
                             e.push({
-                                label: "分享Đặt trước",
+                                label: "分享预设",
                                 action: "item-share",
                                 disabled: !1,
                                 data: null,
@@ -29050,7 +29050,7 @@
                                     this.renameType = 1, this.inputRenameText = t[1].label, this.inputRenameClass = t[1].id, this.showRenameDialog = !0
                                 }
                             }).push({
-                                label: "删除Đặt trước",
+                                label: "删除预设",
                                 action: "item-delete",
                                 disabled: !1,
                                 data: null,
@@ -29060,16 +29060,16 @@
                         applyPresetClick(t) {
                             let e = null;
                             const n = this.getPresetGather();
-                            console.log("=======>应用Đặt trước"), e = n.filter(e => t[0].id == e.id), this.$emit("onItemClick", e)
+                            console.log("=======>应用预设"), e = n.filter(e => t[0].id == e.id), this.$emit("onItemClick", e)
                         },
                         deletePresetClass(t) {
                             this.tsConfirm({
-                                title: "Xác nhận删除该Phân loại",
+                                title: "确认删除该分类",
                                 customMessageStyle: "textAlign: center",
-                                message: "同时将删除该Phân loại下所有的Đặt trước"
+                                message: "同时将删除该分类下所有的预设"
                             }).then(e => {
                                 Object(m["e"])(t[1].id).then(async t => {
-                                    this.tsNotify("删除Phân loại成功～"), await this.getPresetClass(!0)
+                                    this.tsNotify("删除分类成功～"), await this.getPresetClass(!0)
                                 }).catch(t => {
                                     console.log(t)
                                 })
@@ -29102,17 +29102,17 @@
                                 } catch (e) {} else this.showRenameDialog = !1;
                                 else this.tsNotify({
                                     type: "error",
-                                    message: "Tập tin名称不能为空！"
+                                    message: "文件名称不能为空！"
                                 })
                         },
                         buildShareToken() {
                             switch (this.shareTokenType) {
                                 case 1:
-                                    return `“${this.sharedItem.sharedName}”Đặt trước的分享口令「${this.sharedItem.sharedToken}」已复制,快粘贴分享给协作者吧`;
+                                    return `“${this.sharedItem.sharedName}”预设的分享口令「${this.sharedItem.sharedToken}」已复制,快粘贴分享给协作者吧`;
                                 case 2:
-                                    return `“${this.sharedItem.sharedName}”等${this.sharedItem.sharedNum}个Đặt trước的分享口令「${this.sharedItem.sharedToken}」已复制,快粘贴分享给协作者吧`;
+                                    return `“${this.sharedItem.sharedName}”等${this.sharedItem.sharedNum}个预设的分享口令「${this.sharedItem.sharedToken}」已复制,快粘贴分享给协作者吧`;
                                 case 3:
-                                    return `“${this.sharedItem.sharedName}”下所有Đặt trước的分享口令「${this.sharedItem.sharedToken}」已复制,快粘贴分享给协作者吧`;
+                                    return `“${this.sharedItem.sharedName}”下所有预设的分享口令「${this.sharedItem.sharedToken}」已复制,快粘贴分享给协作者吧`;
                                 default:
                                     break
                             }
@@ -29133,7 +29133,7 @@
                                     for (const e of t) a.push(e.id)
                                 }
                                 const o = await O["b"].presetHasOfflineMineIdPhoto(a);
-                                this.shareWarningTipMsg = "", o && (this.shareWarningTipMsg = "本次分享Đặt trước中不包含上传的Ảnh IDNền效果"), this.sharedItem.sharedToken = r.share_token, this.showPresetTokenDialog = !0, i.close();
+                                this.shareWarningTipMsg = "", o && (this.shareWarningTipMsg = "本次分享预设中不包含上传的证件照背景效果"), this.sharedItem.sharedToken = r.share_token, this.showPresetTokenDialog = !0, i.close();
                                 let s = new x["a"];
                                 if ("preset_class" === n) {
                                     const e = t[2].childNodes[0].label;
@@ -29150,7 +29150,7 @@
                         async batchDeletePreset(t, e) {
                             try {
                                 e ? this.tsConfirm({
-                                    title: "Xác nhận批量删除选中Đặt trước",
+                                    title: "确认批量删除选中预设",
                                     customMessageStyle: "textAlign: left"
                                 }).then(async t => {
                                     await this.batchDeletePresetStore({
@@ -29159,9 +29159,9 @@
                                         userId: this.userId,
                                         loadDb: !0,
                                         backstageLoad: !1
-                                    }), this.tsNotify("批量删除Đặt trước成功～")
+                                    }), this.tsNotify("批量删除预设成功～")
                                 }).catch(() => {}) : this.tsConfirm({
-                                    title: "Xác nhận删除选中Đặt trước",
+                                    title: "确认删除选中预设",
                                     customMessageStyle: "textAlign: left"
                                 }).then(async e => {
                                     await this.deletePreset({
@@ -29170,7 +29170,7 @@
                                         userId: this.userId,
                                         loadDb: !0,
                                         backstageLoad: !1
-                                    }), this.tsNotify("删除Đặt trước成功～")
+                                    }), this.tsNotify("删除预设成功～")
                                 }).catch(() => {})
                             } catch (n) {}
                         }

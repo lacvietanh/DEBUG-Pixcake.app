@@ -96,7 +96,7 @@
                                 e.onSelectedAllClick(), e.cancelBlur(t)
                             }
                         }
-                    }, [e._v(" " + e._s(e.isSelectedAll ? "Hủy全选" : "全选") + " ")]), t("el-button", {
+                    }, [e._v(" " + e._s(e.isSelectedAll ? "取消全选" : "全选") + " ")]), t("el-button", {
                         staticClass: "claSelectFavouriteAll",
                         attrs: {
                             plain: "",
@@ -107,7 +107,7 @@
                                 e.onSelectFavouriteClick(), e.cancelBlur(t)
                             }
                         }
-                    }, [e._v(" " + e._s("" + (e.isSelectedFavourite ? "Hủy选中星标" : "选中星标图片")) + " ")])], 1)]), t("BatchPalette", {
+                    }, [e._v(" " + e._s("" + (e.isSelectedFavourite ? "取消选中星标" : "选中星标图片")) + " ")])], 1)]), t("BatchPalette", {
                         ref: "paletteViewRef",
                         attrs: {
                             "image-type": e.selectionImageType,
@@ -205,13 +205,13 @@
                     }, [t("el-collapse-item", {
                         ref: "histogram",
                         attrs: {
-                            title: "Biểu đồ",
+                            title: "直方图",
                             name: "histogram"
                         }
                     }, [e._t("histogram")], 2), t("el-collapse-item", {
                         ref: "recommend",
                         attrs: {
-                            title: "推荐Đặt trước",
+                            title: "推荐预设",
                             name: "preset"
                         }
                     }, [t("template", {
@@ -220,7 +220,7 @@
                         staticClass: "claWtBlanceTitle"
                     }, [t("span", {
                         staticClass: "claTitle"
-                    }, [e._v("Đặt trước")]), t("div", [t("el-button", {
+                    }, [e._v("预设")]), t("div", [t("el-button", {
                         staticClass: "addBtnCla",
                         attrs: {
                             circle: "",
@@ -278,7 +278,7 @@
                 I = .05,
                 C = {
                     whiteBalanceParamCfg: [{
-                        label: "Nhiệt độ màu",
+                        label: "色温",
                         key: "EnhanceEditColorTemperatureRelative",
                         alias: "EnhanceEditColorTemperature",
                         singleStepLen: 1,
@@ -286,7 +286,7 @@
                         singleRatio: y / 2,
                         doubleRatio: I / 2
                     }, {
-                        label: "Tông",
+                        label: "色调",
                         key: "EnhanceEditHueRelative",
                         alias: "EnhanceEditHue",
                         singleStepLen: 1,
@@ -295,14 +295,14 @@
                         doubleRatio: I / 2
                     }],
                     colorParamCfg: [{
-                        label: "Tiếp xúc度",
+                        label: "曝光度",
                         key: "EnhanceEditExposure",
                         singleStepLen: 1,
                         dbStepLen: 2,
                         singleRatio: .03,
                         doubleRatio: .05
                     }, {
-                        label: "Ngược lại",
+                        label: "对比度",
                         key: "EnhanceEditContrast",
                         showSeparatorLine: !0,
                         singleStepLen: 1,
@@ -310,28 +310,28 @@
                         singleRatio: y,
                         doubleRatio: I
                     }, {
-                        label: "Ánh sáng cao",
+                        label: "高光",
                         key: "EnhanceEditHighlight",
                         singleStepLen: 1,
                         dbStepLen: 2,
                         singleRatio: y,
                         doubleRatio: I
                     }, {
-                        label: "Shadow",
+                        label: "阴影",
                         key: "EnhanceEditShadow",
                         singleStepLen: 1,
                         dbStepLen: 2,
                         singleRatio: y,
                         doubleRatio: I
                     }, {
-                        label: "Trắng",
+                        label: "白色",
                         key: "EnhanceEditWhite",
                         singleStepLen: 1,
                         dbStepLen: 2,
                         singleRatio: y,
                         doubleRatio: I
                     }, {
-                        label: "Black",
+                        label: "黑色",
                         key: "EnhanceEditBlack",
                         showSeparatorLine: !0,
                         singleStepLen: 1,
@@ -339,21 +339,21 @@
                         singleRatio: y,
                         doubleRatio: I
                     }, {
-                        label: "Rõ ràng",
+                        label: "清晰度",
                         key: "EnhanceEditCameraRawSharpen",
                         singleStepLen: 1,
                         dbStepLen: 2,
                         singleRatio: y,
                         doubleRatio: I
                     }, {
-                        label: "Sống động",
+                        label: "鲜艳度",
                         key: "EnhanceEditCameraRawVibrance",
                         singleStepLen: 1,
                         dbStepLen: 2,
                         singleRatio: y,
                         doubleRatio: I
                     }, {
-                        label: "Hòa",
+                        label: "饱和度",
                         key: "EnhanceEditSaturation",
                         showSeparatorLine: !0,
                         singleStepLen: 1,
@@ -730,13 +730,13 @@
                             this.PointBatchPalette("add_preset_icon");
                             const e = new j["a"];
                             e.push({
-                                label: "Để nhập định sẵn",
+                                label: "导入预设",
                                 action: "batchretouch-my-preset-import",
                                 disabled: !1,
                                 data: null,
                                 callback: () => this.showImportPresetDialog = !0
                             }).push({
-                                label: "Phân loại mới",
+                                label: "新建分类",
                                 action: "batchretouch-my-preset-newType",
                                 disabled: !1,
                                 data: null,
@@ -972,8 +972,8 @@
                         async onPresetClick(e, t) {
                             const a = e[0];
                             console.log(a, 88888), console.log("==> onPresetClick", a), a.version && a.version > Y["h"] ? this.tsConfirm({
-                                title: "Hệ thống nhắc",
-                                message: "Bạn cần để nâng cấp phiên bản mới nhất để sử dụng các sẵn Oh~",
+                                title: "系统提示",
+                                message: "需要升级最新版本才能使用该预设哦~",
                                 showCancelButton: !1
                             }).then(e => {}).catch(e => {}) : (this.isOnLoadPreset = !0, await ue["a"].cancelAllProcess(), await this.loadPresetEffectCfg(a), this.showLoading(), this.makeOptStatusChanged(), this.applyEffect(!0), this.isOnLoadPreset = !1, a.classifyType === te["f"].System ? (this.reminderPresetSelectIndex = a.id, this.myPresetSelectIndex = 0) : (this.reminderPresetSelectIndex = 0, this.myPresetSelectIndex = a.id))
                         },
@@ -1069,7 +1069,7 @@
                         listenWhenAppQuit() {
                             le["a"].on("onAppQuit", (e, t) => {
                                 this.tsConfirm({
-                                    title: "Hệ thống nhắc",
+                                    title: "系统提示",
                                     message: "有效果正在应用中，请不要退出",
                                     showCancelButton: !1
                                 }).then(e => {})
@@ -1218,7 +1218,7 @@
                             t && this.applyEffect(e)
                         },
                         async importFromFile(e) {
-                            if (console.log("二次从Tập tin的导入:"), this.isShowingImportDialog) return;
+                            if (console.log("二次从文件的导入:"), this.isShowingImportDialog) return;
                             this.isShowingImportDialog = !0;
                             const t = de["i"],
                                 a = await t.showOpenDialog({
@@ -1236,7 +1236,7 @@
                             const t = await this.hasReadWritePermission(e);
                             t.result === p["a"].OK ? (await this.checkAndImportImages(e, !0, e => {
                                 he["a"].handlerAfterSecondImport(this.galleryUUID), this.tsNotify({
-                                    message: `Nhập khẩu${e}Ảnh`
+                                    message: `已导入${e}张图片`
                                 })
                             }, e => {
                                 e.status === J["b"].Start && (this.showImportProgress = !0), this.importProgress = e
@@ -1267,7 +1267,7 @@
                     },
                     async beforeRouteLeave(e, t, a) {
                         this.canDestroy ? (await this.doWhenLeave(t, e), this.isFirstTime = !0, this.isOnLoadPreset ? this.tsConfirm({
-                            title: "Hệ thống nhắc",
+                            title: "系统提示",
                             message: "有效果正在应用中，请不要退出",
                             showCancelButton: !1
                         }).then(e => {
@@ -1282,7 +1282,7 @@
                             } = e;
                             this.isSelectedAll = t, this.isSelectedFavourite = a
                         }), he["a"].addListener("signalSelectionChanged", this.onSelectionChangedCallback), he["a"].addListener("signalClearGallery", this.onHandleEmptytedThumbnail), he["a"].addListener("signalStarClick", this.onStarClick), he["a"].addListener("signalEditedCount", this.onEditedCount), he["a"].addListener("signalRotate", this.onItemRotated), he["a"].addListener("signalThumbnailExtraInfo", this.onRecvThumbnailExtraInfo), se["a"].shareInstance().addObject(this), this.$route.query.imageFilePaths && this.$route.query.imageFilePaths.length > 0 && !0 === this.$route.query.isfromHome && this.tsNotify({
-                            message: `Nhập khẩu${this.$route.query.imageFilePaths.length}Ảnh`
+                            message: `已导入${this.$route.query.imageFilePaths.length}张图片`
                         }), g["a"].$on("onNavImportImage", Object(h["debounce"])(async e => {
                             ae["a"].getInstance().unRegisterShortcut(), await this.importFromFile(e), ae["a"].getInstance().registerShortcut()
                         }, 20)), g["a"].$on("onManualImportClick", Object(h["debounce"])(async e => {

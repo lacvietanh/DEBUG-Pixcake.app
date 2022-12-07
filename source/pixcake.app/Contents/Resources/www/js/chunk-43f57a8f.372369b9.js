@@ -320,7 +320,7 @@
                         }
                     })]), t("div", {
                         staticClass: "palette__guide-content"
-                    }, [t("p", [e._v("您可根据实际操作选择不同模式：")]), t("p", [e._v("1. 全效果模式下，调色速度较慢 🐢。可展示全部效果。")]), t("p", [e._v("2. 调色模式下，可实时调色 ⚡️。仅展示色彩效果，Không色彩效果暂时隐藏。")])]), t("p", {
+                    }, [t("p", [e._v("您可根据实际操作选择不同模式：")]), t("p", [e._v("1. 全效果模式下，调色速度较慢 🐢。可展示全部效果。")]), t("p", [e._v("2. 调色模式下，可实时调色 ⚡️。仅展示色彩效果，非色彩效果暂时隐藏。")])]), t("p", {
                         staticStyle: {
                             "text-align": "right"
                         }
@@ -389,7 +389,7 @@
                         staticStyle: {
                             "text-align": "center"
                         }
-                    }, [e._v("Điều chỉnh màu期间，将临时Gần其他效果")]), t("div", {
+                    }, [e._v("色彩调节期间，将临时关闭其他效果")]), t("div", {
                         staticClass: "radio-button-text",
                         attrs: {
                             slot: "reference"
@@ -403,7 +403,7 @@
                         }
                     }, [t("div", {
                         staticClass: "palette-mode-tip"
-                    }, [t("p", [e._v("全效果模式：展示全部效果，调色速度较慢；")]), t("p", [e._v("调色模式：可实时调色，Không色彩效果暂时隐藏")])]), t("i", {
+                    }, [t("p", [e._v("全效果模式：展示全部效果，调色速度较慢；")]), t("p", [e._v("调色模式：可实时调色，非色彩效果暂时隐藏")])]), t("i", {
                         staticClass: "ts-icon-question-outside",
                         attrs: {
                             slot: "reference"
@@ -437,7 +437,7 @@
                         }
                     }), t("p", {
                         staticClass: "label"
-                    }, [e._v("Báo dài để so sánh，Tắt：~")])]), t("el-button", {
+                    }, [e._v("长按进行对比，快捷键：~")])]), t("el-button", {
                         ref: "btn-switch",
                         staticClass: "btn-icon global__backdrop-filter",
                         attrs: {
@@ -557,7 +557,7 @@
                     }, [t("el-tooltip", {
                         attrs: {
                             effect: "light",
-                            content: "Hướng dẫn sử dụng bôi",
+                            content: "手动涂抹",
                             placement: "bottom",
                             "visible-arrow": !1,
                             "popper-class": "title-tip"
@@ -612,7 +612,7 @@
                                     on: {
                                         click: e.clickFinishCropBtn
                                     }
-                                }, [e._v(" Xác nhận ")])]
+                                }, [e._v(" 确认 ")])]
                             },
                             proxy: !0
                         }])
@@ -675,7 +675,7 @@
                                 return e.setRemoveDefectivePaintMask("cancel")
                             }
                         }
-                    }, [e._v(" Hủy ")]), t("el-button", {
+                    }, [e._v(" 取消 ")]), t("el-button", {
                         directives: [{
                             name: "gtag-event",
                             rawName: "v-gtag-event",
@@ -692,7 +692,7 @@
                                 return e.setRemoveDefectivePaintMask("save")
                             }
                         }
-                    }, [e._v(" Tiết kiệm ")])], 1)]) : e._e()], 1), t("ts-drawer", {
+                    }, [e._v(" 保存 ")])], 1)]) : e._e()], 1), t("ts-drawer", {
                         attrs: {
                             width: "345px",
                             direction: "rtl"
@@ -729,7 +729,7 @@
                                 e.handleFinishLiquefyMode("cancel"), e.PointLiquefactionCancel()
                             }
                         }
-                    }, [e._v(" Hủy ")]), t("el-button", {
+                    }, [e._v(" 取消 ")]), t("el-button", {
                         staticClass: "btn",
                         attrs: {
                             size: "mini"
@@ -739,7 +739,7 @@
                                 e.handleFinishLiquefyMode("save"), e.PointLiquefactionConfirm()
                             }
                         }
-                    }, [e._v(" Xác nhận ")])], 1)]) : e._e()], 1), t("liquefy-drawer", {
+                    }, [e._v(" 确认 ")])], 1)]) : e._e()], 1), t("liquefy-drawer", {
                         attrs: {
                             value: e.showLiquefy && !e.hideLiquefyTool
                         },
@@ -878,7 +878,7 @@
                     }, [t("el-collapse-item", {
                         ref: "preset",
                         attrs: {
-                            title: "Đặt trước",
+                            title: "预设",
                             name: "preset"
                         }
                     }, [t("template", {
@@ -892,7 +892,7 @@
                         }
                     }, [t("span", {
                         staticClass: "claTitle"
-                    }, [e._v("Đặt trước")]), t("div", [t("el-button", {
+                    }, [e._v("预设")]), t("div", [t("el-button", {
                         staticClass: "addBtnCla",
                         attrs: {
                             circle: "",
@@ -1028,7 +1028,7 @@
                         ref: "histogram",
                         staticClass: "histogram-collapse",
                         attrs: {
-                            title: "Biểu đồ",
+                            title: "直方图",
                             name: "histogram"
                         }
                     }, [e._t("histogram")], 2)], 1), t("params-collapse", {
@@ -1104,7 +1104,7 @@
                         on: {
                             click: e.onSaveNewPresetClick
                         }
-                    }, [e._v(" Cứu sẵn mới ")]), t("el-button-group", {
+                    }, [e._v(" 保存新预设 ")]), t("el-button-group", {
                         staticClass: "save-btn",
                         staticStyle: {
                             display: "flex"
@@ -1124,14 +1124,14 @@
                         },
                         attrs: {
                             size: "mini",
-                            title: "Đồng bộ có hiệu lực",
+                            title: "同步效果",
                             loading: e.isApplyLoading,
                             disabled: e.isSyncPresetDisabled
                         },
                         on: {
                             click: e.onApplyPresetToOther
                         }
-                    }, [e._v(" Đồng bộ hóa để chọn những hình ảnh ")]), t("el-button", {
+                    }, [e._v(" 同步到选中图片 ")]), t("el-button", {
                         staticClass: "preset-settings",
                         attrs: {
                             size: "mini",
@@ -1306,13 +1306,13 @@
                 ])
             }
             var B = [{
-                    name: "Tàn nhang mụn",
+                    name: "祛斑祛痘",
                     key: _["c"].Spotless,
                     value: 0,
                     personType: M,
                     showType: T
                 }, {
-                    name: "Bỏ nốt ruồi",
+                    name: "祛痣",
                     key: _["c"].RemoveNevus,
                     value: 0,
                     cType: "switch",
@@ -1320,62 +1320,62 @@
                     personType: M,
                     showType: T
                 }, {
-                    name: "Cơ thể mụn nhược điểm",
+                    name: "身体祛瑕疵",
                     key: _["c"].SpotlessBody,
                     value: 0,
                     personType: M,
                     showType: T
                 }, {
-                    name: "Bỏ trán nếp nhăn",
+                    name: "祛抬头纹",
                     key: _["c"].RemoveForeheadLines,
                     value: 0,
                     personType: M,
                     showType: T
                 }, {
-                    name: "Bỏ mắt đường",
+                    name: "祛眼周纹",
                     key: _["c"].RemoveEyeLines,
                     value: 0,
                     personType: M,
                     showType: T
                 }, {
-                    name: "Bỏ quầng",
+                    name: "祛黑眼圈",
                     key: _["c"].LightenPouch,
                     value: 0,
                     personType: M,
                     showType: T,
-                    tip: ["Bỏ tối vòng tròn bởi AI công nhận thông minh của mắt sắc tố", "Với đầy đủ của nó rõ ràng。Để đảm bảo các loại hiệu quả", "Nếu tự nhiên hơn，Trượt trượt khi AI sẽ tự động theo những", "Màu mắt xác định hiệu ứng của nhập vào lực lượng mức độ。"]
+                    tip: ["祛黑眼圈通过AI智能识别眼部色素沉", "着对其做充分的祛除。为保证祛除效", "果更自然，滑动滑竿时AI会自动根据", "眼部色素情况判断效果生效程度。"]
                 }, {
-                    name: "Bỏ nếp gấp",
+                    name: "祛法令纹",
                     key: _["c"].TearTrough,
                     value: 0,
                     personType: M,
                     showType: T,
-                    tip: ["Bỏ nếp gấp của AI công nhận thông minh của mũi trên cả hai mặt của bóng tối", "Chìm vào nó khử，Điền vào mũi cơ sở，Hãy để khuôn mặt", "Trông trẻ hơn。Để đảm bảo các phai có hiệu lực là hơn", "Tự nhiên，Trượt trượt khi AI sẽ tự động theo đường", "Ngu si đần độn xác định hiệu ứng của nhập vào lực lượng mức độ。"]
+                    tip: ["祛法令纹通过AI智能识别鼻翼两侧暗", "沉对其进行淡化，填充鼻基底，让脸", "部看起来更年轻。为保证淡化效果更", "自然，滑动滑竿时AI会自动根据纹路", "暗沉情况判断效果生效程度。"]
                 }, {
-                    name: "Bỏ cổ đường",
+                    name: "祛颈纹",
                     key: _["c"].RemoveNeckLines,
                     value: 0,
                     personType: M,
                     showType: T
                 }, {
-                    name: "Bỏ hai cằm",
+                    name: "祛双下巴",
                     key: _["c"].RemoveDoubleChin,
                     value: 0,
                     personType: M,
                     showType: T,
-                    tip: ["Đi cằm đôi bởi AI công Nhận thông Minh cằm đường viền，", "Để đạt được loại bỏ một cằm đôi khi vẫn giữ bình thường mặt", "Loại có hiệu lực。Đồng thời gian để mở những loại bỏ cổ dòng chức năng，", "Các hiệu ứng tổng thể là tốt hơn Oh～"],
+                    tip: ["去双下巴通过AI智能识别下巴轮廓，", "达到去除双下巴的同时保留正常脸", "型的效果。同时开启祛颈纹功能，", "整体效果更好噢～"],
                     line: e => {
                         const t = e[_["c"].StretchMark];
                         return 1 === t
                     }
                 }, {
-                    name: "Bỏ vết rạn",
+                    name: "祛妊娠纹",
                     key: _["c"].StretchMark,
                     cType: "switch",
                     value: 0,
                     showType: ["Female"]
                 }, {
-                    name: "Bỏ thai dòng",
+                    name: "祛妊娠线",
                     key: _["c"].StretchMarkLine,
                     value: 100,
                     showType: ["Female"],
@@ -1388,20 +1388,20 @@
                 F = i("bd5e");
             const L = F["h"].EnableByGpu;
             var V = [{
-                    name: "Kết cấu mài da（Trung lập màu xám）",
+                    name: "质感磨皮（中性灰）",
                     key: _["c"].NeutralGrayRetouch,
                     value: 0,
                     personType: M,
                     showType: T
                 }, {
-                    name: "Hydra mài da-Face",
+                    name: "水润磨皮-脸部",
                     key: _["c"].MoisturizingSkin,
                     value: 0,
                     max: E["v"] ? 50 : 100,
                     personType: M,
                     showType: T
                 }, {
-                    name: "Hydra mài da-Cơ thể",
+                    name: "水润磨皮-身体",
                     key: _["c"].MoisturizingSkinNoFace,
                     value: 0,
                     max: E["v"] ? 50 : 100,
@@ -1409,42 +1409,42 @@
                     showType: T,
                     line: !0
                 }, {
-                    name: "Màu mờ",
+                    name: "肤色透亮",
                     key: _["c"].SkinColorLighten,
                     value: 0,
                     personType: M,
                     showType: T
                 }, {
-                    name: "Làn da trắng",
+                    name: "肤色美白",
                     key: _["c"].SkinColorWhiten,
                     value: 0,
                     personType: M,
                     showType: T,
                     realtime: L
                 }, {
-                    name: "Da dẻ hồng hào",
+                    name: "皮肤红润",
                     key: _["c"].SkinColorRuddy,
                     value: 0,
                     personType: M,
                     showType: T,
                     realtime: L
                 }, {
-                    name: "Làn da là thống nhất",
+                    name: "肤色统一",
                     key: _["c"].SkinColorUniform,
                     value: 0,
                     personType: M,
                     showType: T,
-                    tip: ["Làn da là thống nhất của AI thông minh nhận dạng màu sắc đến đầy đủ", "Cơ thể màu kết quả phù hợp。Để tránh những kẻ xấu tờ，Mở", "Kai làn da là thống nhất chuyển，AI sẽ tự động theo các con số", "Tấm màu trường hợp để xác định xem hiệu quả của sự có hiệu lực。"]
+                    tip: ["肤色统一通过AI智能肤色识别达到全", "身肤色一致的效果。为避免坏片，开", "启肤色统一开关后，AI会自动根据图", "片肤色情况判断效果是否生效。"]
                 }],
                 A = [{
-                    name: "Răng",
+                    name: "牙齿美白",
                     key: _["c"].TeethWhiten,
                     value: 0,
                     personType: M,
                     showType: T,
                     realtime: F["h"].EnableByGpu
                 }, {
-                    name: "Sự phục hồi răng",
+                    name: "牙齿修复",
                     key: _["c"].ToothRepairing,
                     value: 0,
                     cType: "switch",
@@ -1454,7 +1454,7 @@
                     showType: T
                 }],
                 U = [{
-                    name: "Bright eyes",
+                    name: "亮眼",
                     key: _["c"].BrightEye,
                     value: 0,
                     personType: M,
@@ -1464,31 +1464,31 @@
             const $ = (e = -1, t = -1) => {
                     const i = -1 === e;
                     return [{
-                        name: "Màu Nền bỏ nhược điểm",
+                        name: "纯色背景祛瑕疵",
                         key: _["c"].BgCleanSwitch,
                         value: 0,
                         max: 1,
                         cType: "switch",
-                        tip: ["Màu Nền bỏ nhược điểm được thiết kế cho màu Nền", "Sự phát triển của một chìa khóa để loại bỏ nhược điểm chức năng。Sau khi mở，AI", "Tự động xác định màu Nền và thoát khỏi nhược điểm，Không", "Màu nền là không hợp lệ nếu。"],
+                        tip: ["纯色背景祛瑕疵是专门针对纯色背景", "研发的一键祛瑕疵功能。开启后，AI", "会自动识别纯色背景并祛除瑕疵，非", "纯色背景无效果。"],
                         beta: !0
                     }, {
-                        name: "Điều chỉnh nền",
+                        name: "背景调整",
                         cType: "select",
                         key: _["c"].BgCleanMode,
                         hiddenName: !0,
                         loading: i,
-                        loadingText: "Tự động nhận...",
+                        loadingText: "自动识别中...",
                         disabled: i,
                         value: e,
                         options: [{
-                            name: (1 === e ? "Nhận Dạng Tự Động：" : "") + "Màu Nền",
-                            label: "Màu Nền",
-                            parent: "Bỏ nhược điểm",
+                            name: (1 === e ? "自动识别：" : "") + "纯色背景",
+                            label: "纯色背景",
+                            parent: "祛瑕疵",
                             value: 1
                         }, {
-                            name: (0 === e ? "Nhận Dạng Tự Động：" : "") + "Không màu Nền（Không hiệu quả）",
-                            label: "Không màu Nền（Không hiệu quả）",
-                            parent: "Bỏ nhược điểm",
+                            name: (0 === e ? "自动识别：" : "") + "非纯色背景（无效果）",
+                            label: "非纯色背景（无效果）",
+                            parent: "祛瑕疵",
                             value: 0
                         }],
                         textColor: "#A6A6A6",
@@ -1497,41 +1497,41 @@
                             return 1 === t
                         }
                     }, {
-                        name: "Màu Nền bỏ màu sắc chụp cắt lớp",
+                        name: "纯色背景祛色彩断层",
                         key: _["c"].BgCleanMooreSwitch,
                         value: 0,
                         max: 1,
                         cType: "switch",
-                        tip: ["Màu Nền bỏ màu sắc chụp cắt lớp được thiết kế cho nền màu nghiên cứu và phát triển một chìa khóa để thoát khỏi những màu sắc chụp cắt lớp（Gợn sóng/Màu khối/Són）Tính năng。Sau khi mở，AI sẽ tự động xác định màu Nền và lau màu sắc chụp cắt lớp，Không màu Nền không hiệu quả。"],
+                        tip: ["纯色背景祛色彩断层是专门针对纯色背景研发的一键祛除色彩断层（摩尔纹/色块/波纹等）的功能。开启后，AI会自动识别纯色背景并祛除色彩断层，非纯色背景无效果。"],
                         tipStyle: {
                             width: "200px"
                         },
                         beta: !0
                     }, {
-                        name: "Điều chỉnh nền",
+                        name: "背景调整",
                         cType: "select",
                         key: _["c"].BgCleanMooreMode,
                         hiddenName: !0,
                         disabled: i,
                         value: t,
                         options: i ? [{
-                            name: "Tự động nhận...",
+                            name: "自动识别中...",
                             value: 0
                         }, {
-                            name: "Tự động nhận...",
+                            name: "自动识别中...",
                             value: 1
                         }, {
-                            name: "Tự động nhận...",
+                            name: "自动识别中...",
                             value: -1
                         }] : [{
-                            name: (1 === t ? "Nhận Dạng Tự Động：" : "") + "Màu Nền",
-                            label: "Màu Nền",
-                            parent: "Bỏ màu sắc chụp cắt lớp",
+                            name: (1 === t ? "自动识别：" : "") + "纯色背景",
+                            label: "纯色背景",
+                            parent: "祛色彩断层",
                             value: 1
                         }, {
-                            name: (0 === t ? "Nhận Dạng Tự Động：" : "") + "Không màu Nền（Không hiệu quả）",
-                            label: "Không màu Nền（Không hiệu quả）",
-                            parent: "Bỏ màu sắc chụp cắt lớp",
+                            name: (0 === t ? "自动识别：" : "") + "非纯色背景（无效果）",
+                            label: "非纯色背景（无效果）",
+                            parent: "祛色彩断层",
                             value: 0
                         }],
                         textColor: "#A6A6A6",
@@ -1541,11 +1541,11 @@
                         },
                         line: !0
                     }, {
-                        name: "Nền tăng cường",
+                        name: "背景增强",
                         key: _["c"].BackgroundEnhance,
                         realtime: F["h"].EnableByGpu,
                         value: 0,
-                        tip: ["Bởi AI màu tự động cường của nền hòa、Ngược lạ。", "Áp dụng để không muốn quá nhiều để thay đổi các nguyên tone，Muốn tăng cường màn hình", "Màu bầu không khí。"]
+                        tip: ["通过AI自动调色增强背景的饱和度、对比度等。", "适用于不想过多改变原图色调，又想提升画面", "色彩氛围的情况。"]
                     }]
                 },
                 H = e => {
@@ -1562,7 +1562,7 @@
                         value: 0,
                         disabled: !t
                     }, {
-                        name: "Nhiệt độ màu",
+                        name: "色温",
                         key: _["c"].SkyTemp,
                         min: -100,
                         max: 100,
@@ -1582,7 +1582,7 @@
                             }
                         }
                     }, {
-                        name: "Hòa",
+                        name: "饱和度",
                         key: _["c"].SkySaturation,
                         min: -100,
                         max: 100,
@@ -1634,7 +1634,7 @@
                         step: 1,
                         value: 0,
                         disabled: !(t && i),
-                        titleTip: "给水面加上天空倒影，可控制倒影Mức độ和虚化程度"
+                        titleTip: "给水面加上天空倒影，可控制倒影程度和虚化程度"
                     }, {
                         name: "景物水效虚化",
                         key: _["c"].SkyWaterVague,
@@ -1645,28 +1645,28 @@
             var z = i("4efb");
             const W = F["h"].EnableByGpu,
                 q = [{
-                    name: "Ánh sáng ba chiều",
+                    name: "高光立体",
                     key: _["c"].FacialStereo3DLight,
                     value: 0,
                     personType: M,
                     showType: M,
                     realtime: W
                 }, {
-                    name: "Tối của quan điểm",
+                    name: "阴影立体",
                     key: _["c"].FacialStereo3DShadow,
                     value: 0,
                     personType: M,
                     showType: M,
                     realtime: W
                 }, {
-                    name: "Trang điểm mắt tăng cường",
+                    name: "眼妆增强",
                     key: _["c"].MakeupEnhanceEye,
                     value: 0,
                     personType: M,
                     showType: M,
                     realtime: W
                 }, {
-                    name: "Tăng cường môi",
+                    name: "唇妆增强",
                     key: _["c"].MakeupEnhanceMouth,
                     value: 0,
                     personType: M,
@@ -1676,7 +1676,7 @@
                 G = R(q),
                 K = [{
                     id: 1,
-                    label: "Trang điểm chủ đề",
+                    label: "主题妆容",
                     key: _["c"].SuitMakeup,
                     effectKey: _["b"].MakeupSuit,
                     isMainItem: !0,
@@ -1689,50 +1689,50 @@
                         defaultValue: 0
                     }, {
                         id: 1,
-                        name: "Giả trang điểm",
+                        name: "伪素颜",
                         path: "Makeups/Suit/MU00000001",
                         iconPath: "./static/makeupIcons/suit_fakemakeup.png",
                         defaultValue: 80
                     }, {
                         id: 2,
-                        name: "Hàn quốc",
+                        name: "韩系",
                         path: "Makeups/Suit/MU00000003",
                         iconPath: "./static/makeupIcons/suit_korea.png",
                         defaultValue: 80
                     }, {
                         id: 3,
-                        name: "Ngọt ngào",
+                        name: "甜美",
                         path: "Makeups/Suit/MU00000005",
                         iconPath: "./static/makeupIcons/suit_sweet.png",
                         defaultValue: 80
                     }, {
                         id: 4,
-                        name: "Nhật bản",
+                        name: "日系",
                         path: "Makeups/Suit/MU00000002",
                         iconPath: "./static/makeupIcons/suit_japenese.png",
                         defaultValue: 80
                     }, {
                         id: 5,
-                        name: "Cổ điển",
+                        name: "复古",
                         path: "Makeups/Suit/MU00000004",
                         iconPath: "./static/makeupIcons/suit_classic.png",
                         defaultValue: 80
                     }, {
                         id: 6,
-                        name: "Châu âu và Hoa Kỳ",
+                        name: "欧美",
                         path: "Makeups/Suit/MU00000006",
                         iconPath: "./static/makeupIcons/suit_europe.png",
                         defaultValue: 80
                     }, {
                         id: 7,
-                        name: "Hồ trang điểm",
+                        name: "锦鲤妆",
                         new: "./static/makeupIcons/makeup_icon_new-lable@3x.png",
                         path: "Makeups/Suit/MU00000007",
                         iconPath: "./static/makeupIcons/suit_brocadecarp.png",
                         defaultValue: 80
                     }, {
                         id: 8,
-                        name: "Con trang điểm",
+                        name: "千金妆",
                         new: "./static/makeupIcons/makeup_icon_new-lable@3x.png",
                         path: "Makeups/Suit/MU00000008",
                         iconPath: "./static/makeupIcons/suit_daughter.png",
@@ -1740,7 +1740,7 @@
                     }]
                 }, {
                     id: 2,
-                    label: "Lông mày",
+                    label: "眉毛",
                     key: _["c"].EyebrowMakeup,
                     effectKey: _["b"].Eyebrow,
                     customBtnTextStyle: {
@@ -1793,7 +1793,7 @@
                     }]
                 }, {
                     id: 3,
-                    label: "Trang điểm mắt",
+                    label: "眼妆",
                     key: _["c"].EyeMakeup,
                     effectKey: _["b"].Eyemakeup,
                     customBtnTextStyle: {
@@ -1846,7 +1846,7 @@
                     }]
                 }, {
                     id: 4,
-                    label: "Mi",
+                    label: "睫毛",
                     key: _["c"].EyelashMakeup,
                     effectKey: _["b"].Eyelash,
                     customBtnTextStyle: {
@@ -1899,7 +1899,7 @@
                     }]
                 }, {
                     id: 5,
-                    label: "Blush",
+                    label: "腮红",
                     key: _["c"].BlusherMakeup,
                     effectKey: _["b"].Blusher,
                     customBtnTextStyle: {
@@ -1952,7 +1952,7 @@
                     }]
                 }, {
                     id: 6,
-                    label: "Son môi",
+                    label: "口红",
                     key: _["c"].LipMakeup,
                     effectKey: _["b"].Lipstick,
                     customBtnTextStyle: {
@@ -2032,12 +2032,12 @@
                     visible: X("V2"),
                     keys: [_["c"].LeftFaceLift, _["c"].RightFaceLift],
                     realtime: Y,
-                    cTitle: "Face",
+                    cTitle: "瘦脸",
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0
                     }]
                 }, {
@@ -2045,13 +2045,13 @@
                     visible: X("V2"),
                     keys: [_["c"].LeftTemple, _["c"].RightTemple],
                     realtime: Y,
-                    cTitle: "Đền thờ",
+                    cTitle: "太阳穴",
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
@@ -2060,13 +2060,13 @@
                     visible: X("V2"),
                     keys: [_["c"].LeftCheekBone, _["c"].RightCheekBone],
                     realtime: Y,
-                    cTitle: "Xương gò má",
+                    cTitle: "颧骨",
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
@@ -2075,24 +2075,24 @@
                     visible: X("V2"),
                     keys: [_["c"].LeftJaw, _["c"].RightJaw],
                     realtime: Y,
-                    cTitle: "Hàm dưới",
+                    cTitle: "下颌",
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
                 }, {
-                    name: "Face",
+                    name: "瘦脸",
                     key: _["c"].FaceLift,
                     value: 0,
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Đền thờ",
+                    name: "太阳穴",
                     key: _["c"].FacialRefineTemple,
                     min: -100,
                     value: 0,
@@ -2100,7 +2100,7 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Xương gò má",
+                    name: "颧骨",
                     key: _["c"].FacialRefineCheekBone,
                     min: -100,
                     value: 0,
@@ -2108,7 +2108,7 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Hàm dưới",
+                    name: "下颌",
                     key: _["c"].FacialRefineJaw,
                     min: -100,
                     value: 0,
@@ -2116,31 +2116,31 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Cái đầu nhỏ",
+                    name: "小头",
                     key: _["c"].HeadNarrow,
                     value: 0,
                     realtime: !0
                 }, {
-                    name: "Ít mặt",
+                    name: "小脸",
                     key: _["c"].FacialRefineSmallFace,
                     value: 0,
                     realtime: !0
                 }, {
-                    name: "Mặt rộng",
+                    name: "脸宽",
                     key: _["c"].FaceWidth,
                     min: -100,
                     value: 0,
                     cType: "ts-slider",
                     realtime: !0
                 }, {
-                    name: "Cằm",
+                    name: "下巴",
                     key: _["c"].FacialRefineChin,
                     min: -100,
                     value: 0,
                     cType: "ts-slider",
                     realtime: !0
                 }, {
-                    name: "Tóc",
+                    name: "发际线",
                     key: _["c"].FacialRefineHairLine,
                     min: -100,
                     value: 0,
@@ -2148,7 +2148,7 @@
                     realtime: !0
                 }],
                 Q = [{
-                    name: "Kích thước",
+                    name: "大小",
                     key: _["c"].FacialRefineEyeZoom,
                     min: -100,
                     value: 0,
@@ -2156,7 +2156,7 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Mắ",
+                    name: "眼高",
                     key: _["c"].FacialRefineEyeHigher,
                     min: -100,
                     value: 0,
@@ -2164,7 +2164,7 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Mắt rộng",
+                    name: "眼宽",
                     key: _["c"].FacialRefineEyeWidth,
                     min: -100,
                     value: 0,
@@ -2172,7 +2172,7 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Mắt khoảng cách",
+                    name: "眼距",
                     key: _["c"].FacialRefineEyeDistance,
                     min: -100,
                     value: 0,
@@ -2180,7 +2180,7 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Nghiêng",
+                    name: "倾斜",
                     key: _["c"].FacialRefineEyeAngle,
                     min: -100,
                     value: 0,
@@ -2188,7 +2188,7 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Vị trí",
+                    name: "位置",
                     key: _["c"].FacialRefineEyeUpDownAdjust,
                     min: -100,
                     value: 0,
@@ -2200,13 +2200,13 @@
                     visible: X("V2"),
                     keys: [_["c"].LeftEyeZoom, _["c"].RightEyeZoom],
                     realtime: Y,
-                    cTitle: "Kích thước",
+                    cTitle: "大小",
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
@@ -2215,13 +2215,13 @@
                     visible: X("V2"),
                     keys: [_["c"].LeftEyeHigher, _["c"].RightEyeHigher],
                     realtime: Y,
-                    cTitle: "Mắ",
+                    cTitle: "眼高",
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
@@ -2230,13 +2230,13 @@
                     visible: X("V2"),
                     keys: [_["c"].LeftEyeWidth, _["c"].RightEyeWidth],
                     realtime: Y,
-                    cTitle: "Mắt rộng",
+                    cTitle: "眼宽",
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
@@ -2245,13 +2245,13 @@
                     visible: X("V2"),
                     keys: [_["c"].LeftEyeDistance, _["c"].RightEyeDistance],
                     realtime: Y,
-                    cTitle: "Mắt khoảng cách",
+                    cTitle: "眼距",
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
@@ -2259,14 +2259,14 @@
                     cType: "ts-slider-group",
                     visible: X("V2"),
                     keys: [_["c"].LeftEyeAngle, _["c"].RightEyeAngle],
-                    cTitle: "Nghiêng",
+                    cTitle: "倾斜",
                     realtime: Y,
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
@@ -2275,47 +2275,47 @@
                     visible: X("V2"),
                     keys: [_["c"].LeftEyeUpDownAdjust, _["c"].RightEyeUpDownAdjust],
                     realtime: Y,
-                    cTitle: "Vị trí",
+                    cTitle: "位置",
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
                 }],
                 ee = [{
-                    name: "Kích thước",
+                    name: "大小",
                     key: _["c"].FacialRefineNose,
                     min: -100,
                     value: 0,
                     cType: "ts-slider",
                     realtime: !0
                 }, {
-                    name: "Mũi cao",
+                    name: "鼻高",
                     key: _["c"].FacialRefineNoseHigher,
                     min: -100,
                     value: 0,
                     cType: "ts-slider",
                     realtime: !0
                 }, {
-                    name: "Cầu mũi",
+                    name: "鼻梁",
                     key: _["c"].FacialRefineNoseBridge,
                     min: -100,
                     value: 0,
                     cType: "ts-slider",
                     realtime: !0
                 }, {
-                    name: "Mũi",
+                    name: "鼻翼",
                     key: _["c"].FacialRefineNoseAlar,
                     min: -100,
                     value: 0,
                     cType: "ts-slider",
                     realtime: !0
                 }, {
-                    name: "Chóp mũi",
+                    name: "鼻尖",
                     key: _["c"].FacialRefineNoseTip,
                     min: -100,
                     value: 0,
@@ -2323,35 +2323,35 @@
                     realtime: !0
                 }],
                 te = [{
-                    name: "Kích thước",
+                    name: "大小",
                     key: _["c"].FacialRefineMouthSize,
                     min: -100,
                     value: 0,
                     cType: "ts-slider",
                     realtime: !0
                 }, {
-                    name: "Miệng rộng",
+                    name: "嘴宽",
                     key: _["c"].FacialRefineMouthWidth,
                     min: -100,
                     value: 0,
                     cType: "ts-slider",
                     realtime: !0
                 }, {
-                    name: "Vị trí",
+                    name: "位置",
                     key: _["c"].FacialRefineMouthHigher,
                     min: -100,
                     value: 0,
                     cType: "ts-slider",
                     realtime: !0
                 }, {
-                    name: "Sự phong phú của trên môi",
+                    name: "丰上唇",
                     key: _["c"].FacialRefineMouthUpperLip,
                     min: -100,
                     value: 0,
                     cType: "ts-slider",
                     realtime: !0
                 }, {
-                    name: "Sự phong phú của môi dưới",
+                    name: "丰下唇",
                     key: _["c"].FacialRefineMouthLowperLip,
                     min: -100,
                     value: 0,
@@ -2359,7 +2359,7 @@
                     realtime: !0
                 }],
                 ie = [{
-                    name: "Dày",
+                    name: "粗细",
                     key: _["c"].FacialRefineEyeBrowThickness,
                     min: -100,
                     value: 0,
@@ -2367,7 +2367,7 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Tiêu đề khoảng cách",
+                    name: "眉距",
                     key: _["c"].FacialRefineEyeBrowDistance,
                     min: -100,
                     value: 0,
@@ -2375,7 +2375,7 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Nghiêng",
+                    name: "倾斜",
                     key: _["c"].FacialRefineEyeBrowAngle,
                     min: -100,
                     value: 0,
@@ -2383,7 +2383,7 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Hình dạng",
+                    name: "形状",
                     key: _["c"].FacialRefineEyeBrowShape,
                     min: -100,
                     value: 0,
@@ -2391,7 +2391,7 @@
                     visible: X("V1"),
                     realtime: !0
                 }, {
-                    name: "Vị trí",
+                    name: "位置",
                     key: _["c"].FacialRefineEyeBrowHigher,
                     min: -100,
                     value: 0,
@@ -2403,13 +2403,13 @@
                     visible: X("V2"),
                     keys: [_["c"].LeftEyeBrowThickness, _["c"].RightEyeBrowThickness],
                     realtime: Y,
-                    cTitle: "Dày",
+                    cTitle: "粗细",
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
@@ -2417,14 +2417,14 @@
                     cType: "ts-slider-group",
                     visible: X("V2"),
                     keys: [_["c"].LeftEyeBrowDistance, _["c"].RightEyeBrowDistance],
-                    cTitle: "Tiêu đề khoảng cách",
+                    cTitle: "眉距",
                     realtime: Y,
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
@@ -2432,14 +2432,14 @@
                     cType: "ts-slider-group",
                     visible: X("V2"),
                     keys: [_["c"].LeftEyeBrowAngle, _["c"].RightEyeBrowAngle],
-                    cTitle: "Nghiêng",
+                    cTitle: "倾斜",
                     realtime: Y,
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
@@ -2447,14 +2447,14 @@
                     cType: "ts-slider-group",
                     visible: X("V2"),
                     keys: [_["c"].LeftEyeBrowShape, _["c"].RightEyeBrowShape],
-                    cTitle: "Hình dạng",
+                    cTitle: "形状",
                     realtime: Y,
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
@@ -2462,36 +2462,36 @@
                     cType: "ts-slider-group",
                     visible: X("V2"),
                     keys: [_["c"].LeftEyeBrowHigher, _["c"].RightEyeBrowHigher],
-                    cTitle: "Vị trí",
+                    cTitle: "位置",
                     realtime: Y,
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0,
                         min: -100
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0,
                         min: -100
                     }]
                 }],
                 ae = e => [{
-                    label: "Face",
+                    label: "脸型",
                     id: "facial",
                     data: [...j(Z, e)]
                 }, {
-                    label: "Lông mày",
+                    label: "眉毛",
                     id: "eyeBrow",
                     data: [...j(ie, e)]
                 }, {
-                    label: "Mắt",
+                    label: "眼睛",
                     id: "eye",
                     data: [...j(Q, e)]
                 }, {
-                    label: "Mũi",
+                    label: "鼻子",
                     id: "nose",
                     data: [...j(ee, e)]
                 }, {
-                    label: "Miệng",
+                    label: "嘴巴",
                     id: "mouth",
                     data: [...j(te, e)]
                 }],
@@ -2500,7 +2500,7 @@
                     return 1 === t[i]
                 },
                 oe = [{
-                    name: "Đối xứng hóa lỏng（Cho vỡ sọ）",
+                    name: "对称液化（适用证件照）",
                     key: _["c"].SymmetryReshapeSwitch,
                     new: !0,
                     value: 0,
@@ -2508,10 +2508,10 @@
                     max: 1,
                     showType: T,
                     personType: M,
-                    tip: ["“Đối xứng hóa lỏng”是为满足Ảnh ID场景而打造的AI肖", "像对称功能。", "Mặt đối xứng：微调五官（Lông mày/Mắt/Mũi/Miệng/", "耳朵）使其TráiPhải对称。", "Trên cơ thể đối xứng：调整五官以外区域，如Face、发", "型、上半身姿态等，使其左右对称。"],
+                    tip: ["“对称液化”是为满足证件照场景而打造的AI肖", "像对称功能。", "五官对称：微调五官（眉毛/眼睛/鼻子/嘴巴/", "耳朵）使其左右对称。", "上半身对称：调整五官以外区域，如脸型、发", "型、上半身姿态等，使其左右对称。"],
                     getDisableValue: (e, t) => !E["v"] && (t && e)
                 }, {
-                    name: "Mặt đối xứng",
+                    name: "五官对称",
                     key: _["c"].SymmetryReshapeFace,
                     value: 0,
                     showType: T,
@@ -2520,7 +2520,7 @@
                     realtime: Y,
                     getDisableValue: e => !E["v"] && e
                 }, {
-                    name: "Trên cơ thể đối xứng",
+                    name: "上半身对称",
                     key: _["c"].SymmetryReshapeBody,
                     value: 0,
                     showType: T,
@@ -2546,7 +2546,7 @@
                 },
                 re = (e = "Male", t) => {
                     const i = [{
-                            name: "Mặt vườn",
+                            name: "面部重塑",
                             key: "group_facial_refine",
                             cType: "group",
                             value: "facial",
@@ -2557,8 +2557,8 @@
                             },
                             children: ae(e)
                         }, {
-                            name: "Sử dụng những di sản",
-                            parentName: "Mặt vườn",
+                            name: "使用旧版",
+                            parentName: "面部重塑",
                             key: _["a"].FaceSurgery,
                             cType: "checkbox",
                             type: "string",
@@ -2571,8 +2571,8 @@
                 },
                 ce = F["h"].EnableByGpu,
                 ue = [{
-                    title: "Cơ thể",
-                    name: "AI tạo hình",
+                    title: "全身",
+                    name: "AI塑形",
                     key: _["c"].AIBodyReshape,
                     value: 0,
                     alwaysShow: !0,
@@ -2580,22 +2580,22 @@
                     showType: T,
                     realtime: ce
                 }, {
-                    name: "Giảm béo",
+                    name: "瘦身",
                     key: _["c"].PoseRefineSlim,
                     value: 0,
                     showType: T,
                     personType: M,
                     realtime: ce
                 }, {
-                    name: "Tăng",
+                    name: "增高",
                     key: _["c"].PoseRefineHeighten,
                     value: 0,
                     showType: T,
                     realtime: ce,
                     line: !0
                 }, {
-                    title: "Một phần",
-                    name: "Đầu",
+                    title: "局部",
+                    name: "头部",
                     key: _["c"].PoseRefineShrinkHead,
                     value: 0,
                     personType: M,
@@ -2611,49 +2611,49 @@
                     personType: M,
                     showType: T,
                     options: [{
-                        name: "Trái",
+                        name: "左",
                         value: 0
                     }, {
-                        name: "Phải",
+                        name: "右",
                         value: 0
                     }]
                 }, {
-                    name: "Cánh tay mỏng",
+                    name: "瘦手臂",
                     key: _["c"].PoseRefineSlimHand,
                     value: 0,
                     personType: M,
                     showType: T,
                     realtime: ce
                 }, {
-                    name: "Nâng",
+                    name: "丰胸",
                     key: _["c"].PoseRefineEnhanceBreast,
                     value: 0,
                     showType: ["Female"],
                     personType: [_["e"].Female],
                     realtime: ce
                 }, {
-                    name: "Eo mỏng",
+                    name: "瘦腰",
                     key: _["c"].PoseRefineSlimWaist,
                     value: 0,
                     personType: M,
                     showType: T,
                     realtime: ce
                 }, {
-                    name: "Vẻ đẹp hip",
+                    name: "美臀",
                     key: _["c"].PoseRefineNiceButtock,
                     value: 0,
                     showType: ["Female"],
                     personType: [_["e"].Female],
                     realtime: ce
                 }, {
-                    name: "Chân gầy",
+                    name: "瘦腿",
                     key: _["c"].PoseRefineSlimLeg,
                     value: 0,
                     personType: M,
                     showType: T,
                     realtime: ce
                 }, {
-                    name: "Chân dài",
+                    name: "长腿",
                     key: _["c"].PoseRefineLengthen,
                     value: 0,
                     showType: T,
@@ -2721,7 +2721,7 @@
                     }
                 },
                 Se = [{
-                    name: "Đỏ",
+                    name: "红色",
                     key: _["d"].Red,
                     min: -100,
                     cType: "ts-slider",
@@ -2742,7 +2742,7 @@
                     realtime: he,
                     value: 0
                 }, {
-                    name: "Orange",
+                    name: "橙色",
                     key: _["d"].Orange,
                     min: -100,
                     cType: "ts-slider",
@@ -2763,7 +2763,7 @@
                     realtime: he,
                     value: 0
                 }, {
-                    name: "Màu vàng",
+                    name: "黄色",
                     key: _["d"].Yellow,
                     min: -100,
                     cType: "ts-slider",
@@ -2784,7 +2784,7 @@
                     realtime: he,
                     value: 0
                 }, {
-                    name: "Xanh",
+                    name: "绿色",
                     key: _["d"].Green,
                     min: -100,
                     cType: "ts-slider",
@@ -2805,7 +2805,7 @@
                     realtime: he,
                     value: 0
                 }, {
-                    name: "Ánh sáng màu xanh lá cây",
+                    name: "浅绿色",
                     key: _["d"].Cyan,
                     min: -100,
                     cType: "ts-slider",
@@ -2826,7 +2826,7 @@
                     realtime: he,
                     value: 0
                 }, {
-                    name: "Màu xanh",
+                    name: "蓝色",
                     key: _["d"].Blue,
                     min: -100,
                     cType: "ts-slider",
@@ -2847,7 +2847,7 @@
                     realtime: he,
                     value: 0
                 }, {
-                    name: "Màu tím",
+                    name: "紫色",
                     key: _["d"].Purple,
                     min: -100,
                     cType: "ts-slider",
@@ -2868,7 +2868,7 @@
                     realtime: he,
                     value: 0
                 }, {
-                    name: "Magenta",
+                    name: "洋红色",
                     key: _["d"].Magenta,
                     min: -100,
                     cType: "ts-slider",
@@ -2890,28 +2890,28 @@
                     value: 0
                 }];
             var _e = [{
-                name: "KHỞI gói",
+                name: "HSL分组",
                 key: "GroupHsl",
                 cType: "group",
                 value: "Hue",
                 filter: !0,
                 children: [{
                     id: "Hue",
-                    label: "Hue",
+                    label: "色相",
                     data: [...D(Se, _["c"].EnhanceEditHSLHue, Pe)]
                 }, {
                     id: "Saturation",
-                    label: "Hòa",
+                    label: "饱和度",
                     data: [...D(Se, _["c"].EnhanceEditHSLSaturation, Pe)]
                 }, {
                     id: "Lightness",
-                    label: "Sáng",
+                    label: "明亮度",
                     data: [...D(Se, _["c"].EnhanceEditHSLLightness, Pe)]
                 }]
             }];
             const Oe = F["h"].AlwaysEnable;
             var Ie = [{
-                name: "Tiếp xúc",
+                name: "曝光",
                 key: _["c"].EnhanceEditExposure,
                 cType: "ts-slider",
                 min: -5,
@@ -2920,35 +2920,35 @@
                 value: 0,
                 realtime: Oe
             }, {
-                name: "Ngược lại",
+                name: "对比度",
                 key: _["c"].EnhanceEditContrast,
                 cType: "ts-slider",
                 min: -100,
                 value: 0,
                 realtime: Oe
             }, {
-                name: "Ánh sáng cao",
+                name: "高光",
                 key: _["c"].EnhanceEditHighlight,
                 cType: "ts-slider",
                 min: -100,
                 value: 0,
                 realtime: Oe
             }, {
-                name: "Shadow",
+                name: "阴影",
                 key: _["c"].EnhanceEditShadow,
                 cType: "ts-slider",
                 min: -100,
                 value: 0,
                 realtime: Oe
             }, {
-                name: "Trắng",
+                name: "白色",
                 key: _["c"].EnhanceEditWhite,
                 cType: "ts-slider",
                 min: -100,
                 value: 0,
                 realtime: Oe
             }, {
-                name: "Black",
+                name: "黑色",
                 key: _["c"].EnhanceEditBlack,
                 cType: "ts-slider",
                 min: -100,
@@ -2956,22 +2956,22 @@
                 line: !0,
                 realtime: Oe
             }, {
-                title: "Sở thích",
-                name: "Rõ ràng",
+                title: "偏好",
+                name: "清晰度",
                 key: _["c"].EnhanceEditCameraRawSharpen,
                 cType: "ts-slider",
                 min: -100,
                 value: 0,
                 realtime: Oe
             }, {
-                name: "Sống động",
+                name: "鲜艳度",
                 key: _["c"].EnhanceEditCameraRawVibrance,
                 cType: "ts-slider",
                 min: -100,
                 value: 0,
                 realtime: Oe
             }, {
-                name: "Hòa",
+                name: "饱和度",
                 key: _["c"].EnhanceEditSaturation,
                 cType: "ts-slider",
                 min: -100,
@@ -2980,7 +2980,7 @@
             }];
             const Te = F["h"].AlwaysEnable;
             var Me = [{
-                    name: "Mài",
+                    name: "锐化",
                     key: _["c"].EnhanceEditCRDBStrength,
                     min: 0,
                     max: 150,
@@ -2992,7 +2992,7 @@
                         return 0 === e[_["c"].EnhanceEditCRDBStrength]
                     },
                     children: [{
-                        name: "Bán kính",
+                        name: "半径",
                         key: _["c"].EnhanceEditCRDBRadius,
                         min: .5,
                         max: 3,
@@ -3000,7 +3000,7 @@
                         step: .1,
                         realtime: Te
                     }, {
-                        name: "Chi tiết",
+                        name: "细节",
                         key: _["c"].EnhanceEditCRDBDetail,
                         min: 0,
                         max: 100,
@@ -3017,7 +3017,7 @@
                 }) => {
                     const i = [],
                         a = {
-                            name: "Nhiệt độ màu",
+                            name: "色温",
                             cType: "ts-slider",
                             key: _["c"].EnhanceEditColorTemperature,
                             value: .5,
@@ -3047,7 +3047,7 @@
                             }
                         },
                         n = {
-                            name: "Tông",
+                            name: "色调",
                             key: _["c"].EnhanceEditHue,
                             cType: "ts-slider",
                             value: .5,
@@ -3081,41 +3081,41 @@
             var Ne = Re;
             const Be = ["removeDefects"],
                 Ee = [{
-                    name: "Rõ ràng nhược điểm",
+                    name: "祛除瑕疵",
                     key: "removeDefects"
                 }, {
-                    name: "Da điều chỉnh",
+                    name: "皮肤调整",
                     key: "skin"
                 }, {
-                    name: "Mặt vườn",
+                    name: "面部重塑",
                     key: "facialRefine",
                     new: !0
                 }, {
-                    name: "Răng cảnh",
+                    name: "牙齿美化",
                     key: "teeth"
                 }, {
-                    name: "Mắt tăng cường",
+                    name: "眼睛增强",
                     key: "eye"
                 }, {
-                    name: "Trang điểm điều chỉnh",
+                    name: "妆容调整",
                     key: "makeup"
                 }, {
-                    name: "Thể loại",
+                    name: "全身美型",
                     key: "body",
                     new: !0,
-                    tip: ["Cơ thể Đẹp bởi AI tự động cho cơ thể đẹp，", "Ở nhiều người gần trường hợp do dễ bị xấu", "Bây giờ AI sẽ tự động che chắn có hiệu lực Oh~"]
+                    tip: ["全身美型通过AI自动进行形体美化，", "在多人靠近的情况下因容易产生坏", "片目前AI会自动屏蔽效果噢~"]
                 }],
                 Fe = ["filter", "whiteBalance"],
                 Le = [{
-                    name: "Bộ lọc",
+                    name: "滤镜",
                     key: "filter",
                     group: "color"
                 }, {
-                    name: "Cân bằng trắng",
+                    name: "白平衡",
                     key: "whiteBalance",
                     group: "color"
                 }, {
-                    name: "Shadow tone",
+                    name: "影调",
                     key: "base",
                     group: "color"
                 }, {
@@ -3123,16 +3123,16 @@
                     key: "hsl",
                     group: "color"
                 }, {
-                    name: "Chi tiết",
+                    name: "细节",
                     key: "detailBoosting",
                     group: "color"
                 }],
                 Ve = ["backgroundEnhance"],
                 Ae = [{
-                    name: "Điều chỉnh nền",
+                    name: "背景调整",
                     key: "backgroundEnhance"
                 }, {
-                    name: "ID ảnh nền",
+                    name: "证件照换背景",
                     key: "replace",
                     new: !0
                 }, {
@@ -3143,16 +3143,16 @@
                 }],
                 Ue = [{
                     type: "Male",
-                    label: "Nam"
+                    label: "男"
                 }, {
                     type: "Female",
-                    label: "Nữ"
+                    label: "女"
                 }, {
                     type: "Child",
-                    label: "Trẻ em"
+                    label: "儿童"
                 }, {
                     type: "Older",
-                    label: "Những người lớn tuổi"
+                    label: "长辈"
                 }],
                 $e = R(B),
                 He = R(V),
@@ -3926,7 +3926,7 @@
                         }, [e._v(e._s(i))])
                     }))], 2)])] : e._e(), e.precise || e.data.precise ? [t("span", {
                         staticClass: "badge precise"
-                    }, [e._v("Bản chuyên nghiệp miễn phí")])] : e._e(), e.beta || e.data.beta ? [t("span", {
+                    }, [e._v("专业版限免")])] : e._e(), e.beta || e.data.beta ? [t("span", {
                         staticClass: "tip-box"
                     }, [e._v("beta")])] : e._e(), e.newIcon || e.data.new ? [t("i", {
                         staticClass: "ts-icon-new"
@@ -4804,24 +4804,24 @@
                         attrs: {
                             label: 0
                         }
-                    }, [e._v("推荐Nền")]), t("el-radio-button", {
+                    }, [e._v("推荐背景")]), t("el-radio-button", {
                         staticClass: "radio-button",
                         attrs: {
                             label: 1
                         }
-                    }, [e._v("我的Nền")])], 1), t("div", {
+                    }, [e._v("我的背景")])], 1), t("div", {
                         staticClass: "id-photo-container-background-header header",
                         class: {
                             bg_loading: e.isIdPhotoLoading
                         }
                     }, [t("span", {
                         staticClass: "header-title"
-                    }, [e._v("Nền chọn")]), (0 == e.activeSourceTab ? e.backgroundList.length > e.BACKGROUND_LENGTH - 1 : e.mineIdPhotoCount > e.MINE_BACKGROUND_LENGTH - 1) ? t("span", {
+                    }, [e._v("背景选择")]), (0 == e.activeSourceTab ? e.backgroundList.length > e.BACKGROUND_LENGTH - 1 : e.mineIdPhotoCount > e.MINE_BACKGROUND_LENGTH - 1) ? t("span", {
                         staticClass: "more",
                         on: {
                             click: e.openMorePanel
                         }
-                    }, [e._v("Xem nữa"), t("i", {
+                    }, [e._v("查看更多"), t("i", {
                         staticClass: "el-icon-arrow-right icon"
                     })]) : e._e()]), t("ul", {
                         staticClass: "id-photo-container-background-list",
@@ -4877,7 +4877,7 @@
                         }
                     })], 1), t("span", {
                         staticClass: "name"
-                    }, [e._v(e._s("导入Nền"))])]), e._l(e.mineIdPhotoList, (function(i, a) {
+                    }, [e._v(e._s("导入背景"))])]), e._l(e.mineIdPhotoList, (function(i, a) {
                         return [t("li", {
                             key: a,
                             staticClass: "list-item",
@@ -4948,7 +4948,7 @@
                                 return e.onResetSingle(e.SliderEnum.Gamma)
                             }
                         }
-                    }, [e._v("Cạnh điều chỉnh")])]), t("ts-number-placeholder", {
+                    }, [e._v("边缘调整")])]), t("ts-number-placeholder", {
                         staticClass: "percent",
                         attrs: {
                             min: 0,
@@ -5029,7 +5029,7 @@
                         staticClass: "id-photo-container-detail-optimization-header header"
                     }, [t("span", {
                         staticClass: "header-title"
-                    }, [e._v("Chi tiết của sự tối ưu")])])
+                    }, [e._v("细节优化")])])
                 }],
                 qt = i("63ea"),
                 Gt = i.n(qt),
@@ -5046,7 +5046,7 @@
                         }
                     }, [t("i", {
                         staticClass: "el-icon-arrow-left"
-                    }), e._v(" Ảnh ID ")])]), t("div", {
+                    }), e._v(" 证件照 ")])]), t("div", {
                         staticClass: "id-photo-panel-container-content global__scroll-style"
                     }, [t("div", {
                         staticClass: "id-photo-panel-container-background"
@@ -5074,14 +5074,14 @@
                         attrs: {
                             label: 0
                         }
-                    }, [e._v("推荐Nền")]), t("el-radio-button", {
+                    }, [e._v("推荐背景")]), t("el-radio-button", {
                         staticClass: "radio-button",
                         attrs: {
                             label: 1
                         }
-                    }, [e._v("我的Nền")])], 1), t("div", {
+                    }, [e._v("我的背景")])], 1), t("div", {
                         staticClass: "title"
-                    }, [e._v(" Nền chọn ")]), t("ul", {
+                    }, [e._v(" 背景选择 ")]), t("ul", {
                         staticClass: "id-photo-panel-container-background-list"
                     }, [0 == e.activeSourceTab ? [e._l(e.backgroundList, (function(i, a) {
                         return [t("li", {
@@ -5145,7 +5145,7 @@
                         staticClass: "id-photo-panel-container-detail-optimization"
                     }, [t("div", {
                         staticClass: "title"
-                    }, [e._v(" Chi tiết của sự tối ưu ")]), t("div", {
+                    }, [e._v(" 细节优化 ")]), t("div", {
                         staticClass: "slider-wrapper"
                     }, [t("div", {
                         staticClass: "label"
@@ -5162,7 +5162,7 @@
                                 return e.onResetSingle(e.SliderEnum.Gamma)
                             }
                         }
-                    }, [e._v("Cạnh điều chỉnh")]), t("ts-number-placeholder", {
+                    }, [e._v("边缘调整")]), t("ts-number-placeholder", {
                         staticClass: "percent",
                         attrs: {
                             min: 0,
@@ -5305,7 +5305,7 @@
                                 n || t.push(e.localMaterialId), i.proxy.tsConfirm({
                                     title: "",
                                     customMessageStyle: "textAlign: center",
-                                    message: `Xác nhận删除${t.length}个Nền`
+                                    message: `确认删除${t.length}个背景`
                                 }).then(async e => {
                                     await r["a"].dispatch("presetSuit/ACT_BatchDeleteMineIdPhotoBgList", t), await Yt["b"].deleteItems(t)
                                 }).catch(() => {})
@@ -5407,7 +5407,7 @@
                     props: {
                         description: {
                             type: String,
-                            default: "正在导入{0}个Nền素材..."
+                            default: "正在导入{0}个背景素材..."
                         },
                         showProgress: {
                             type: Boolean,
@@ -5545,7 +5545,7 @@
                                     lab3Name: "",
                                     optDesc: ""
                                 };
-                                n.labName = "Ảnh ID", n.lab2Name = "Nền", n.optDesc = e.name;
+                                n.labName = "证件照", n.lab2Name = "背景", n.optDesc = e.name;
                                 let l = v.value;
                                 e && e instanceof di["a"] && (l = e.shortEffectPath), y({
                                     [gi]: l,
@@ -5561,7 +5561,7 @@
                                     lab3Name: "",
                                     optDesc: ""
                                 };
-                                e.labName = "Ảnh ID", e.lab2Name = "Cạnh điều chỉnh", e.optDesc = b.value, y({
+                                e.labName = "证件照", e.lab2Name = "边缘调整", e.optDesc = b.value, y({
                                     [_["c"].BgReplaceGamma]: b.value
                                 }, "manual", JSON.stringify(e))
                             },
@@ -5597,7 +5597,7 @@
                                     lab3Name: "",
                                     optDesc: ""
                                 };
-                                e.labName = "Điều chỉnh nền", e.optDesc = "Thiết lập lại", y({
+                                e.labName = "背景调整", e.optDesc = "重置", y({
                                     [gi]: v.value,
                                     [_["c"].BgReplaceGamma]: b.value
                                 }, "reset", JSON.stringify(e))
@@ -5681,7 +5681,7 @@
                             }!a && e.localMaterialId && t.push(e.localMaterialId), this.tsConfirm({
                                 title: "",
                                 customMessageStyle: "textAlign: center",
-                                message: `Xác nhận删除${t.length}个Nền`
+                                message: `确认删除${t.length}个背景`
                             }).then(async e => {
                                 await r["a"].dispatch("presetSuit/ACT_BatchDeleteMineIdPhotoBgList", t), await Yt["b"].deleteItems(t)
                             }).catch(() => {})
@@ -5846,7 +5846,7 @@
                                 return e.onResetSingle(e.data)
                             }
                         }
-                    }, [e._v(" Mức độ ")]), t("ts-slider", {
+                    }, [e._v(" 程度 ")]), t("ts-slider", {
                         directives: [{
                             name: "gtag-dbl-event",
                             rawName: "v-gtag-dbl-event",
@@ -6241,7 +6241,7 @@
                                 lab3Name: "",
                                 optDesc: ""
                             };
-                            if ("reset" === n) s.isRest = !0, s.optDesc = "Thiết lập lại", s.labName = e.label;
+                            if ("reset" === n) s.isRest = !0, s.optDesc = "重置", s.labName = e.label;
                             else if (Object.keys(i).length > 1) {
                                 s.labName = e.label;
                                 let t = i[Object.keys(i)[0]];
@@ -6251,9 +6251,9 @@
                                             s.optDesc = i.name;
                                             break
                                         }
-                                } else s.optDesc = "Không có"
+                                } else s.optDesc = "无"
                             } else {
-                                s.labName = e.label + "Mức độ";
+                                s.labName = e.label + "程度";
                                 let t = Object.keys(i);
                                 s.optDesc = i[t[0]]
                             }
@@ -6290,7 +6290,7 @@
                                 }
                             });
                             let i = {
-                                label: "Trang điểm điều chỉnh"
+                                label: "妆容调整"
                             };
                             u(i, t, "reset")
                         }
@@ -6334,7 +6334,7 @@
                         on: {
                             click: e.showFilterPanelView
                         }
-                    }, [e._v("Xem nữa")]), t("i", {
+                    }, [e._v("查看更多")]), t("i", {
                         staticClass: "el-icon-arrow-right"
                     })]), t("div", {
                         staticClass: "filter-list"
@@ -6378,7 +6378,7 @@
                         on: {
                             dblclick: e.onResetSingle
                         }
-                    }, [e._v("Mức độ")]), t("ts-slider", {
+                    }, [e._v("程度")]), t("ts-slider", {
                         staticClass: "slider",
                         attrs: {
                             min: 0,
@@ -6542,7 +6542,7 @@
                             on: {
                                 dblclick: e.onResetSingle
                             }
-                        }, [e._v("Mức độ")]), t("ts-slider", {
+                        }, [e._v("程度")]), t("ts-slider", {
                             staticClass: "slider",
                             attrs: {
                                 min: 0,
@@ -6591,7 +6591,7 @@
                         staticClass: "header-title"
                     }, [t("i", {
                         staticClass: "el-icon-arrow-left"
-                    }), e._v(" Bộ lọc ")])
+                    }), e._v(" 滤镜 ")])
                 }],
                 Yi = {
                     name: "FilterPanelComponent",
@@ -6762,7 +6762,7 @@
                                         optDesc: ""
                                     },
                                     l = d.value.find(e => e.path === n.value);
-                                s.labName = "Bộ lọc", s.optDesc = l.name, y({
+                                s.labName = "滤镜", s.optDesc = l.name, y({
                                     [ea]: n.value,
                                     [ta]: o.value
                                 }, "manual", JSON.stringify(s)), a.PointSelectFilter(l)
@@ -6780,7 +6780,7 @@
                                     lab3Name: "",
                                     optDesc: ""
                                 };
-                                t.labName = "Bộ lọc cấp", t.optDesc = o.value, y({
+                                t.labName = "滤镜程度", t.optDesc = o.value, y({
                                     [ta]: o.value
                                 }, "manual", JSON.stringify(t))
                             },
@@ -6806,7 +6806,7 @@
                                     lab3Name: "",
                                     optDesc: ""
                                 };
-                                e.labName = "Bộ lọc", e.optDesc = "Thiết lập lại", y({
+                                e.labName = "滤镜", e.optDesc = "重置", y({
                                     [ea]: n.value,
                                     [ta]: o.value
                                 }, "reset", JSON.stringify(e))
@@ -6905,7 +6905,7 @@
             class la extends sa {
                 getOptDesc(e) {
                     const t = this.getValue(e);
-                    return t ? "Mở" : "Gần"
+                    return t ? "开启" : "关闭"
                 }
             }
             class ra extends sa {
@@ -6943,7 +6943,7 @@
                 }
                 getOptDesc(e) {
                     const t = this.getValue(e);
-                    return t === this.trueLabel ? "Mở" : "Gần"
+                    return t === this.trueLabel ? "开启" : "关闭"
                 }
                 getCommonLabel() {
                     const e = [];
@@ -7033,7 +7033,7 @@
                         isRest: !0,
                         lab2Name: "",
                         lab3Name: "",
-                        optDesc: "Thiết lập lại"
+                        optDesc: "重置"
                     };
                     let i = this._group.component,
                         a = Ee;
@@ -7755,7 +7755,7 @@
                         skyColumnFormat() {
                             let e = [];
                             return "所有天空" == this.cacheType ? e = this.skyList : this.cacheType && this.skyList.forEach(t => {
-                                t.type != this.cacheType && "Không có" != t.name || e.push(t)
+                                t.type != this.cacheType && "无" != t.name || e.push(t)
                             }), Object(Fi["f"])(e, 3)
                         },
                         skyAllType() {
@@ -7825,7 +7825,7 @@
                                 lab3Name: "",
                                 optDesc: ""
                             };
-                            e.labName = "换天空", e.optDesc = "Thiết lập lại";
+                            e.labName = "换天空", e.optDesc = "重置";
                             const t = {
                                 [Ea]: this.skyPath
                             };
@@ -7935,7 +7935,7 @@
                                 lab3Name: "",
                                 optDesc: ""
                             };
-                            e.labName = "换天空", e.optDesc = "Thiết lập lại";
+                            e.labName = "换天空", e.optDesc = "重置";
                             const t = {
                                 [$a]: this.skyPath
                             };
@@ -8327,11 +8327,11 @@
                             slot: "title"
                         },
                         slot: "title"
-                    }, [t("span", [e._v("Sẵn mới")])]), t("div", {
+                    }, [t("span", [e._v("新建预设")])]), t("div", {
                         staticClass: "container"
                     }, [t("div", {
                         staticClass: "formLine"
-                    }, [t("span", [e._v("Tên đặt trước：")]), t("el-input", {
+                    }, [t("span", [e._v("预设名称：")]), t("el-input", {
                         ref: "inputPresetNameRefs",
                         staticClass: "input-name",
                         attrs: {
@@ -8354,11 +8354,11 @@
                         }
                     })], 1), t("div", {
                         staticClass: "formLine"
-                    }, [t("span", [e._v("Phân loại：")]), t(i.TsSelectBox, [t(i.ElSelect, {
+                    }, [t("span", [e._v("分类：")]), t(i.TsSelectBox, [t(i.ElSelect, {
                         staticClass: "presetSelect",
                         attrs: {
                             size: "mini",
-                            placeholder: "Vui lòng chọn"
+                            placeholder: "请选择"
                         },
                         nativeOn: {
                             keydown: function(t) {
@@ -8399,7 +8399,7 @@
                             "font-size": "14px",
                             "margin-left": "4px"
                         }
-                    }, [e._v("Phân loại mới")])]), t("template", {
+                    }, [e._v("新建分类")])]), t("template", {
                         slot: "empty"
                     }, [t("p", {
                         staticStyle: {
@@ -8408,7 +8408,7 @@
                             "margin-left": "20px",
                             "margin-top": "10px"
                         }
-                    }, [e._v("Không phân loại")]), t("div", {
+                    }, [e._v("暂无分类")]), t("div", {
                         staticStyle: {
                             "padding-left": "18px",
                             cursor: "pointer",
@@ -8426,7 +8426,7 @@
                             "font-size": "14px",
                             "margin-left": "4px"
                         }
-                    }, [e._v("Phân loại mới")])])])], 2)], 1)], 1), t(i.ElDivider, {
+                    }, [e._v("新建分类")])])])], 2)], 1)], 1), t(i.ElDivider, {
                         staticClass: "divider"
                     }), t("div", {
                         staticClass: "formLine"
@@ -8461,7 +8461,7 @@
                                 i.visible = !1
                             }
                         }
-                    }, [e._v(" Hủy ")]), t(i.ElButton, {
+                    }, [e._v(" 取消 ")]), t(i.ElButton, {
                         attrs: {
                             size: "mini",
                             type: "primary",
@@ -8473,7 +8473,7 @@
                                 return i.onSubmit("savePresetBtn")
                             }
                         }
-                    }, [e._v(" Tiết kiệm ")])], 1) : t("div", {
+                    }, [e._v(" 保存 ")])], 1) : t("div", {
                         staticClass: "footer"
                     }, [t(i.ElButton, {
                         staticClass: "claBotButton",
@@ -8487,7 +8487,7 @@
                                 return i.onSubmit("CreatedNewPresetBtn")
                             }
                         }
-                    }, [e._v(" Tạo ra một sẵn mới ")]), t(i.ElButton, {
+                    }, [e._v(" 创建新预设 ")]), t(i.ElButton, {
                         attrs: {
                             type: "primary",
                             loading: i.coverLoading,
@@ -8496,13 +8496,13 @@
                         on: {
                             click: i.onCover
                         }
-                    }, [e._v("Ghi đè lên các già đặt trước ")])], 1), t("div", {
+                    }, [e._v("覆盖旧预设 ")])], 1), t("div", {
                         staticClass: "tip_container"
                     }, [i.hasMineIdPhoto ? [t("i", {
                         staticClass: "el-icon-warning-outline tip_icon"
                     }), t("span", {
                         staticClass: "tip"
-                    }, [e._v("Đặt trước中上传的Ảnh IDNền仅支持当前电脑使用")])] : e._e()], 2)])
+                    }, [e._v("预设中上传的证件照背景仅支持当前电脑使用")])] : e._e()], 2)])
                 },
                 nn = [],
                 on = i("f8d6"),
@@ -8555,14 +8555,14 @@
                         const p = Object(l["computed"])(() => r["a"].getters.userId),
                             f = Object(l["reactive"])({
                                 cover: "",
-                                name: "Sẵn 1"
+                                name: "预设1"
                             }),
                             m = Object(l["computed"])(() => {
                                 let e = JSON.parse(JSON.stringify(r["a"].state.presetting.preset_class));
                                 return e = e.filter(e => 1 !== e.type), e
                             });
                         Object(l["watch"])(() => i.preset_label, e => {
-                            null === e ? (f.name = "Sẵn 1", h.value = m.value[0] ? m.value[0].value : null) : (f.name = e.name, h.value = e.classId)
+                            null === e ? (f.name = "预设1", h.value = m.value[0] ? m.value[0].value : null) : (f.name = e.name, h.value = e.classId)
                         });
                         const g = Object(l["ref"])({
                                 params: [],
@@ -8613,7 +8613,7 @@
                             } = Object(dn["a"])(), _ = async (e, i = null) => {
                                 if (null === h.value || "" === h.value) return void S({
                                     type: "error",
-                                    message: "Xin Vui Lòng Chọn Loại"
+                                    message: "请先选择分类"
                                 });
                                 let {
                                     cover: a,
@@ -8651,7 +8651,7 @@
                                             message: d.message
                                         })
                                     }
-                                    let g = "coverOldPreset" === e ? "Sẵn có thể thành công。Bạn có thể【Đặt trước】Xem。" : "Định sẵn là cứu thành công。您可以在【预设】中查看。";
+                                    let g = "coverOldPreset" === e ? "预设覆盖成功。您可以在【预设】中查看。" : "预设保存成功。您可以在【预设】中查看。";
                                     D(e), S({
                                         type: "success",
                                         message: g
@@ -8746,7 +8746,7 @@
                             top: e.dialogTop + "px",
                             width: e.dialogWidth + "px",
                             align: "center",
-                            title: "Tuổi đổi giới tính",
+                            title: "年龄性别修改",
                             "custom-class": "setting-dialog gpu-switch-dialog",
                             visible: e.visible,
                             "close-on-click-modal": !1,
@@ -8786,7 +8786,7 @@
                         staticClass: "btn-title"
                     }, [e._v("添加人脸")])]), t("span", {
                         staticClass: "title"
-                    }, [e._v("Tuổi đổi giới tính")])], 1), t("ImportAgeSexReviseItem", {
+                    }, [e._v("年龄性别修改")])], 1), t("ImportAgeSexReviseItem", {
                         ref: "ImportAgeSexReviseItem",
                         staticClass: "container",
                         attrs: {
@@ -9133,7 +9133,7 @@
                         attrs: {
                             "popper-class": "batch-sex-select",
                             "popper-append-to-body": !0,
-                            placeholder: "Vui lòng chọn"
+                            placeholder: "请选择"
                         },
                         on: {
                             change: function(t) {
@@ -10464,16 +10464,16 @@
                         return {
                             options: [{
                                 value: "Male",
-                                label: "Nam"
+                                label: "男"
                             }, {
                                 value: "Female",
-                                label: "Nữ"
+                                label: "女"
                             }, {
                                 value: "Child",
-                                label: "Trẻ em"
+                                label: "儿童"
                             }, {
                                 value: "Older",
-                                label: "Những người lớn tuổi"
+                                label: "长辈"
                             }],
                             noCompleteRatio: 1,
                             borderDiv: ["borderTL", "borderTR", "borderBL", "borderBR"],
@@ -10556,7 +10556,7 @@
                                 case _n.Init:
                                     return "移动并缩放人脸至人脸框"
                             }
-                            return this.isFaceMarkLoading ? "正在识别中..." : this.isFaceMarkWarning ? "此Vị trí已有人脸" : ""
+                            return this.isFaceMarkLoading ? "正在识别中..." : this.isFaceMarkWarning ? "此位置已有人脸" : ""
                         },
                         tooltipBgColor() {
                             if (!this.newFaceDataViewModel) return "";
@@ -10601,7 +10601,7 @@
                         onDeleteFaces() {
                             const e = this.selectedPersons.length;
                             if (0 == e) return;
-                            const t = 1 == e ? "Xác nhận删除该人脸" : `确认删除${e}个人脸`,
+                            const t = 1 == e ? "确认删除该人脸" : `确认删除${e}个人脸`,
                                 i = "删除后，调整效果将不会应用于该人脸上";
                             this.tsConfirm({
                                 title: t,
@@ -10955,7 +10955,7 @@
                                 let i = this.headHeight + this.dialogHeight + this.footHeight;
                                 this.dialogTop = (document.documentElement.clientHeight - i) / 2, this.isLoadSuccess = !0, e && this.render()
                             } catch (t) {
-                                e && (this.tsNotify("Tuổi dữ liệu đã thất bại để tả,Điều trị theo dõi"), this.onClose()), console.log("Tuổi tải dữ liệu đã thất bại", t)
+                                e && (this.tsNotify("年龄数据加载失败或识别不出来,后续处理"), this.onClose()), console.log("年龄数据加载失败", t)
                             }
                         },
                         render() {
@@ -11063,7 +11063,7 @@
                                 if (s(r, n)) {
                                     o = !0, l = r.personType;
                                     break
-                                } this.newPersonType = l, this.isUpdateType = o, console.log("Các nhân vật loại được thay đổi : ", this.isUpdateType), this.isPersonBioChanged = !0, await this.onSubmit()
+                                } this.newPersonType = l, this.isUpdateType = o, console.log("人物类型是否发生变化 : ", this.isUpdateType), this.isPersonBioChanged = !0, await this.onSubmit()
                         },
                         onAddFaceFrameClick() {
                             this.$refs["ImportAgeSexReviseBox"].onAddFaceFrameClick()
@@ -11236,11 +11236,11 @@
                             } = Object(dn["a"])(),
                             T = async () => {
                                 if (!C.value) return void(S.value = !0);
-                                if (x.value || y.value.id <= 0) return void O("Xin vui lòn~");
+                                if (x.value || y.value.id <= 0) return void O("请先在左侧加选要应用的图片哦~");
                                 _.value = !0;
                                 const t = await o["c"].applyPresetToOther(e.refineUUID, k.value);
                                 await Object(rn["a"])(300), _.value = !1, O({
-                                    message: t.length ? t.length + "Hiệu ứng ảnh đã đồng bộ" : "Các hiệu ứng đã được đồng bộ hóa"
+                                    message: t.length ? t.length + "张照片效果已同步" : "效果已同步"
                                 })
                             }, M = () => {
                                 r["a"].commit("refine/_SetIsSaveSyncSetting"), S.value = !0
@@ -11265,13 +11265,13 @@
                             }, 500),
                             U = Object(g["debounce"])(e => {
                                 const i = e[0];
-                                if (!i) return void O("Sẵn không tồn tại");
+                                if (!i) return void O("预设不存在");
                                 const {
                                     presetSuitId: a
                                 } = y.value;
                                 i.id !== a && (N(i), i.version && i.version > Wi["h"] ? I({
-                                    title: "Hệ thống nhắc",
-                                    message: "Bạn cần để nâng cấp phiên bản mới nhất để sử dụng các sẵn Oh~",
+                                    title: "系统提示",
+                                    message: "需要升级最新版本才能使用该预设哦~",
                                     showCancelButton: !1
                                 }).then(e => {}).catch(e => {}) : (t("onApplyPresetCallback", i), r["a"].commit("project/_SetLastProjectUpdateTime", new Date)))
                             }, 300),
@@ -11328,7 +11328,7 @@
                             te = Object(l["getCurrentInstance"])().proxy,
                             ie = () => {
                                 (new Xt["a"]).push({
-                                    label: "Để nhập định sẵn",
+                                    label: "导入预设",
                                     action: "batchretouch-my-preset-import",
                                     disabled: !1,
                                     data: null,
@@ -11336,7 +11336,7 @@
                                         te.showImportPresetDialog = !0
                                     }
                                 }).push({
-                                    label: "Phân loại mới",
+                                    label: "新建分类",
                                     action: "batchretouch-my-preset-newType",
                                     disabled: !1,
                                     data: null,
@@ -11485,7 +11485,7 @@
                             width: "380px",
                             height: "337px",
                             align: "center",
-                            title: "Vấn đề báo cáo",
+                            title: "问题上报",
                             "custom-class": "setting-dialog gpu-switch-dialog feedback-dialog",
                             visible: e.showFeedbackDialog,
                             "close-on-click-modal": !1,
@@ -11497,7 +11497,7 @@
                             slot: "title"
                         },
                         slot: "title"
-                    }, [e._v("Hồi")]), t("div", {
+                    }, [e._v("问题反馈")]), t("div", {
                         staticClass: "claFeedback"
                     }, [t("div", {
                         staticClass: "claFeedback_type"
@@ -11510,7 +11510,7 @@
                         }],
                         attrs: {
                             "popper-class": "feedback_select",
-                            placeholder: "*Chọn vấn đề phân loại"
+                            placeholder: "*选择问题的分类"
                         },
                         model: {
                             value: e.id,
@@ -11578,7 +11578,7 @@
                         on: {
                             click: e.onCancelBtn
                         }
-                    }, [e._v(" Hủy ")]), t("el-button", {
+                    }, [e._v(" 取消 ")]), t("el-button", {
                         attrs: {
                             size: "mini",
                             type: "primary"
@@ -11586,7 +11586,7 @@
                         on: {
                             click: e.onSubmitBtn
                         }
-                    }, [e._v(" Gửi ")])], 1)])
+                    }, [e._v(" 提交 ")])], 1)])
                 },
                 ds = [],
                 hs = i("f946"),
@@ -11616,7 +11616,7 @@
                             feedback_type: null,
                             id: "",
                             feedback_content: null,
-                            inputDefault: "*Xin vui lòng mô tả những hình ảnh của gặp phải vấn đề（Ví dụ：Mặt của mặt không thể được xác định）Và nhấn vào【Gửi】。\n cho chúng tôi càng sớm càng tốt lặp đi lặp lại để giải quyết vấn đề của bạn。",
+                            inputDefault: "*请描述该图片遇到的问题（例如：侧脸无法识别）并点击【提交】。\n以便我们尽快迭代解决您的问题。",
                             isCancelClick: !1,
                             isSubmitClick: !1
                         }
@@ -11633,8 +11633,8 @@
                             this.isCancelClick = !0, this.updateShowFeedbackDialog(), this.pointFeedbackCancel()
                         },
                         async onSubmitBtn() {
-                            if (!this.id) return void this.tsNotify("Xin vui lòng chọn một vấn đề phân loại");
-                            if (!this.feedback_content) return void this.tsNotify("Xin vui lòng mô tả những hình ảnh của gặp phải vấn đề");
+                            if (!this.id) return void this.tsNotify("请选择一个问题分类");
+                            if (!this.feedback_content) return void this.tsNotify("请描述该图片遇到的问题");
                             this.isSubmitClick = !0;
                             let e = {};
                             e = {
@@ -11645,7 +11645,7 @@
                             let t = {
                                 ...this.feedbackDialog_viewModel
                             };
-                            this.pointFeedbackConfirm(t, e.feedback_type), this.updateShowFeedbackDialog(), this.tsNotify("Những vấn đề đã được trình～"), this.FeedbackReport(e, t)
+                            this.pointFeedbackConfirm(t, e.feedback_type), this.updateShowFeedbackDialog(), this.tsNotify("问题已提交～"), this.FeedbackReport(e, t)
                         },
                         FeedbackReport(e, t) {
                             let i = t.thumbnailModel.projectId,
@@ -11719,7 +11719,7 @@
                     props: {
                         text: {
                             type: String,
-                            default: "Xử lý..."
+                            default: "处理中..."
                         },
                         show: {
                             type: Boolean,
@@ -12103,7 +12103,7 @@
                         staticClass: "tool"
                     }, [t("div", {
                         staticClass: "tool-title"
-                    }, [t("span", [e._v("Rõ ràng nhược điểm")]), t("span", {
+                    }, [t("span", [e._v("祛除瑕疵")]), t("span", {
                         directives: [{
                             name: "show",
                             rawName: "v-show",
@@ -12238,7 +12238,7 @@
                             },
                             on: {
                                 click: function(t) {
-                                    i.disabled ? e.tsNotify("Tạm thời chỉ hỗ trợ thu hồi đến gần 10 bước") : e.changeHistory(i.uuid)
+                                    i.disabled ? e.tsNotify("暂仅支持撤销至最近10步") : e.changeHistory(i.uuid)
                                 }
                             }
                         }, [t("i", {
@@ -12251,7 +12251,7 @@
                         }), e._v(" " + e._s(i.name) + " ")])]
                     }))] : t("li", {
                         staticClass: "history-empty"
-                    }, [e._v(" Không có điều hành hồ sơ ")])], 2), e._t("bottom")], 2)])
+                    }, [e._v(" 暂无操作记录 ")])], 2), e._t("bottom")], 2)])
                 },
                 Hs = [function() {
                     var e = this,
@@ -12259,16 +12259,16 @@
                     e._self._setupProxy;
                     return t("div", {
                         staticClass: "tool-title"
-                    }, [t("span", [e._v("Lịch sử")])])
+                    }, [t("span", [e._v("历史记录")])])
                 }];
             (function(e) {
                 e["Eraser"] = "eraser", e["Brush"] = "brush", e["Liquefy"] = "liquefy"
             })(as || (as = {}));
             const zs = {
-                eraser: "Cao su bút lau bôi",
-                brush: "Bàn chải bôi",
+                eraser: "橡笔擦涂抹",
+                brush: "画笔涂抹",
                 liquefy: "液化",
-                reset: "Thiết lập lại"
+                reset: "重置"
             };
             class Ws {
                 constructor() {
@@ -12399,7 +12399,7 @@
                 }
                 getComponentData() {
                     return [{
-                        name: "Kích thước",
+                        name: "大小",
                         value: this._size,
                         min: Gs,
                         max: Ks,
@@ -12408,14 +12408,14 @@
                             console.log("setValue", e), this.size = e
                         }
                     }, {
-                        name: "Lông",
+                        name: "羽化",
                         type: "feather",
                         value: this._feather,
                         setValue: e => {
                             this.feather = e
                         }
                     }, {
-                        name: "Mờ",
+                        name: "不透明度",
                         type: "opacity",
                         value: this._opacity,
                         setValue: e => {
@@ -12592,7 +12592,7 @@
                         tsNotify: c
                     } = Object(dn["a"])(),
                     u = () => {
-                        r.value || (r.value = !0, i && (null === i || void 0 === i || i.beforeOpenMode()), a.value = e.value.usePainterMode(), a.value.on(il.HistoryUpdate, e => s.value = e).on(il.ShowResetDefaultMask, e => n.value = e).on(il.HistoryExpired, () => c("Tạm thời chỉ hỗ trợ thu hồi đến gần 10 bước")), m())
+                        r.value || (r.value = !0, i && (null === i || void 0 === i || i.beforeOpenMode()), a.value = e.value.usePainterMode(), a.value.on(il.HistoryUpdate, e => s.value = e).on(il.ShowResetDefaultMask, e => n.value = e).on(il.HistoryExpired, () => c("暂仅支持撤销至最近10步")), m())
                     },
                     d = e => {
                         var t;
@@ -12608,8 +12608,8 @@
                     } = Object(dn["a"])(),
                     p = () => {
                         h({
-                            title: "Cho dù anh cần phải tiết kiệm bôi sửa？",
-                            confirmButtonText: "Tiết kiệm"
+                            title: "是否需要保存涂抹修改？",
+                            confirmButtonText: "保存"
                         }).then(() => {
                             f("save")
                         }).catch(() => {
@@ -12636,7 +12636,7 @@
                         n.value = !1, null === (e = a.value) || void 0 === e || e.resetPainterRecord()
                     },
                     openPainterMode: () => {
-                        e.value ? u() : c("Những hình ảnh được không nạp thành công，Xin vui lòng thử lại sau")
+                        e.value ? u() : c("图片未加载成功，请稍后再试")
                     },
                     switchDefectTool: e => {
                         var t;
@@ -12663,7 +12663,7 @@
                         staticClass: "tool"
                     }, [t("div", {
                         staticClass: "tool-title"
-                    }, [t("span", [e._v("Lịch sử")]), e.selectId && 0 != e.selectId ? t("i", {
+                    }, [t("span", [e._v("历史记录")]), e.selectId && 0 != e.selectId ? t("i", {
                         staticClass: "el-icon-refresh-right reset-btn-icon",
                         staticStyle: {
                             "font-size": "16px"
@@ -12720,7 +12720,7 @@
                                 enable: 1,
                                 id: 0,
                                 opt: {
-                                    labName: "Ban đầu"
+                                    labName: "原始"
                                 },
                                 presetSuitId: "-1",
                                 created_time: -1
@@ -12760,10 +12760,10 @@
                     },
                     mounted() {
                         this.sexMap = new Map([
-                            [0, "Nữ"],
-                            [1, "Nam"],
-                            [2, "Trẻ em"],
-                            [3, "Những người lớn tuổi"]
+                            [0, "女"],
+                            [1, "男"],
+                            [2, "儿童"],
+                            [3, "长辈"]
                         ]), fi["a"].on("on-updateCurrentOptRecordId", (e, t) => {
                             if (console.log("updateCurrentOptRecordId", t), t && t.id && r["a"].commit("refine/_SetNavbarDots", {
                                     history: !0
@@ -12797,7 +12797,7 @@
                                 enable: 1,
                                 id: 0,
                                 opt: {
-                                    labName: "Ban đầu"
+                                    labName: "原始"
                                 },
                                 presetSuitId: "-1",
                                 created_time: -1
@@ -12862,7 +12862,7 @@
                             return void 0 !== e.opt.sex && (t += this.sexMap.get(e.opt.sex) + "："), t += e.opt.labName, e.opt.lab2Name && (t += "  " + e.opt.lab2Name), e.opt.lab3Name && (t += "  " + e.opt.lab3Name), t
                         },
                         renderDesc(e) {
-                            if (e.isRest) return "Đã được thiết lập lại";
+                            if (e.isRest) return "已重置";
                             let t = Number(e.opt.optDesc);
                             return t > 0 ? "+" + t : e.opt.optDesc
                         },
@@ -13196,16 +13196,16 @@
                     element: "#" + wl.NavBarColor,
                     popover: {
                         className: "first-step-popover-class",
-                        title: "Điều chỉnh màu chức năng，Hỗ trợ NGUYÊN mực",
-                        description: "Hình chức năng điều chỉnh để di chuyển đến đây.",
+                        title: "色彩调节功能，支持RAW调色",
+                        description: "图像调节功能移动到这里了",
                         position: "left"
                     },
                     onNext: () => e()
                 }, {
                     element: "#" + wl.NavBarBackground,
                     popover: {
-                        title: "Một nền chìa khóa để sửa chữa&Thiên điều chỉnh",
-                        description: "Điều chỉnh nền&Ảnh nền được chuyển đến đây.",
+                        title: "一键背景修复&证件照调整",
+                        description: "背景调整&证件照换背景移动到这里了",
                         position: "left"
                     },
                     onNext: () => t()
@@ -13213,15 +13213,15 @@
                     element: "#" + wl.NavBarCrop,
                     popover: {
                         title: "新增裁剪功能",
-                        description: "支持对图片进行裁剪&旋转了，ID ảnh cây trồng功能也移动到这里了",
+                        description: "支持对图片进行裁剪&旋转了，证件照裁剪功能也移动到这里了",
                         position: "left"
                     },
                     onNext: () => i()
                 }, {
                     element: "#" + wl.NavBarHistory,
                     popover: {
-                        title: "Lịch Sử Mới năng",
-                        description: "Hỗ trợ lùi lại&Làm lại",
+                        title: "新增历史记录功能",
+                        description: "支持撤销&重做操作了",
                         position: "left"
                     },
                     onNext: () => {
@@ -13241,7 +13241,7 @@
                     element: "#" + wl.NavBarCrop,
                     popover: {
                         title: "新增裁剪功能",
-                        description: "支持对图片进行裁剪&旋转了，ID ảnh cây trồng功能也移动到这里了",
+                        description: "支持对图片进行裁剪&旋转了，证件照裁剪功能也移动到这里了",
                         position: "left"
                     },
                     onNext: () => {
@@ -13268,8 +13268,8 @@
                             u.value = new jo({
                                 autocompleteWait: 1e4,
                                 autoComplete: !0,
-                                nextBtnText: "Tiếp theo",
-                                doneBtnText: "Tôi biết.",
+                                nextBtnText: "下一步",
+                                doneBtnText: "我知道了",
                                 padding: 2,
                                 opacity: .4,
                                 allowClose: !1,
@@ -13363,19 +13363,19 @@
                         });
                         const h = Object(l["computed"])(() => [{
                                 key: ns["b"].Palette,
-                                name: "Điều chỉnh màu",
+                                name: "色彩调节",
                                 icon: "ts-icon-adjust",
                                 dot: u.value[ns["b"].Palette] || !1,
                                 guideId: wl.NavBarColor,
                                 point: a
                             }, {
-                                name: "Những người như thế để làm đẹp",
+                                name: "人像美化",
                                 key: ns["b"].Beauty,
                                 icon: "ts-icon-beautify",
                                 dot: u.value[ns["b"].Beauty] || !1,
                                 point: i
                             }, {
-                                name: "Ảnh cảnh",
+                                name: "图像美化",
                                 key: ns["b"].Background,
                                 icon: "ts-icon-background",
                                 dot: u.value[ns["b"].Background] || !1,
@@ -13392,7 +13392,7 @@
                                 point: s
                             }, {
                                 key: ns["b"].History,
-                                name: "Lịch sử",
+                                name: "历史记录",
                                 icon: "ts-icon-history",
                                 dot: u.value[ns["b"].History] || !1,
                                 guideId: wl.NavBarHistory,
@@ -13741,7 +13741,7 @@
                 }
                 getComponentData() {
                     return [{
-                        name: "Kích thước",
+                        name: "大小",
                         value: this._size,
                         min: 10,
                         max: 300,
@@ -13931,8 +13931,8 @@
                             if (e.status > 0) this._updateLoadingStatus(e.status);
                             else {
                                 const t = Object(Fi["l"])(this.thumbnailModel.imgPath);
-                                let i = `Tập tin: ${t}Thất bại để tải`;
-                                if (e.code === Fl["b"].COMPLETE_CODE_UN_SUPPORT_IMAGE_FORMAT) i = E["b"] + "暂时Không có法打Mở此Tập tin", Yl["b"].getExport().asyncReportRawShowError({
+                                let i = `文件: ${t}加载失败`;
+                                if (e.code === Fl["b"].COMPLETE_CODE_UN_SUPPORT_IMAGE_FORMAT) i = E["b"] + "暂时无法打开此文件", Yl["b"].getExport().asyncReportRawShowError({
                                     path: this.thumbnailModel.imgPath,
                                     id: this.thumbnailModel.id
                                 });
@@ -14023,7 +14023,7 @@
                         curr: i,
                         total: a
                     } = e, n = F["i"][t] || "";
-                    this._loadingText = `Được xử lý${n}(${i}/${a})`, this.emit(Kl.Status, {
+                    this._loadingText = `正在处理${n}(${i}/${a})`, this.emit(Kl.Status, {
                         loading: this.loading,
                         loadingText: this._loadingText,
                         allowModifyGender: this.allowModifyGender
@@ -14127,7 +14127,7 @@
                         r = null === (n = this.beautifyViewModel) || void 0 === n ? void 0 : n.needReloadThumbnailByModify(s);
                     if (r) {
                         const t = e.find(e => e.key === _["a"].FaceSurgery);
-                        t && "V1" === t.value && this.emit("notify", "Đang trên đường di sản của mặt tái định hiệu ứng")
+                        t && "V1" === t.value && this.emit("notify", "当前已开启旧版面部重塑效果")
                     }
                     const c = s.some(e => [_["c"].BgCleanMode, _["c"].BgCleanMooreMode].includes(e));
                     if (c && this.extraInfoModel) {
@@ -14358,29 +14358,29 @@
                                 o = {
                                     style: "line-height: 24px; font-weight: 400; word-break: break-all; color: rgba(255, 255, 255, 0.65)"
                                 },
-                                l = a("div", n, [a("span", n, '"'), a("span", n, "" + i), a("span", n, '"Không tồn tại')]),
+                                l = a("div", n, [a("span", n, '"'), a("span", n, "" + i), a("span", n, '"不存在')]),
                                 r = null;
                             return r = a("div", o, [a("div", {
                                 style: "margin-bottom: 8px"
-                            }, "Có thể là bạn di chuyển vị trí của các tập tin hoặc sửa đổi tên tập tin"), a("span", {}, "Nguyên vị trí："), a("span", {}, "" + t)]), null === c || void 0 === c || c.tsConfirm({
+                            }, "可能是您移动了文件位置或修改了文件名"), a("span", {}, "原始位置："), a("span", {}, "" + t)]), null === c || void 0 === c || c.tsConfirm({
                                 title: null,
                                 customTitleEl: l,
                                 customMessageEl: r,
                                 showCancelButton: !1,
-                                confirmButtonText: "Một bản sao của bản gốc của con đường",
+                                confirmButtonText: "复制原始路径",
                                 distinguishCancelAndClose: !0,
                                 beforeClose: function(e, t, i) {
                                     "close" === e && w(), i()
                                 }
                             }).then(e => {
-                                tr["a"].writeText(t), c.tsNotify("Ban đầu con đường đã được sao chép"), k()
+                                tr["a"].writeText(t), c.tsNotify("原始路径已复制"), k()
                             }).catch(e => {
                                 console.log(e)
                             }), !1
                         }
                         return !!e.isValid || (null === c || void 0 === c || c.tsConfirm({
-                            title: "Hệ thống nhắc",
-                            message: E["b"] + "暂时Không có法打Mở此Tập tin",
+                            title: "系统提示",
+                            message: E["b"] + "暂时无法打开此文件",
                             showCancelButton: !1
                         }).then(e => {}), Yl["b"].getExport().asyncReportRawShowError({
                             path: e.imgPath,
@@ -14465,7 +14465,7 @@
                         f.paintRemoveDefectiveMaskIsEmpty = e.paintRemoveDefectiveMaskIsEmpty, f.allowPainter = e.allowPainter
                     }).on(Kl.UpdateCropInfo, e => r["a"].commit("refine/_SetOriginImgData", e)).on(Kl.Notify, e => null === c || void 0 === c ? void 0 : c.tsNotify(e)).on(Kl.Error, e => {
                         null === c || void 0 === c || c.tsConfirm({
-                            title: "Hệ thống nhắc",
+                            title: "系统提示",
                             message: e.message,
                             showCancelButton: !1
                         }).then(() => {})
@@ -14786,7 +14786,7 @@
                         staticClass: "group--append ts-select-text",
                         attrs: {
                             size: "mini",
-                            placeholder: "Vui lòng chọn"
+                            placeholder: "请选择"
                         },
                         on: {
                             change: i.onUnitChange
@@ -14800,7 +14800,7 @@
                         }
                     }, [t(i.ElOption, {
                         attrs: {
-                            label: "Điểm",
+                            label: "像素",
                             value: 1
                         }
                     }), t(i.ElOption, {
@@ -14849,7 +14849,7 @@
                         }
                     }), t("span", {
                         staticClass: "group--append"
-                    }, [e._v("Điểm/英寸")])], 1)])])
+                    }, [e._v("像素/英寸")])], 1)])])
                 },
                 lr = [],
                 rr = i("e746"),
@@ -15310,7 +15310,7 @@
                         staticClass: "tool"
                     }, [t("div", {
                         staticClass: "tool-title"
-                    }, [t("span", [e._v("Lịch sử")]), t("i", {
+                    }, [t("span", [e._v("历史记录")]), t("i", {
                         directives: [{
                             name: "show",
                             rawName: "v-show",
@@ -15338,7 +15338,7 @@
                             },
                             on: {
                                 click: function(e) {
-                                    a.disabled ? i.tsNotify("Tạm thời chỉ hỗ trợ thu hồi đến gần 10 bước") : i.changeHistory(a.uuid)
+                                    a.disabled ? i.tsNotify("暂仅支持撤销至最近10步") : i.changeHistory(a.uuid)
                                 }
                             }
                         }, ["liquefy" === a.type ? [t("svg-icon", {
@@ -15357,7 +15357,7 @@
                         })], e._v(" " + e._s(a.name) + " ")], 2)]
                     }))] : t("li", {
                         staticClass: "history-empty"
-                    }, [e._v(" Không có điều hành hồ sơ ")])], 2), e._t("bottom")], 2)])
+                    }, [e._v(" 暂无操作记录 ")])], 2), e._t("bottom")], 2)])
                 },
                 Or = [],
                 Ir = Object(l["defineComponent"])({
@@ -15545,8 +15545,8 @@
                     } = Object(dn["a"])(),
                     f = () => {
                         p({
-                            title: "是否需要Tiết kiệm液化修改？",
-                            confirmButtonText: "Xác nhận"
+                            title: "是否需要保存液化修改？",
+                            confirmButtonText: "确认"
                         }).then(() => {
                             h("save")
                         }).catch(() => {
@@ -15905,7 +15905,7 @@
                         const Ce = () => {
                                 ce.value ? he("save") : g(!m.value)
                             },
-                            xe = Object(l["computed"])(() => Z.value ? "Được xử lý bôi dữ liệu..." : ce.value ? "正在初始化液化数据中..." : P.loadingText ? P.loadingText : "Được xử lý...");
+                            xe = Object(l["computed"])(() => Z.value ? "正在处理涂抹数据中..." : ce.value ? "正在初始化液化数据中..." : P.loadingText ? P.loadingText : "正在处理...");
                         return {
                             RefineNavName: ns["b"],
                             handleClickDrag: Ce,
@@ -16045,7 +16045,7 @@
                         async secondImportFiles(e) {
                             e && 0 != e.length && await this.checkAndImportImages(e, !0, e => {
                                 o["c"].handlerAfterSecondImport(this.refineUUID), this.tsNotify({
-                                    message: `Nhập khẩu${e}Ảnh`
+                                    message: `已导入${e}张图片`
                                 })
                             }, e => {
                                 e.status === u["b"].Start && (this.showImportProgress = !0), this.importProgress = e

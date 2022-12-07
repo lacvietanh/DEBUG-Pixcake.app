@@ -71,7 +71,7 @@
                     onManualImportClick(t) {
                         this.checkAndImportImages(t, !0, t => {
                             u["g"].handleAfterMenuManualImport(), this.resetHandleCallback(), this.tsNotify({
-                                message: `Nhập khẩu${t}Ảnh`
+                                message: `已导入${t}张图片`
                             })
                         }, t => {
                             t.status === n["b"].Start && (this.showImportProgress = !0), this.importProgress = t
@@ -137,7 +137,7 @@
                         result: t,
                         isDir: e
                     }) {
-                        const s = e ? "Tập tin夹" : "文件",
+                        const s = e ? "文件夹" : "文件",
                             o = {
                                 [I.NO_Read]: "读",
                                 [I.NO_Write]: "写",
@@ -297,7 +297,7 @@
                         }
                     }), e("span", {
                         staticClass: "text c-text-regular"
-                    }, [t._v("导入Tập tin夹")])])])], 1)] : [e("div", {
+                    }, [t._v("导入文件夹")])])])], 1)] : [e("div", {
                         staticClass: "claImportContent border-primary-style-hover",
                         on: {
                             click: function(e) {
@@ -311,7 +311,7 @@
                         }
                     })], 1)], e("span", {
                         staticClass: "claDes"
-                    }, [t._v("点击导入Tập tin或将文件夹（图片）拖到此处")]), this.$isDev || this.$isBeta ? e("div", {
+                    }, [t._v("点击导入文件或将文件夹（图片）拖到此处")]), this.$isDev || this.$isBeta ? e("div", {
                         attrs: {
                             id: "manualInput"
                         }
@@ -400,9 +400,9 @@
                             if (e) {
                                 try {
                                     const t = await l["a"].existsSync(e);
-                                    if (!t) return void this.tsNotify("Tập tin或文件夹Không tồn tại")
+                                    if (!t) return void this.tsNotify("文件或文件夹不存在")
                                 } catch (s) {
-                                    return void this.tsNotify("Tập tin或文件夹Không tồn tại")
+                                    return void this.tsNotify("文件或文件夹不存在")
                                 }
                                 this.processImport([e])
                             } else this.tsNotify("路径不能为空")

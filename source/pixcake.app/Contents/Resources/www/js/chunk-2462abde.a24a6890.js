@@ -233,7 +233,7 @@
                             staticClass: "title"
                         }, [t._v("帮助中心")]), e("br"), e("span", {
                             staticClass: "content"
-                        }, [t._v("Tắt、教程、人工客服")])]), e("el-button", {
+                        }, [t._v("快捷键、教程、人工客服")])]), e("el-button", {
                             staticClass: "item",
                             attrs: {
                                 size: "small",
@@ -259,7 +259,7 @@
                             staticClass: "vip-text"
                         }, [t._v("会员续费")])] : [e("div", {
                             staticClass: "vip-text"
-                        }, [t._v("Mở通会员")])]], 2)], 1)] : [e("span", {
+                        }, [t._v("开通会员")])]], 2)], 1)] : [e("span", {
                             key: `${i}_${s}`,
                             staticClass: "receive-free",
                             on: {
@@ -496,7 +496,7 @@
                         on: {
                             click: t.onApplyClick
                         }
-                    }, [t._v(" Mở始使用 ")])])])
+                    }, [t._v(" 开始使用 ")])])])
                 },
                 P = [],
                 x = i("f5de"),
@@ -607,7 +607,7 @@
                             })
                         },
                         onOpenUserMenuWindow: Object(l["debounce"])((function(t) {
-                            t.url ? (t.openLink(), this.PointUserMenuClick(t.key)) : this.tsNotify("页面Không tồn tại，请检查后再试")
+                            t.url ? (t.openLink(), this.PointUserMenuClick(t.key)) : this.tsNotify("页面不存在，请检查后再试")
                         }), 300)
                     },
                     async mounted() {
@@ -673,7 +673,7 @@
                         attrs: {
                             options: t.placeOptions,
                             props: t.placeProps,
-                            placeholder: "Vui lòng chọn您的所在地区信息"
+                            placeholder: "请选择您的所在地区信息"
                         },
                         model: {
                             value: t.placeInfo,
@@ -695,7 +695,7 @@
                         }
                     }, [e("el-select", {
                         attrs: {
-                            placeholder: "Vui lòng chọn您的月平均修图张数"
+                            placeholder: "请选择您的月平均修图张数"
                         },
                         model: {
                             value: t.monthlyUsage,
@@ -844,7 +844,7 @@
                             }
                         },
                         validator() {
-                            return this.institutionName.trim().length ? this.placeInfo.length ? this.monthlyUsage ? this.businessType ? [!0] : [!1, "Vui lòng chọn业务类型"] : [!1, "请选择月修图量级"] : [!1, "请选择所在地区"] : [!1, "请填写摄影机构名称"]
+                            return this.institutionName.trim().length ? this.placeInfo.length ? this.monthlyUsage ? this.businessType ? [!0] : [!1, "请选择业务类型"] : [!1, "请选择月修图量级"] : [!1, "请选择所在地区"] : [!1, "请填写摄影机构名称"]
                         },
                         async init() {
                             try {
@@ -1031,7 +1031,7 @@
                         staticClass: "menu-item"
                     }, [e("div", {
                         staticClass: "label"
-                    }, [t._v("人脸点Mở关")]), e("div", {
+                    }, [t._v("人脸点开关")]), e("div", {
                         staticClass: "btn"
                     }, [e("el-switch", {
                         attrs: {
@@ -1046,7 +1046,7 @@
                         staticClass: "menu-item"
                     }, [e("div", {
                         staticClass: "label"
-                    }, [t._v("骨骼点Mở关")]), e("div", {
+                    }, [t._v("骨骼点开关")]), e("div", {
                         staticClass: "btn"
                     }, [e("el-switch", {
                         attrs: {
@@ -1061,7 +1061,7 @@
                         staticClass: "menu-item"
                     }, [e("div", {
                         staticClass: "label"
-                    }, [t._v("校验Face黑块Mở关")]), e("div", {
+                    }, [t._v("校验脸部黑块开关")]), e("div", {
                         staticClass: "btn"
                     }, [e("el-switch", {
                         attrs: {
@@ -1123,7 +1123,7 @@
                         staticClass: "menu-item"
                     }, [e("div", {
                         staticClass: "label"
-                    }, [t._v("预览缓存Mở关")]), e("div", {
+                    }, [t._v("预览缓存开关")]), e("div", {
                         staticClass: "btn"
                     }, [e("el-switch", {
                         attrs: {
@@ -1230,7 +1230,7 @@
                         on: {
                             click: t.updateCacheMessageCount
                         }
-                    }, [t._v("Xác nhận")])], 1), e("el-divider", {
+                    }, [t._v("确认")])], 1), e("el-divider", {
                         staticClass: "divider"
                     }), e("li", {
                         staticClass: "menu-item"
@@ -1338,7 +1338,7 @@
                         onDebugEffectEnvSwitch: Object(l["debounce"])((function() {
                             this.changeDebugEffectStatus();
                             let t = this.canDebugEffect;
-                            const e = t ? "预览debug 模式已经Mở～" : "预览debug 模式已经Gần～";
+                            const e = t ? "预览debug 模式已经开启～" : "预览debug 模式已经关闭～";
                             this.tsNotify({
                                 type: "success",
                                 message: e
@@ -1347,7 +1347,7 @@
                         onDebugExportEffectEnvSwitch: Object(l["debounce"])((function() {
                             this.changeExportDebugEffectStatus();
                             let t = this.canDebugExportEffect;
-                            const e = t ? "导出debug 模式已经Mở～" : "导出debug 模式已经Gần～";
+                            const e = t ? "导出debug 模式已经开启～" : "导出debug 模式已经关闭～";
                             this.tsNotify({
                                 type: "success",
                                 message: e
@@ -1356,7 +1356,7 @@
                         onFacePointSwitch: Object(l["debounce"])((function() {
                             this.changeFacePointStatus();
                             let t = this.isEnableFacePoint;
-                            const e = t ? "人脸点已经打Mở～" : "人脸点已经Gần～";
+                            const e = t ? "人脸点已经打开～" : "人脸点已经关闭～";
                             this.tsNotify({
                                 type: "success",
                                 message: e
@@ -1365,7 +1365,7 @@
                         onSkeletonPointSwitch: Object(l["debounce"])((function() {
                             this.changeSkeletonPointStatus();
                             let t = this.isEnableSkeletonPoint;
-                            const e = t ? "骨骼点已经打Mở～" : "骨骼点已经Gần～";
+                            const e = t ? "骨骼点已经打开～" : "骨骼点已经关闭～";
                             this.tsNotify({
                                 type: "success",
                                 message: e
@@ -1374,7 +1374,7 @@
                         onCheckFaceIsBlackSwitch: Object(l["debounce"])((function() {
                             this.changeFaceIsBlackStatus();
                             let t = this.isEnableCheckFaceIsBlack;
-                            const e = t ? "校验Face黑块已经打Mở～" : "校验脸部黑块已经Gần～";
+                            const e = t ? "校验脸部黑块已经打开～" : "校验脸部黑块已经关闭～";
                             this.tsNotify({
                                 type: "success",
                                 message: e
@@ -1383,7 +1383,7 @@
                         onRemoveResolutionLimitSwitch: Object(l["debounce"])((function() {
                             this.changeRemoveResolutionLimitMode();
                             let t = this.removeResolutionLimit;
-                            const e = t ? "去除分辨率限制预计打Mở～" : "去除分辨率限制已经Gần～";
+                            const e = t ? "去除分辨率限制预计打开～" : "去除分辨率限制已经关闭～";
                             this.tsNotify({
                                 type: "success",
                                 message: e
@@ -1590,7 +1590,7 @@
                         const {
                             PointNavMenuClick: j
                         } = Object(_["a"])(), $ = Object(o["computed"])(() => c["a"].getters.navMenus), D = Object(l["debounce"])(t => {
-                            t.url ? (t.openLink(), j(t.key)) : i.tsNotify("页面Không tồn tại，请检查后再试")
+                            t.url ? (t.openLink(), j(t.key)) : i.tsNotify("页面不存在，请检查后再试")
                         }, 300);
                         return {
                             IS_CLIENT_PixCake_EXPO: r["w"],

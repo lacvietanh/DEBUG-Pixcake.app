@@ -64,7 +64,7 @@
                         on: {
                             click: i.onSubmit
                         }
-                    }, [e._v(" " + e._s(i.needSyncPreset ? "Đồng bộ hóa để chọn những hình ảnh" : "Xác nhận") + " ")])], 1), t("div", {
+                    }, [e._v(" " + e._s(i.needSyncPreset ? "同步到选中图片" : "确认") + " ")])], 1), t("div", {
                         staticClass: "tip_container"
                     }, [t("span", {
                         staticClass: "tip"
@@ -1053,7 +1053,7 @@
                         },
                         attrs: {
                             size: "mini",
-                            placeholder: "Vui lòng chọn"
+                            placeholder: "请选择"
                         },
                         on: {
                             change: i.onSelectChange
@@ -1327,7 +1327,7 @@
                                     name: "全选",
                                     value: g["c"].All
                                 }, {
-                                    name: "全部Hủy",
+                                    name: "全部取消",
                                     value: g["c"].Cancel
                                 }];
                                 return (s.value === g["c"].Custom || Object.keys(c.value).length > 0) && e.push({

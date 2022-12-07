@@ -206,7 +206,7 @@
         function r() {
             var e;
             const t = null === (e = Object(a["getCurrentInstance"])()) || void 0 === e ? void 0 : e.proxy.$createElement,
-                i = Object(a["ref"])("Hệ thống nhắc"),
+                i = Object(a["ref"])("系统提示"),
                 n = Object(a["ref"])("success"),
                 r = Object(a["ref"])(null),
                 l = (e, t = "custom") => {
@@ -258,8 +258,8 @@
                             style: "font-size: 16px;font-weight: 500; margin: 12px 0 16px"
                         }, a)), o && r && p.unshift(r), c(!1), s["MessageBox"].confirm(n, "", {
                             ...h,
-                            confirmButtonText: h.confirmButtonText || "Xác nhận",
-                            cancelButtonText: h.cancelButtonText || "Hủy",
+                            confirmButtonText: h.confirmButtonText || "确认",
+                            cancelButtonText: h.cancelButtonText || "取消",
                             customClass: "customConfirmClass",
                             message: t("div", {
                                 class: "customConfirmClass-content",
@@ -279,8 +279,8 @@
                         i = !e.hasOwnProperty("showCancelButton") || e.showCancelButton;
                     return new Promise((a, n) => {
                         c(!1), s["MessageBox"].confirm(t, "", {
-                            confirmButtonText: e.confirmButtonText || "Xác nhận",
-                            cancelButtonText: e.cancelButtonText || "Hủy",
+                            confirmButtonText: e.confirmButtonText || "确认",
+                            cancelButtonText: e.cancelButtonText || "取消",
                             customClass: "customConfirmClass",
                             dangerouslyUseHTMLString: !0,
                             showCancelButton: i,
@@ -370,7 +370,7 @@
         t["a"] = {
             data() {
                 return {
-                    defaultTitle: "Hệ thống nhắc",
+                    defaultTitle: "系统提示",
                     defaultType: "success",
                     lastNotification: null
                 }
@@ -429,8 +429,8 @@
                             style: "font-size: 16px;font-weight: 500; margin: 12px 0 16px"
                         }, t)), n && s && p.unshift(s), o(!1), a["MessageBox"].confirm(i, "", {
                             ...u,
-                            confirmButtonText: u.confirmButtonText || "Xác nhận",
-                            cancelButtonText: u.cancelButtonText || "Hủy",
+                            confirmButtonText: u.confirmButtonText || "确认",
+                            cancelButtonText: u.cancelButtonText || "取消",
                             customClass: "customConfirmClass",
                             message: d("div", {
                                 class: "customConfirmClass-content",
@@ -450,8 +450,8 @@
                         i = !e.hasOwnProperty("showCancelButton") || e.showCancelButton;
                     return new Promise((n, s) => {
                         o(!1), a["MessageBox"].confirm(t, "", {
-                            confirmButtonText: e.confirmButtonText || "Xác nhận",
-                            cancelButtonText: e.cancelButtonText || "Hủy",
+                            confirmButtonText: e.confirmButtonText || "确认",
+                            cancelButtonText: e.cancelButtonText || "取消",
                             customClass: "customConfirmClass",
                             dangerouslyUseHTMLString: !0,
                             showCancelButton: i,
@@ -1359,7 +1359,7 @@
                             slot: "reference"
                         }), t("div", {
                             staticClass: "tip-info"
-                        }, [t("p", [e._v("勾选“使用图形处理器”可以充分发挥您的显卡性能，进而提高整体软件运行速度。")]), t("br"), t("p", [e._v("Xác nhận设置后，会重新启动" + e._s(e.CLIENT_NAME_EN) + "。")])])])], 1), e.$isMac ? t("div", {
+                        }, [t("p", [e._v("勾选“使用图形处理器”可以充分发挥您的显卡性能，进而提高整体软件运行速度。")]), t("br"), t("p", [e._v("确认设置后，会重新启动" + e._s(e.CLIENT_NAME_EN) + "。")])])])], 1), e.$isMac ? t("div", {
                             staticClass: "gpu-container"
                         }, [t("div", {
                             staticClass: "gpu-title",
@@ -1376,7 +1376,7 @@
                                 },
                                 expression: "form.enableOpenCL"
                             }
-                        }, [e._v(" 提升Điều chỉnh màu速度 ")])], 1)])]) : e._e(), e.showGLCheckbox ? t("div", {
+                        }, [e._v(" 提升色彩调节速度 ")])], 1)])]) : e._e(), e.showGLCheckbox ? t("div", {
                             staticClass: "gpu-container"
                         }, [t("div", {
                             staticClass: "gpu-title",
@@ -1397,7 +1397,7 @@
                                 },
                                 expression: "form.openGLAttr"
                             }
-                        }, [e._v(" 提升Những người như thế để làm đẹp速度 ")])], 1)])]) : e._e()]
+                        }, [e._v(" 提升人像美化速度 ")])], 1)])]) : e._e()]
                     ], 2), t("el-tab-pane", {
                         attrs: {
                             name: "export",
@@ -1423,7 +1423,7 @@
                                 width: "94px"
                             },
                             attrs: {
-                                placeholder: "Vui lòng chọn"
+                                placeholder: "请选择"
                             },
                             model: {
                                 value: e.taskNumber,
@@ -1523,7 +1523,7 @@
                                 },
                                 expression: "showImageDescription"
                             }
-                        }, [e._v("显示Ban đầu信息 ")])], 1)], e.IS_ALLOW_PHOTOSHOP_OPEN_PICTURE ? [t("div", {
+                        }, [e._v("显示原始信息 ")])], 1)], e.IS_ALLOW_PHOTOSHOP_OPEN_PICTURE ? [t("div", {
                             staticClass: "container-line"
                         }), t("div", {
                             staticClass: "gpu-title",
@@ -1537,7 +1537,7 @@
                         }, [t("el-input", {
                             staticClass: "photoshop-input",
                             attrs: {
-                                placeholder: "点击Mở始设置",
+                                placeholder: "点击开始设置",
                                 readonly: "",
                                 value: e.photoshopPath ? e.photoshopPath : ""
                             }
@@ -1576,7 +1576,7 @@
                                 width: "74px"
                             },
                             attrs: {
-                                placeholder: "Vui lòng chọn"
+                                placeholder: "请选择"
                             },
                             model: {
                                 value: e.cacheNumber,
@@ -1623,14 +1623,14 @@
                     }, [
                         [t("div", {
                             staticClass: "task-title"
-                        }, [e._v("大图预览图像Kích thước设置：")]), t("div", {
+                        }, [e._v("大图预览图像尺寸设置：")]), t("div", {
                             staticClass: "gpu-container",
                             staticStyle: {
                                 "margin-top": "12px"
                             }
                         }, [t("div", {
                             staticClass: "gpu-title"
-                        }, [e._v("预览图像Kích thước (px)：")]), t("div", {
+                        }, [e._v("预览图像尺寸 (px)：")]), t("div", {
                             staticClass: "task-select-container"
                         }, [t("div", {
                             staticClass: "ts-select-container"
@@ -1640,7 +1640,7 @@
                                 width: "78px"
                             },
                             attrs: {
-                                placeholder: "Vui lòng chọn"
+                                placeholder: "请选择"
                             },
                             model: {
                                 value: e.previewSize,
@@ -1687,12 +1687,12 @@
                                 slot: "reference"
                             },
                             slot: "reference"
-                        }), e._v(" 预览图像Kích thước设置不影响导出的画质。导出是按照原图尺寸导出。 ")]), t("div", {
+                        }), e._v(" 预览图像尺寸设置不影响导出的画质。导出是按照原图尺寸导出。 ")]), t("div", {
                             staticClass: "gpu-title",
                             staticStyle: {
                                 "margin-top": "10px"
                             }
-                        }, [e._v("Trái侧缩略图：")]), t("div", [t("el-radio", {
+                        }, [e._v("左侧缩略图：")]), t("div", [t("el-radio", {
                             attrs: {
                                 label: !0
                             },
@@ -1731,7 +1731,7 @@
                         staticClass: "gpu-container"
                     }, [t("div", {
                         staticClass: "gpu-title"
-                    }, [e._v("自动载入图片套Đặt trước：")]), t("el-radio", {
+                    }, [e._v("自动载入图片套预设：")]), t("el-radio", {
                         attrs: {
                             label: 1
                         },
@@ -1742,7 +1742,7 @@
                             },
                             expression: "exhibition.switch"
                         }
-                    }, [e._v("Mở")]), t("el-radio", {
+                    }, [e._v("开启")]), t("el-radio", {
                         attrs: {
                             label: 0
                         },
@@ -1753,15 +1753,15 @@
                             },
                             expression: "exhibition.switch"
                         }
-                    }, [e._v("Gần")])], 1), t("div", {
+                    }, [e._v("关闭")])], 1), t("div", {
                         staticClass: "gpu-container"
                     }, [t("div", {
                         staticClass: "gpu-title"
-                    }, [e._v("自动导入Tập tin夹：")]), t("el-input", {
+                    }, [e._v("自动导入文件夹：")]), t("el-input", {
                         staticClass: "import-input",
                         attrs: {
                             size: "mini",
-                            placeholder: "Vui lòng chọn导入Tập tin夹"
+                            placeholder: "请选择导入文件夹"
                         },
                         model: {
                             value: e.exhibition.importPath,
@@ -1785,7 +1785,7 @@
                         staticClass: "gpu-container"
                     }, [t("div", {
                         staticClass: "gpu-title"
-                    }, [e._v("Đặt trướcId：")]), t("el-input", {
+                    }, [e._v("预设Id：")]), t("el-input", {
                         staticStyle: {
                             width: "100px"
                         },
@@ -1829,7 +1829,7 @@
                         on: {
                             click: e.submitExhibition
                         }
-                    }, [e._v("Tiết kiệm设置")])], 1)]) : e._e()], 1)]
+                    }, [e._v("保存设置")])], 1)]) : e._e()], 1)]
                 ], 2), t("div", {
                     attrs: {
                         slot: "footer"
@@ -1850,7 +1850,7 @@
                             e.useCancelBtn = !0, e.visible = !1
                         }
                     }
-                }, [e._v(" Hủy ")]), t("el-button", {
+                }, [e._v(" 取消 ")]), t("el-button", {
                     attrs: {
                         size: "mini",
                         type: "primary",
@@ -1859,7 +1859,7 @@
                     on: {
                         click: e.submit
                     }
-                }, [e._v(" Xác nhận ")])], 1)])
+                }, [e._v(" 确认 ")])], 1)])
             },
             n = [],
             s = i("2b0e"),
@@ -1923,12 +1923,12 @@
                             tsConfirm: o,
                             tsNotify: c
                         } = Object(k["a"])(), r = async () => {
-                            if (t.switch && !t.importPath) return void c("请设置自动导入所在对Tập tin夹路径！");
+                            if (t.switch && !t.importPath) return void c("请设置自动导入所在对文件夹路径！");
                             const i = _["a"].getInstance(),
                                 a = await i.updateOnlineConfig(t);
                             e.proxy.SetCanShowManualImportButton(), await o({
                                 title: "展会设置",
-                                message: a ? "Tiết kiệm成功" : "保存失败",
+                                message: a ? "保存成功" : "保存失败",
                                 showCancelButton: !1
                             })
                         };
@@ -2053,8 +2053,8 @@
                     onGlAttrChanged(e) {
                         this.tsConfirm({
                             message: "勾选之后可能会导致您的效果图异常",
-                            confirmButtonText: "Xác nhận勾选",
-                            cancelButtonText: "Hủy勾选"
+                            confirmButtonText: "确认勾选",
+                            cancelButtonText: "取消勾选"
                         }).then(() => {}).catch(e => {
                             this.form.openGLAttr = this.gpuGlAttribute
                         })
@@ -2071,7 +2071,7 @@
                     async onRepairClick() {
                         this.repairLoading = !0;
                         try {
-                            this.repairLoading = !1, this.needShowRepairBtn = this.getAutoNeedShowRepairBtn(), this.tsNotify("修复Tập tin成功了")
+                            this.repairLoading = !1, this.needShowRepairBtn = this.getAutoNeedShowRepairBtn(), this.tsNotify("修复文件成功了")
                         } catch (e) {
                             this.tsNotify("修复过程发生了错误，请重新尝试!"), this.repairLoading = !1, console.log(e)
                         }
@@ -2079,8 +2079,8 @@
                     confirmTip(e, t) {
                         e && this.tsConfirm({
                             message: "勾选之后可能会导致您的效果图异常",
-                            confirmButtonText: "Xác nhận勾选",
-                            cancelButtonText: "Hủy勾选"
+                            confirmButtonText: "确认勾选",
+                            cancelButtonText: "取消勾选"
                         }).catch(e => {
                             "openGL" === t ? this.form.enableOpenGL = this.enableOpenGL : "openCL" === t && (this.form.enableOpenCL = this.enableOpenCL)
                         })
@@ -2124,7 +2124,7 @@
                         this.visible = !1, this.tsConfirm({
                             title: `清理缓存需重启 ${l["b"]} 之后马上生效`,
                             confirmButtonText: "重启" + l["b"],
-                            cancelButtonText: "Hủy"
+                            cancelButtonText: "取消"
                         }).then(e => {
                             this.tsNotify("即将重启应用"), Object(f["a"])(1e3).then(() => {
                                 u["a"].send("app-restart", {
@@ -2184,7 +2184,7 @@
         }
         class o {
             constructor() {
-                this.template = `好友给你分享了{num}个Đặt trước-{name}等「{token}」，快复制口令打Mở${n["c"]}导入吧~`, this.templateReg = new RegExp(`(?<=(好友给你分享了.+个预设-.+等「))(\\w+)(?=」，快复制口令打开(${n["c"]}|${n["b"]})导入吧~)`, "gi"), this.templateRegOld = new RegExp(`(?<=(好友给你分享了预设-.+「))(\\w+)(?=」，快复制口令打开(${n["c"]}|${n["b"]})导入吧~)`, "gi")
+                this.template = `好友给你分享了{num}个预设-{name}等「{token}」，快复制口令打开${n["c"]}导入吧~`, this.templateReg = new RegExp(`(?<=(好友给你分享了.+个预设-.+等「))(\\w+)(?=」，快复制口令打开(${n["c"]}|${n["b"]})导入吧~)`, "gi"), this.templateRegOld = new RegExp(`(?<=(好友给你分享了预设-.+「))(\\w+)(?=」，快复制口令打开(${n["c"]}|${n["b"]})导入吧~)`, "gi")
             }
             isCorrectText(e) {
                 if (!e) return !1;
@@ -2293,7 +2293,7 @@
                             e.showHotKey = !0
                         }
                     }
-                }, [e._v(" Tắt ")])], 2)], 1), t("ServiceDialog", {
+                }, [e._v(" 快捷键 ")])], 2)], 1), t("ServiceDialog", {
                     model: {
                         value: e.showServiceDialog,
                         callback: function(t) {
@@ -2423,7 +2423,7 @@
                         top: "10vh",
                         width: "489px",
                         align: "center",
-                        title: "Tắt指南",
+                        title: "快捷键指南",
                         "custom-class": "setting-dialog",
                         visible: e.visible,
                         "close-on-click-modal": !1
@@ -2439,7 +2439,7 @@
                     staticClass: "group"
                 }, [t("div", {
                     staticClass: "type-title"
-                }, [e._v("Tập tin夹Tắt")]), t("el-form", {
+                }, [e._v("文件夹快捷键")]), t("el-form", {
                     staticClass: "info",
                     attrs: {
                         "label-position": "left",
@@ -2453,7 +2453,7 @@
                     staticClass: "hot-key-box"
                 }, [e._v(e._s(e.platformKey) + " + A")])]), t("el-form-item", {
                     attrs: {
-                        label: "图片Hủy全选："
+                        label: "图片取消全选："
                     }
                 }, [t("span", {
                     staticClass: "hot-key-box"
@@ -2469,7 +2469,7 @@
                     }
                 }, [e._v("或")]), t("span", [e._v(e._s(e.platformKey) + " + 点击")])])]), t("el-form-item", {
                     attrs: {
-                        label: "图片Hủy选中："
+                        label: "图片取消选中："
                     }
                 }, [t("span", {
                     staticClass: "hot-key-box"
@@ -2498,7 +2498,7 @@
                     staticClass: "group"
                 }, [t("div", {
                     staticClass: "type-title"
-                }, [e._v("图片Tắt")]), t("el-form", {
+                }, [e._v("图片快捷键")]), t("el-form", {
                     staticClass: "info",
                     attrs: {
                         "label-position": "left",
@@ -2538,7 +2538,7 @@
                     staticClass: "hot-key-box"
                 }, [t("span", [e._v(e._s(e.platformKey) + ' + "V"')])])]), t("el-form-item", {
                     attrs: {
-                        label: "恢复默认Kích thước："
+                        label: "恢复默认尺寸："
                     }
                 }, [t("span", {
                     staticClass: "hot-key-box"
@@ -2568,7 +2568,7 @@
                     }
                 }, [t("span", {
                     staticClass: "hot-key-box"
-                }, [e._v("空格 + 鼠标Trái键")])])], 1)], 1)])])
+                }, [e._v("空格 + 鼠标左键")])])], 1)], 1)])])
             },
             S = [],
             P = i("5c96"),
@@ -2591,7 +2591,7 @@
                         loading: !1,
                         visible: this.value,
                         form: {
-                            name: "Sẵn 1"
+                            name: "预设1"
                         }
                     }
                 },
@@ -2655,14 +2655,14 @@
                         try {
                             const t = await h.getInstance();
                             if (t.isValid || await t.fetchConfig(), "pic" === e) {
-                                if (!t.guide.newTutorialUrl) return void this.tsNotify("获取链接失败，Xin vui lòng thử lại sau");
+                                if (!t.guide.newTutorialUrl) return void this.tsNotify("获取链接失败，请稍后再试");
                                 u["a"].send("open-alink-blank", {
                                     type: "NewTutorial",
                                     title: "新手教程",
                                     href: t.guide.newTutorialUrl
                                 })
                             } else if ("video" === e) {
-                                if (!t.guide.videoTutorialUrl) return void this.tsNotify("获取链接失败，Xin vui lòng thử lại sau");
+                                if (!t.guide.videoTutorialUrl) return void this.tsNotify("获取链接失败，请稍后再试");
                                 u["a"].send("open-external-link", {
                                     title: "视频教程",
                                     type: "VideoTutorial",
@@ -2670,7 +2670,7 @@
                                 })
                             }
                         } catch (i) {
-                            t.tsNotify("获取链接失败，Xin vui lòng thử lại sau")
+                            t.tsNotify("获取链接失败，请稍后再试")
                         }
                     }
                     const {
@@ -2679,7 +2679,7 @@
                         PointHotKey: m,
                         PointCustomerService: b
                     } = Object(l["a"])(), g = Object(s["computed"])(() => o["a"].getters.helpMenus), _ = Object(c["debounce"])(e => {
-                        e.url ? (e.openLink(), p(e.key)) : t.tsNotify("页面Không tồn tại，请检查后再试")
+                        e.url ? (e.openLink(), p(e.key)) : t.tsNotify("页面不存在，请检查后再试")
                     }, 300);
                     return {
                         showServiceDialog: i,
@@ -2885,7 +2885,7 @@
 
                     function r(e) {
                         e ? a.$openExternal(e) : a.tsNotify({
-                            message: "协议Không tồn tại，请联系客服获取协议!",
+                            message: "协议不存在，请联系客服获取协议!",
                             type: "error"
                         })
                     }
@@ -2899,7 +2899,7 @@
                             try {
                                 const e = await Object(l["a"])(!0);
                                 if (!e.is_need_update) return a.tsNotify({
-                                    message: "已是最新版本，Không có须更新哦～～"
+                                    message: "已是最新版本，无须更新哦～～"
                                 }), void setTimeout(() => {
                                     h.value = !1
                                 }, 300);
@@ -3815,7 +3815,7 @@
                         if (n && n.isValid) {
                             let i = this.getDiskFreeSpaceAsShort(n);
                             console.log(`获得当前的${n.diskPath}:磁盘容量为:${i}`), t = i < a, t && this.tsConfirm({
-                                title: "Hệ thống nhắc",
+                                title: "系统提示",
                                 message: "检测到您的磁盘空间不足，建议您清理磁盘空间后再继续使用" + h["b"],
                                 showCancelButton: !1
                             }).then(async t => {
@@ -3956,7 +3956,7 @@
                             if (Ve) return;
                             Ve = !0;
                             let t = {
-                                message: "检查您的数据库已损坏，为了不影响您的正常使用，将为您Gần应用并进行清除数据库便于继续正常使用.【备注】清理数据库后，您之前的数据将会丢失,如自动修复后还是出现该问题，请点击手动修复，会打MởTập tin夹，手动删除文件夹中 *.db为后缀相关的文件",
+                                message: "检查您的数据库已损坏，为了不影响您的正常使用，将为您关闭应用并进行清除数据库便于继续正常使用.【备注】清理数据库后，您之前的数据将会丢失,如自动修复后还是出现该问题，请点击手动修复，会打开文件夹，手动删除文件夹中 *.db为后缀相关的文件",
                                 confirmButtonText: "自动修复",
                                 cancelButtonText: "手动修复"
                             };
@@ -3970,7 +3970,7 @@
                         }), Be["i"].addListener(Be["e"], e => {
                             let t = "";
                             e.diskTypeStr && (t = " " + e.diskTypeStr + " ");
-                            let i = `因导出路径磁盘空间${t}不足Không có法导出，建议您更改磁盘路径或清理磁盘空间后再导出`;
+                            let i = `因导出路径磁盘空间${t}不足无法导出，建议您更改磁盘路径或清理磁盘空间后再导出`;
                             this.tsConfirm({
                                 title: i,
                                 confirmButtonText: "好的",
@@ -4012,12 +4012,12 @@
                 {
                     PointExportRecharge: l
                 } = Object(r["a"])(),
-                u = async (e = "套餐剩余可用张数不足，Không có法成功导出，请及时充值哦", a) => {
+                u = async (e = "套餐剩余可用张数不足，无法成功导出，请及时充值哦", a) => {
                     t.value = !0;
                     let s = e;
                     const r = await c["a"].getInstance().getIsAllowTopUp();
                     let u = "马上充值";
-                    r || (s = `套餐剩余可用张数不足，Không có法成功导出，${o["v"]?"请联系管理员":"请联系贵司管理员补充张数哦"}。`, u = "Tôi biết."), null === i || void 0 === i || i.tsConfirm({
+                    r || (s = `套餐剩余可用张数不足，无法成功导出，${o["v"]?"请联系管理员":"请联系贵司管理员补充张数哦"}。`, u = "我知道了"), null === i || void 0 === i || i.tsConfirm({
                         title: s,
                         confirmButtonText: u,
                         showCancelButton: !1,
@@ -4072,7 +4072,7 @@
                 }, [t("el-input", {
                     ref: "inputPrestIdName",
                     attrs: {
-                        placeholder: "请输入Đặt trước口令",
+                        placeholder: "请输入预设口令",
                         maxlength: e.maxInputLen
                     },
                     nativeOn: {
@@ -4100,7 +4100,7 @@
                     on: {
                         click: e.onClose
                     }
-                }, [e._v(" Hủy ")]), t("el-button", {
+                }, [e._v(" 取消 ")]), t("el-button", {
                     attrs: {
                         type: "primary",
                         loading: e.loading
@@ -4134,7 +4134,7 @@
                 data() {
                     return {
                         visible: this.value,
-                        title: "Đặt trước口令",
+                        title: "预设口令",
                         code: "",
                         loading: !1,
                         maxInputLen: 64
@@ -4175,25 +4175,25 @@
                                     loadDb: !0
                                 });
                                 const e = await Object(r["m"])(this.code);
-                                1 === e.setting_total_count ? this.tsNotify(`“${e.settings_info[0].name}”Đặt trướcNhập khẩu`, {
+                                1 === e.setting_total_count ? this.tsNotify(`“${e.settings_info[0].name}”预设已导入`, {
                                     duration: 1e3
-                                }) : this.tsNotify(`“${e.settings_info[0].name}”等${e.setting_total_count}个Đặt trướcNhập khẩu`, {
+                                }) : this.tsNotify(`“${e.settings_info[0].name}”等${e.setting_total_count}个预设已导入`, {
                                     duration: 1e3
                                 }), this.loading = !1, this.visible = !1
                             } catch (e) {
                                 switch (this.loading = !1, e.data.code) {
                                     case 37:
-                                        this.tsNotify("分享口令的Sẵn không tồn tại～", {
+                                        this.tsNotify("分享口令的预设不存在～", {
                                             duration: 1e3
                                         }), this.visible = !1;
                                         break;
                                     case 38:
-                                        this.tsNotify("口令来源于自己分享的Đặt trước，导入失败～", {
+                                        this.tsNotify("口令来源于自己分享的预设，导入失败～", {
                                             duration: 1e3
                                         }), this.visible = !1;
                                         break;
                                     case 39:
-                                        this.tsNotify("当前Để nhập định sẵn已存在～"), this.visible = !1;
+                                        this.tsNotify("当前导入预设已存在～"), this.visible = !1;
                                         break;
                                     case 41:
                                         try {
@@ -4210,7 +4210,7 @@
                                         }), this.visible = !1
                                 }
                             }
-                        } else this.tsNotify("请输入正确的Đặt trước口令")
+                        } else this.tsNotify("请输入正确的预设口令")
                     }
                 }
             },
@@ -4244,7 +4244,7 @@
                 }, [t("el-input", {
                     ref: "inputPrestName",
                     attrs: {
-                        placeholder: "Phân loại名称",
+                        placeholder: "分类名称",
                         maxlength: e.maxInputLen
                     },
                     nativeOn: {
@@ -4272,7 +4272,7 @@
                     on: {
                         click: e.onClose
                     }
-                }, [e._v(" Hủy ")]), t("el-button", {
+                }, [e._v(" 取消 ")]), t("el-button", {
                     attrs: {
                         type: "primary",
                         loading: e.loading
@@ -4280,7 +4280,7 @@
                     on: {
                         click: e.onSubmit
                     }
-                }, [e._v("Tiết kiệm ")])], 1)])
+                }, [e._v("保存 ")])], 1)])
             },
             v = [],
             C = {
@@ -4298,7 +4298,7 @@
                 data() {
                     return {
                         visible: this.value,
-                        title: "Phân loại mới",
+                        title: "新建分类",
                         typeName: "",
                         loading: !1,
                         maxInputLen: 10
@@ -4332,11 +4332,11 @@
                             this.loading = !0;
                             try {
                                 const e = await Object(r["c"])(this.typeName);
-                                await this.getPresetClass(!0), this.loading = !1, this.tsNotify("Phân loại mới成功～"), this.$emit("loadPreset", e.id), this.typeName = "", this.visible = !1
+                                await this.getPresetClass(!0), this.loading = !1, this.tsNotify("新建分类成功～"), this.$emit("loadPreset", e.id), this.typeName = "", this.visible = !1
                             } catch (e) {
-                                console.log("Đặt trướcPhân loại创建失败=====>", e)
+                                console.log("预设分类创建失败=====>", e)
                             }
-                        } else this.tsNotify("请输入正确的Phân loại名称")
+                        } else this.tsNotify("请输入正确的分类名称")
                     }
                 }
             },
@@ -4368,7 +4368,7 @@
                         n = Object(T["ref"])(!1),
                         s = Object(T["reactive"])({
                             isWaitingImport: !1,
-                            fromName: "测试Đặt trước...",
+                            fromName: "测试预设...",
                             presetName: "",
                             presetVersion: null,
                             presetToken: null,
@@ -4376,7 +4376,7 @@
                         }),
                         c = Object(T["computed"])(() => {
                             let e = s.fromName;
-                            return e ? e.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2") + " 给你分享了Đặt trước" : ""
+                            return e ? e.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2") + " 给你分享了预设" : ""
                         }),
                         d = Object(T["computed"])(() => {
                             let e = s.presetName;
@@ -4389,7 +4389,7 @@
                                 o = {
                                     style: "font-size: 15px;font-weight: 500; margin: 12px 2px 16px 2px;color:#F5D228"
                                 };
-                            return 1 === s.setting_total_count ? (a = t("div", n, [t("span", n, "检测到“"), t("span", o, "" + e), t("span", n, "”Đặt trước，是否导入？")]), a) : (a = t("div", n, [t("span", n, "检测到“"), t("span", o, "" + e), t("span", n, "”等"), t("span", n, s.setting_total_count + "个预设，是否导入？")]), a)
+                            return 1 === s.setting_total_count ? (a = t("div", n, [t("span", n, "检测到“"), t("span", o, "" + e), t("span", n, "”预设，是否导入？")]), a) : (a = t("div", n, [t("span", n, "检测到“"), t("span", o, "" + e), t("span", n, "”等"), t("span", n, s.setting_total_count + "个预设，是否导入？")]), a)
                         }),
                         h = () => {
                             let e = new u["a"];
@@ -4405,31 +4405,31 @@
                                 e.close(), await (null === i || void 0 === i ? void 0 : i.getPresetClass(!0)), await (null === i || void 0 === i ? void 0 : i.loadAllPresents({
                                     userId: a,
                                     loadDb: !0
-                                })), 1 === n.setting_total_count ? null === i || void 0 === i || i.tsNotify(`“${t}”Đặt trướcNhập khẩu`, {
+                                })), 1 === n.setting_total_count ? null === i || void 0 === i || i.tsNotify(`“${t}”预设已导入`, {
                                     duration: 1e3
-                                }) : null === i || void 0 === i || i.tsNotify(`“${t}”等${n.setting_total_count}个Đặt trướcNhập khẩu`, {
+                                }) : null === i || void 0 === i || i.tsNotify(`“${t}”等${n.setting_total_count}个预设已导入`, {
                                     duration: 1e3
                                 })
                             }).catch(async t => {
                                 switch (e.close(), t.data.code) {
                                     case 37:
-                                        null === i || void 0 === i || i.tsNotify("分享口令的Sẵn không tồn tại～", {
+                                        null === i || void 0 === i || i.tsNotify("分享口令的预设不存在～", {
                                             duration: 1e3
                                         }), n.value = !1;
                                         break;
                                     case 38:
-                                        null === i || void 0 === i || i.tsNotify("口令来源于自己分享的Đặt trước，导入失败～", {
+                                        null === i || void 0 === i || i.tsNotify("口令来源于自己分享的预设，导入失败～", {
                                             duration: 1e3
                                         }), n.value = !1;
                                         break;
                                     case 39:
-                                        null === i || void 0 === i || i.tsNotify("当前Để nhập định sẵn已存在～"), n.value = !1;
+                                        null === i || void 0 === i || i.tsNotify("当前导入预设已存在～"), n.value = !1;
                                         break;
                                     case 41:
                                         try {
                                             await (null === i || void 0 === i ? void 0 : i.tsConfirm({
-                                                title: `${t.data.data.fail_info.imcompatible_list[0]}等${t.data.data.fail_info.not_exist_count}个Đặt trướcKhông có法导入`,
-                                                message: "当前Để nhập định sẵn与当前软件版本不兼容，请升级至最新版本后再试",
+                                                title: `${t.data.data.fail_info.imcompatible_list[0]}等${t.data.data.fail_info.not_exist_count}个预设无法导入`,
+                                                message: "当前导入预设与当前软件版本不兼容，请升级至最新版本后再试",
                                                 confirmButtonText: "立即更新"
                                             })), o["a"].send("app-client-update-check"), n.value = !1
                                         } catch (a) {}
@@ -4519,7 +4519,7 @@
             ...Object(a["d"])("presetSuit", ["_SetPresetShareToken"]),
             methods: {
                 buildShareToken() {
-                    return `“${this.sharedItem.sharedName}”Đặt trước的分享口令「${this.sharedItem.sharedToken}」已复制,快粘贴分享给协作者吧`
+                    return `“${this.sharedItem.sharedName}”预设的分享口令「${this.sharedItem.sharedToken}」已复制,快粘贴分享给协作者吧`
                 },
                 async onShareClick(e) {
                     this.sharedItem.sharedName = e.name;
@@ -4543,13 +4543,13 @@
                     if (1 == e.classifyType) return;
                     const t = new D["a"];
                     t.push({
-                        label: "分享Đặt trước",
+                        label: "分享预设",
                         action: "batchretouch-my-preset-share",
                         disabled: !1,
                         data: e,
                         callback: this.onShareClick
                     }).push({
-                        label: "删除Đặt trước",
+                        label: "删除预设",
                         action: "batchretouch-my-preset-delete",
                         disabled: !1,
                         data: e,
@@ -4560,7 +4560,7 @@
             remove(e) {
                 this.$store.state.user.userId;
                 this.tsConfirm({
-                    title: "Xác nhận删除该Đặt trước",
+                    title: "确认删除该预设",
                     customMessageStyle: "textAlign: left"
                 }).then(async t => {
                     await this.deletePreset({
@@ -4663,7 +4663,7 @@
                     },
                     bottomTipMsg: {
                         type: String,
-                        value: "本次分享Đặt trước中不包含上传的Ảnh IDNền效果"
+                        value: "本次分享预设中不包含上传的证件照背景效果"
                     }
                 },
                 data() {
@@ -4703,7 +4703,7 @@
                     },
                     bottomTipMsg: {
                         type: String,
-                        value: "本次分享Đặt trước中不包含上传的Ảnh IDNền效果"
+                        value: "本次分享预设中不包含上传的证件照背景效果"
                     }
                 },
                 data() {
@@ -4738,8 +4738,8 @@
                         this.bottomTipMsg;
                         return new Promise((r, l) => {
                             s["MessageBox"].confirm(a, "", {
-                                confirmButtonText: e.confirmButtonText || "Xác nhận",
-                                cancelButtonText: e.cancelButtonText || "Hủy",
+                                confirmButtonText: e.confirmButtonText || "确认",
+                                cancelButtonText: e.cancelButtonText || "取消",
                                 customClass: "customConfirmClass",
                                 showCancelButton: !1,
                                 showConfirmButton: !1,

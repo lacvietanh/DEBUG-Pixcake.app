@@ -71,7 +71,7 @@
                     onManualImportClick(e) {
                         this.checkAndImportImages(e, !0, e => {
                             p["g"].handleAfterMenuManualImport(), this.resetHandleCallback(), this.tsNotify({
-                                message: `Nhập khẩu${e}Ảnh`
+                                message: `已导入${e}张图片`
                             })
                         }, e => {
                             e.status === r["b"].Start && (this.showImportProgress = !0), this.importProgress = e
@@ -137,7 +137,7 @@
                         result: e,
                         isDir: t
                     }) {
-                        const s = t ? "Tập tin夹" : "文件",
+                        const s = t ? "文件夹" : "文件",
                             i = {
                                 [I.NO_Read]: "读",
                                 [I.NO_Write]: "写",
@@ -538,11 +538,11 @@
                         ...Object(n["c"])("finishing", []),
                         message() {
                             const e = {
-                                [o["a"].Start]: this.isDeleteProject ? "正在准备删除项目" : "正在准备删除Tập tin",
+                                [o["a"].Start]: this.isDeleteProject ? "正在准备删除项目" : "正在准备删除文件",
                                 [o["a"].RequestDelete]: "正在请求删除数据",
                                 [o["a"].Deleting]: "正在删除数据",
                                 [o["a"].DeleteOver]: "删除完成",
-                                [o["a"].CancelDelete]: "Hủy删除",
+                                [o["a"].CancelDelete]: "取消删除",
                                 [o["a"].RequestDeleteError]: "删除失败"
                             };
                             return e[this.status] || ""
@@ -662,7 +662,7 @@
                         on: {
                             click: e.onClose
                         }
-                    }, [e._v(" Hủy ")]), t("el-button", {
+                    }, [e._v(" 取消 ")]), t("el-button", {
                         attrs: {
                             type: "primary"
                         },

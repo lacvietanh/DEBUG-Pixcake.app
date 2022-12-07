@@ -155,7 +155,7 @@
                                 return e.stopPropagation(), t.onStartAllBtnClick.apply(null, arguments)
                             }
                         }
-                    }, [t._v(" 全部Mở始 ")])], 1) : t._e(), t._m(0), t.tableList.length > 0 ? e("DynamicScroller", {
+                    }, [t._v(" 全部开始 ")])], 1) : t._e(), t._m(0), t.tableList.length > 0 ? e("DynamicScroller", {
                         class: [t.isOnExportingBtn ? "dir-un-complete-container" : "dir-container"],
                         attrs: {
                             "min-item-size": 50,
@@ -210,13 +210,13 @@
                                 }, [e("img", {
                                     staticClass: "folder-icon folder-icon-close",
                                     attrs: {
-                                        alt: "Tập tin夹",
+                                        alt: "文件夹",
                                         src: s("db2c")
                                     }
                                 }), e("img", {
                                     staticClass: "folder-icon folder-icon-open",
                                     attrs: {
-                                        alt: "Tập tin夹",
+                                        alt: "文件夹",
                                         src: s("1b88")
                                     }
                                 }), e("span", [t._v(" " + t._s(a.name))])])]), e("div", {
@@ -274,7 +274,7 @@
                                             slot: "content"
                                         },
                                         slot: "content"
-                                    }, [t._v("Mở始")]), e("el-button", {
+                                    }, [t._v("开始")]), e("el-button", {
                                         staticClass: "custom-btn",
                                         attrs: {
                                             type: "text",
@@ -289,7 +289,7 @@
                                         staticClass: "icon-opt",
                                         attrs: {
                                             src: s("ffde"),
-                                            alt: "Mở始"
+                                            alt: "开始"
                                         }
                                     })])], 1)] : [e("el-tooltip", {
                                         staticClass: "item",
@@ -547,7 +547,7 @@
                                             attrs: {
                                                 circle: "",
                                                 size: "mini",
-                                                title: "打Mở原图"
+                                                title: "打开原图"
                                             },
                                             nativeOn: {
                                                 click: function(e) {
@@ -558,7 +558,7 @@
                                             staticClass: "folder-icon",
                                             attrs: {
                                                 height: "8px",
-                                                alt: "打Mở原图",
+                                                alt: "打开原图",
                                                 src: s("6b2a")
                                             }
                                         })])]
@@ -607,7 +607,7 @@
                         }
                     }), e("p", {
                         staticClass: "text c-text-label"
-                    }, [t._v("暂Không có导出项目")])])], e("share-dialog", {
+                    }, [t._v("暂无导出项目")])])], e("share-dialog", {
                         directives: [{
                             name: "show",
                             rawName: "v-show",
@@ -1060,7 +1060,7 @@
                                 this.isSelectAll = !1
                             } else this.tsNotify({
                                 type: "error",
-                                message: "当前Không có网络，请检查网络。"
+                                message: "当前无网络，请检查网络。"
                             })
                         }), 300),
                         onSelectedAllClick() {
@@ -1422,7 +1422,7 @@
                             let t = await window.$net.isOnline();
                             if (!t) return this.changeFullLoadingState(!1), void this.tsNotify({
                                 type: "error",
-                                message: "当前Không có网络,不支持下载，请检查网络。"
+                                message: "当前无网络,不支持下载，请检查网络。"
                             });
                             this.PointExportListPauseAllBtn();
                             let e = this;
@@ -1443,14 +1443,14 @@
                             })
                         }), 500),
                         onStartAllBtnClick: Object(l["debounce"])((async function() {
-                            this.changeFullLoadingState(!0, "正在执行全部Mở始中..."), await Object(B["a"])(500);
+                            this.changeFullLoadingState(!0, "正在执行全部开始中..."), await Object(B["a"])(500);
                             let t = await window.$net.isOnline();
                             if (!t) return this.changeFullLoadingState(!1), void this.tsNotify({
                                 type: "error",
-                                message: "当前Không có网络,不支持下载，请检查网络。"
+                                message: "当前无网络,不支持下载，请检查网络。"
                             });
                             const e = this;
-                            e.changeFullLoadingState(!0, "正在执行全部Mở始中..."), e.PointExportListStartAllBtn(), e.asyncStartAll({
+                            e.changeFullLoadingState(!0, "正在执行全部开始中..."), e.PointExportListStartAllBtn(), e.asyncStartAll({
                                 success() {
                                     Object(B["a"])(1e3).then(() => {
                                         e.changeFullLoadingState(!1)
@@ -1473,7 +1473,7 @@
                             let e = await window.$net.isOnline();
                             if (!e) return void this.tsNotify({
                                 type: "error",
-                                message: "当前Không có网络,不支持下载，请检查网络。"
+                                message: "当前无网络,不支持下载，请检查网络。"
                             });
                             this.isBusyStatus = !0;
                             let s = this;
@@ -1485,7 +1485,7 @@
                                 fail(t) {
                                     console.error("asyncStartExport : ", t), s.isBusyStatus = !1, s.tsNotify({
                                         type: "error",
-                                        message: "Mở始导出失败，请重试或者重启应用～"
+                                        message: "开始导出失败，请重试或者重启应用～"
                                     })
                                 }
                             })
@@ -1494,7 +1494,7 @@
                             let e = await window.$net.isOnline();
                             if (!e) return void this.tsNotify({
                                 type: "error",
-                                message: "当前Không có网络,不支持下载，请检查网络。"
+                                message: "当前无网络,不支持下载，请检查网络。"
                             });
                             this.isBusyStatus = !0;
                             let s = this;
@@ -1513,8 +1513,8 @@
                         }), 500),
                         deleteFolder: Object(l["debounce"])((async function(t) {
                             let e = "";
-                            t.progress < 100 && (e = "当前任务正在导出，删除后该导出进度将消失。已导出图片请前往导出目标Tập tin夹进行查看。"), this.showDeleteDialog = !0, this.tsConfirm({
-                                title: "Xác nhận删除该导出进度",
+                            t.progress < 100 && (e = "当前任务正在导出，删除后该导出进度将消失。已导出图片请前往导出目标文件夹进行查看。"), this.showDeleteDialog = !0, this.tsConfirm({
+                                title: "确认删除该导出进度",
                                 message: e,
                                 confirmButtonText: "删除",
                                 closeOnClickModal: !1
@@ -1543,13 +1543,13 @@
                         async openFolder(t) {
                             await z["a"].isFileExist(t) ? (L["b"].shell.showItemInFolder(t), this.PointExportTable("click_folder")) : this.tsNotify({
                                 type: "error",
-                                message: "该导出Tập tin已被删除"
+                                message: "该导出文件已被删除"
                             })
                         },
                         async openFile(t) {
                             await z["a"].isFileExist(t) ? L["b"].shell.showItemInFolder(t) : this.tsNotify({
                                 type: "error",
-                                message: "该原图Tập tin已被删除"
+                                message: "该原图文件已被删除"
                             })
                         },
                         retry: Object(l["debounce"])((async function(t) {
@@ -1565,7 +1565,7 @@
                                 needClearErrorList: !0
                             })) : this.tsNotify({
                                 type: "error",
-                                message: "当前Không có网络，请检查网络。"
+                                message: "当前无网络，请检查网络。"
                             })
                         }), 300),
                         exportErrorMapping(t) {
@@ -1574,67 +1574,67 @@
                             null != t.exportCode && 0 !== t.exportCode && (s += "-" + t.exportCode), t.nativeExportCode && (s += "-" + t.nativeExportCode), s += "，";
                             const a = [{
                                     tag: 2,
-                                    msg: "导出进程退出，请点击Phải侧重试按钮"
+                                    msg: "导出进程退出，请点击右侧重试按钮"
                                 }, {
                                     tag: 3,
-                                    msg: "处理效果超时，请点击Phải侧重试按钮"
+                                    msg: "处理效果超时，请点击右侧重试按钮"
                                 }, {
                                     tag: 4,
-                                    msg: "导出进程错误，请点击Phải侧重试按钮"
+                                    msg: "导出进程错误，请点击右侧重试按钮"
                                 }, {
                                     tag: 5,
-                                    msg: "其他类型错误，请点击Phải侧重试按钮"
+                                    msg: "其他类型错误，请点击右侧重试按钮"
                                 }, {
                                     tag: 7,
-                                    msg: "API请求失败，检查网络是否稳定,再请点击Phải侧重试按钮"
+                                    msg: "API请求失败，检查网络是否稳定,再请点击右侧重试按钮"
                                 }, {
                                     tag: 8,
                                     msg: "账户余额不足"
                                 }, {
                                     tag: 9,
-                                    msg: "导出进程底层处理出错，请点击Phải侧重试按钮"
+                                    msg: "导出进程底层处理出错，请点击右侧重试按钮"
                                 }, {
                                     tag: 10,
-                                    msg: "导出进程异常退出，请点击Phải侧重试按钮"
+                                    msg: "导出进程异常退出，请点击右侧重试按钮"
                                 }, {
                                     tag: 11,
-                                    msg: "服务器请求数据生成失败，请点击Phải侧重试按钮"
+                                    msg: "服务器请求数据生成失败，请点击右侧重试按钮"
                                 }, {
                                     tag: 12,
-                                    msg: "服务器请求数据校验失败，请点击Phải侧重试按钮"
+                                    msg: "服务器请求数据校验失败，请点击右侧重试按钮"
                                 }, {
                                     tag: 13,
-                                    msg: "服务器请求数据为空，请点击Phải侧重试按钮"
+                                    msg: "服务器请求数据为空，请点击右侧重试按钮"
                                 }, {
                                     tag: 14,
-                                    msg: "支付接口请求失败，请点击Phải侧重试按钮"
+                                    msg: "支付接口请求失败，请点击右侧重试按钮"
                                 }, {
                                     tag: 15,
-                                    msg: "支付接口校验失败，请点击Phải侧重试按钮"
+                                    msg: "支付接口校验失败，请点击右侧重试按钮"
                                 }, {
                                     tag: 16,
-                                    msg: "支付接口返回数据错误，请点击Phải侧重试按钮"
+                                    msg: "支付接口返回数据错误，请点击右侧重试按钮"
                                 }, {
                                     tag: 17,
-                                    msg: "支付服务器算法异常，请点击Phải侧重试按钮"
+                                    msg: "支付服务器算法异常，请点击右侧重试按钮"
                                 }, {
                                     tag: 18,
-                                    msg: "拷贝性别Tập tin错误，请点击Phải侧重试按钮"
+                                    msg: "拷贝性别文件错误，请点击右侧重试按钮"
                                 }, {
                                     tag: 19,
-                                    msg: "联动超时响应，请点击Phải侧重试按钮"
+                                    msg: "联动超时响应，请点击右侧重试按钮"
                                 }, {
                                     tag: 20,
                                     msg: "网络请求超时，请检查网络或暂停电脑中其他上传/下载任务后再重试"
                                 }, {
                                     tag: 21,
-                                    msg: "该原图Không tồn tại，请点击Phải侧重试按钮"
+                                    msg: "该原图不存在，请点击右侧重试按钮"
                                 }, {
                                     tag: 22,
-                                    msg: "该图片被删除，请点击Phải侧重试按钮"
+                                    msg: "该图片被删除，请点击右侧重试按钮"
                                 }, {
                                     tag: 23,
-                                    msg: "Tiết kiệm失败，请点击Phải侧重试按钮"
+                                    msg: "保存失败，请点击右侧重试按钮"
                                 }, {
                                     tag: 24,
                                     msg: "不支持该图片格式导出"
@@ -1643,10 +1643,10 @@
                                     msg: "图片写入IO失败，检查导出目录权限或者磁盘空间是否不足"
                                 }, {
                                     tag: 26,
-                                    msg: "导出错误，请点击Phải侧重试按钮"
+                                    msg: "导出错误，请点击右侧重试按钮"
                                 }, {
                                     tag: 27,
-                                    msg: "该图已产生二次计费（Tập tin已被修改，可能在PS/LR等软件中进行了调整）"
+                                    msg: "该图已产生二次计费（文件已被修改，可能在PS/LR等软件中进行了调整）"
                                 }, {
                                     tag: 28,
                                     msg: "不支持该图片格式导出"
@@ -1655,41 +1655,41 @@
                                     msg: "项目数据丢失，请重新导入这批图片，再进行导出"
                                 }, {
                                     tag: 31,
-                                    msg: "电脑运行内存不足，请先退出其他软件释放内存，再点击Phải侧重试按钮"
+                                    msg: "电脑运行内存不足，请先退出其他软件释放内存，再点击右侧重试按钮"
                                 }, {
                                     tag: 32,
-                                    msg: "电脑运行内存不足，请退出其他软件或重启电脑，再点击Phải侧重试按钮"
+                                    msg: "电脑运行内存不足，请退出其他软件或重启电脑，再点击右侧重试按钮"
                                 }, {
                                     tag: 33,
-                                    msg: "导出进程Không tồn tại，请重新安装Điểm蛋糕"
+                                    msg: "导出进程不存在，请重新安装像素蛋糕"
                                 }, {
                                     tag: 34,
-                                    msg: "导出进程启动失败，请重新安装Điểm蛋糕"
+                                    msg: "导出进程启动失败，请重新安装像素蛋糕"
                                 }, {
                                     tag: 35,
-                                    msg: "创建共享内存失败，请重新启动Điểm蛋糕"
+                                    msg: "创建共享内存失败，请重新启动像素蛋糕"
                                 }, {
                                     tag: 36,
-                                    msg: "挂载共享内存失败，请重新启动Điểm蛋糕"
+                                    msg: "挂载共享内存失败，请重新启动像素蛋糕"
                                 }, {
                                     tag: 37,
-                                    msg: "API请求失败，请重启电脑，再点击Phải侧重试按钮"
+                                    msg: "API请求失败，请重启电脑，再点击右侧重试按钮"
                                 }, {
                                     tag: tt["a"].ALLOCATED_PAY_API,
                                     msg: "剩余可用张数不足，请联系贵司管理员补充张数哦"
                                 }],
                                 i = [{
                                     tag: 2,
-                                    msg: "图片Thất bại để tải，请点击Phải侧重试按钮"
+                                    msg: "图片加载失败，请点击右侧重试按钮"
                                 }, {
                                     tag: 4,
-                                    msg: "效果处理过程中发生错误，请点击Phải侧重试按钮"
+                                    msg: "效果处理过程中发生错误，请点击右侧重试按钮"
                                 }, {
                                     tag: 6,
-                                    msg: "图片Tiết kiệm过程中失败，请点击Phải侧重试按钮"
+                                    msg: "图片保存过程中失败，请点击右侧重试按钮"
                                 }, {
                                     tag: 8,
-                                    msg: "服务器请求数据生成失败，请点击Phải侧重试按钮"
+                                    msg: "服务器请求数据生成失败，请点击右侧重试按钮"
                                 }, {
                                     tag: 9,
                                     msg: "不支持该图片格式"
@@ -1698,51 +1698,51 @@
                                     msg: "图片写入IO失败，检查导出目录权限或者磁盘空间是否不足"
                                 }, {
                                     tag: 13,
-                                    msg: "不支持该图片格式导出，请点击Phải侧重试按钮"
+                                    msg: "不支持该图片格式导出，请点击右侧重试按钮"
                                 }, {
                                     tag: 14,
-                                    msg: "原图Không tồn tại或者Không có读取权限"
+                                    msg: "原图不存在或者无读取权限"
                                 }, {
                                     tag: 15,
-                                    msg: "服务器响应数据校验失败，请点击Phải侧重试按钮"
+                                    msg: "服务器响应数据校验失败，请点击右侧重试按钮"
                                 }, {
                                     tag: 16,
-                                    msg: "服务器响应数据不合法，请点击Phải侧重试按钮"
+                                    msg: "服务器响应数据不合法，请点击右侧重试按钮"
                                 }, {
                                     tag: 17,
-                                    msg: "服务器响应数据丢失，请点击Phải侧重试按钮"
+                                    msg: "服务器响应数据丢失，请点击右侧重试按钮"
                                 }, {
                                     tag: 18,
-                                    msg: "服务器响应数据丢失，请点击Phải侧重试按钮"
+                                    msg: "服务器响应数据丢失，请点击右侧重试按钮"
                                 }, {
                                     tag: 19,
-                                    msg: "Tiết kiệm出现黑图，请点击Phải侧重试按钮"
+                                    msg: "保存出现黑图，请点击右侧重试按钮"
                                 }, {
                                     tag: 20,
-                                    msg: "服务器响应数据丢失，请点击Phải侧重试按钮"
+                                    msg: "服务器响应数据丢失，请点击右侧重试按钮"
                                 }, {
                                     tag: 21,
-                                    msg: "服务器响应数据丢失，请点击Phải侧重试按钮"
+                                    msg: "服务器响应数据丢失，请点击右侧重试按钮"
                                 }, {
                                     tag: 24,
-                                    msg: "服务器响应数据丢失，请点击Phải侧重试按钮"
+                                    msg: "服务器响应数据丢失，请点击右侧重试按钮"
                                 }, {
                                     tag: 25,
-                                    msg: "创建导出Tập tin失败，检查导出目录权限"
+                                    msg: "创建导出文件失败，检查导出目录权限"
                                 }, {
                                     tag: 26,
-                                    msg: "服务器响应数据丢失，请点击Phải侧重试按钮"
+                                    msg: "服务器响应数据丢失，请点击右侧重试按钮"
                                 }, {
                                     tag: 28,
-                                    msg: "图片对应的美化、调色参数Tập tin有损，请重新导出"
+                                    msg: "图片对应的美化、调色参数文件有损，请重新导出"
                                 }, {
                                     tag: 30,
-                                    msg: "服务器响应数据丢失，请点击Phải侧重试按钮"
+                                    msg: "服务器响应数据丢失，请点击右侧重试按钮"
                                 }, {
                                     tag: 31,
-                                    msg: "服务器响应数据丢失，请点击Phải侧重试按钮"
+                                    msg: "服务器响应数据丢失，请点击右侧重试按钮"
                                 }];
-                            let o = "处理效果超时，请点击Phải侧重试按钮";
+                            let o = "处理效果超时，请点击右侧重试按钮";
                             for (let l = 0; l < a.length; l++) a[l].tag === e && (o = a[l].msg);
                             if (2 !== e && 10 !== e && 31 !== e && 32 !== e && 33 !== e && 34 !== e && t.nativeExportCode && "number" === typeof t.nativeExportCode) {
                                 let e = t.nativeExportCode;
@@ -1762,7 +1762,7 @@
                                 needDeleteCache: !0
                             }) : this.tsNotify({
                                 type: "error",
-                                message: "当前Không có网络，请检查网络。"
+                                message: "当前无网络，请检查网络。"
                             })
                         }), 500),
                         onShareClick: Object(l["debounce"])((async function(t, e) {
@@ -1776,7 +1776,7 @@
                                 shareStatus: t.shareStatus
                             }) : this.tsNotify({
                                 type: "error",
-                                message: "当前Không có网络，请检查网络。"
+                                message: "当前无网络，请检查网络。"
                             })
                         }), 500),
                         onPaySuccess() {

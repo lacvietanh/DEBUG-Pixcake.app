@@ -52,7 +52,7 @@
                         on: {
                             click: e.onDataMigrateClick
                         }
-                    }, [e._v(" Mở始数据升级 ")])], 1), t("div", {
+                    }, [e._v(" 开始数据升级 ")])], 1), t("div", {
                         staticClass: "btn-container"
                     }, [t("el-button", {
                         staticClass: "btn",

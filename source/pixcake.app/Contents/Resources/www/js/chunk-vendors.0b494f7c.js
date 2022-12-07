@@ -43025,7 +43025,7 @@
                                 this.loading = !1
                             },
                             handleImgError: function(e) {
-                                this.loading = !1, e.target.alt = "Thất bại để tải"
+                                this.loading = !1, e.target.alt = "加载失败"
                             },
                             handleMouseDown: function(e) {
                                 var t = this;
@@ -66160,13 +66160,13 @@
                     datepicker: {
                         now: "此刻",
                         today: "今天",
-                        cancel: "Hủy",
+                        cancel: "取消",
                         clear: "清空",
                         confirm: "确定",
                         selectDate: "选择日期",
                         selectTime: "选择时间",
-                        startDate: "Mở始日期",
-                        startTime: "Mở始时间",
+                        startDate: "开始日期",
+                        startTime: "开始时间",
                         endDate: "结束日期",
                         endTime: "结束时间",
                         prevYear: "前一年",
@@ -66212,15 +66212,15 @@
                     },
                     select: {
                         loading: "加载中",
-                        noMatch: "Không có匹配数据",
-                        noData: "Không có数据",
-                        placeholder: "Vui lòng chọn"
+                        noMatch: "无匹配数据",
+                        noData: "无数据",
+                        placeholder: "请选择"
                     },
                     cascader: {
-                        noMatch: "Không có匹配数据",
+                        noMatch: "无匹配数据",
                         loading: "加载中",
-                        placeholder: "Vui lòng chọn",
-                        noData: "暂Không có数据"
+                        placeholder: "请选择",
+                        noData: "暂无数据"
                     },
                     pagination: {
                         goto: "前往",
@@ -66231,7 +66231,7 @@
                     messagebox: {
                         title: "提示",
                         confirm: "确定",
-                        cancel: "Hủy",
+                        cancel: "取消",
                         error: "输入的数据不合法!"
                     },
                     upload: {
@@ -66241,35 +66241,35 @@
                         continue: "继续上传"
                     },
                     table: {
-                        emptyText: "暂Không có数据",
+                        emptyText: "暂无数据",
                         confirmFilter: "筛选",
-                        resetFilter: "Thiết lập lại",
+                        resetFilter: "重置",
                         clearFilter: "全部",
                         sumText: "合计"
                     },
                     tree: {
-                        emptyText: "暂Không có数据"
+                        emptyText: "暂无数据"
                     },
                     transfer: {
-                        noMatch: "Không có匹配数据",
-                        noData: "Không có数据",
+                        noMatch: "无匹配数据",
+                        noData: "无数据",
                         titles: ["列表 1", "列表 2"],
                         filterPlaceholder: "请输入搜索内容",
                         noCheckedFormat: "共 {total} 项",
                         hasCheckedFormat: "已选 {checked}/{total} 项"
                     },
                     image: {
-                        error: "Thất bại để tải"
+                        error: "加载失败"
                     },
                     pageHeader: {
                         title: "返回"
                     },
                     popconfirm: {
                         confirmButtonText: "确定",
-                        cancelButtonText: "Hủy"
+                        cancelButtonText: "取消"
                     },
                     empty: {
-                        description: "暂Không có数据"
+                        description: "暂无数据"
                     }
                 }
             }

@@ -142,7 +142,7 @@
                             divided: "",
                             command: "onImportDir"
                         }
-                    }, [t("div", [e._v("导入Tập tin夹")])])], 1)], 1)]] : e._e()], 2)], t("div", {
+                    }, [t("div", [e._v("导入文件夹")])])], 1)], 1)]] : e._e()], 2)], t("div", {
                         staticClass: "center-func-container menu"
                     }, [e._l(e.menuList, (function(i, a) {
                         return [t("div", {
@@ -279,13 +279,13 @@
                             "margin-top": "0",
                             color: "#D9D9D9"
                         }
-                    }, [e._v("选择一个Đặt trước应用到 "), t("span", {
+                    }, [e._v("选择一个预设应用到 "), t("span", {
                         staticStyle: {
                             color: "#F5D228",
                             "font-size": "20px",
                             "font-weight": "500"
                         }
-                    }, [e._v(e._s(e.exportSettingData.totalNumber))]), e._v(" Ảnh并导出 ")]) : t("div", {
+                    }, [e._v(e._s(e.exportSettingData.totalNumber))]), e._v(" 张图片并导出 ")]) : t("div", {
                         staticClass: "title",
                         staticStyle: {
                             "margin-top": "0",
@@ -297,7 +297,7 @@
                             "font-size": "20px",
                             "font-weight": "500"
                         }
-                    }, [e._v(e._s(e.exportSettingData.totalNumber))]), e._v(" Ảnh "), e.exportSettingData.isNoePresetNumber > 0 ? [e._v(", 其中 "), t("span", {
+                    }, [e._v(e._s(e.exportSettingData.totalNumber))]), e._v(" 张图片 "), e.exportSettingData.isNoePresetNumber > 0 ? [e._v(", 其中 "), t("span", {
                         staticStyle: {
                             color: "#F5D228",
                             "font-size": "20px",
@@ -313,7 +313,7 @@
                             expression: "needShowPresetSelect"
                         }],
                         staticClass: "preset-select-container"
-                    }, [t("span", [e._v("Đặt trước：")]), t("div", {
+                    }, [t("span", [e._v("预设：")]), t("div", {
                         staticStyle: {
                             position: "relative"
                         }
@@ -321,7 +321,7 @@
                         staticClass: "presetSelect",
                         attrs: {
                             filterable: "",
-                            placeholder: "Vui lòng chọn一个Đặt trước",
+                            placeholder: "请选择一个预设",
                             options: e.provinceOptions
                         },
                         on: {
@@ -405,7 +405,7 @@
                         staticClass: "export-setting-container"
                     }, [t("span", {
                         staticClass: "export-title"
-                    }, [e._v("导出Vị trí：")]), t("div", {
+                    }, [e._v("导出位置：")]), t("div", {
                         staticClass: "export-setting-content"
                     }, [t("el-checkbox", {
                         staticClass: "firstChild",
@@ -421,7 +421,7 @@
                             },
                             expression: "createNewDir"
                         }
-                    }, [e._v(" 新建项目Tập tin夹存储 ")]), t("el-checkbox", {
+                    }, [e._v(" 新建项目文件夹存储 ")]), t("el-checkbox", {
                         on: {
                             change: function(t) {
                                 return e.switchSetting(t, "setDefaultPath")
@@ -447,7 +447,7 @@
                             },
                             expression: "restoreImportDir"
                         }
-                    }, [e._v(" 保留导入时的Tập tin夹命名 ")])], 1)]), t("div", {
+                    }, [e._v(" 保留导入时的文件夹命名 ")])], 1)]), t("div", {
                         staticClass: "dividing-line"
                     }), t("div", {
                         staticClass: "export-setting-container"
@@ -550,7 +550,7 @@
                         }
                     }), t("div", {
                         staticClass: "level-container-label"
-                    }, [t("span", [e._v("小Tập tin")]), t("span", [e._v("大文件")])])], 1)])]) : e._e(), t("div", {
+                    }, [t("span", [e._v("小文件")]), t("span", [e._v("大文件")])])], 1)])]) : e._e(), t("div", {
                         staticClass: "dividing-line"
                     }), t("div", {
                         staticClass: "export-setting-container"
@@ -586,7 +586,7 @@
                         on: {
                             click: e.noApplay
                         }
-                    }, [e._v("Hủy")]), t("el-button", {
+                    }, [e._v("取消")]), t("el-button", {
                         staticClass: "exportBtn",
                         attrs: {
                             size: "mini",
@@ -654,7 +654,7 @@
                             options: [{
                                 value: M["e"]["origin"],
                                 key: "origin",
-                                label: " Ban đầu格式"
+                                label: " 原始格式"
                             }, {
                                 value: M["e"]["jpeg"],
                                 key: "jpeg",
@@ -783,7 +783,7 @@
                         },
                         async applyAll() {
                             if (this.needShowPresetSelect && (null == this.whichPreset || "" == this.whichPreset)) return this.tsNotify({
-                                message: "请先选择一个Đặt trước再导出哦~"
+                                message: "请先选择一个预设再导出哦~"
                             }), !1;
                             let e = this.finalSavePath;
                             if (await L["a"].mkdirSync(e), e.length >= V["j"] && A["a"].isWin && !A["a"].isLargeThanWin10Version) return void this.tsNotify({
@@ -892,7 +892,7 @@
                         });
                         const {
                             showFundLackView: v
-                        } = Object(y["a"])(), f = (e = "套餐剩余可用张数不足，Không có法成功导出，请及时充值哦") => {
+                        } = Object(y["a"])(), f = (e = "套餐剩余可用张数不足，无法成功导出，请及时充值哦") => {
                             n["a"].commit("changeDownloadStatus", {
                                 status: !0
                             }), v(e, {
@@ -915,7 +915,7 @@
                                     u.value = !1, b["a"].$emit("export-succeed");
                                     const t = setTimeout(() => {
                                         s.tsNotify({
-                                            message: "正在导出中，可以在导出列表Xem进度。",
+                                            message: "正在导出中，可以在导出列表中查看进度。",
                                             type: "success"
                                         }), n["a"].commit("changeDownloadStatus", {
                                             status: !0
@@ -945,7 +945,7 @@
                                 o = await window.$net.isOnline();
                             if (!o) return void s.tsNotify({
                                 type: "error",
-                                message: "当前Không có网络,不支持下载，请检查网络。"
+                                message: "当前无网络,不支持下载，请检查网络。"
                             });
                             u.value = !0, n["a"].commit("changeDownloadStatus", {
                                 status: !1
@@ -957,7 +957,7 @@
                                     status: !0
                                 }), void s.tsNotify({
                                     type: "error",
-                                    message: "用户信息获取失败, Xác nhận网络是否稳定"
+                                    message: "用户信息获取失败, 确认网络是否稳定"
                                 })
                             }
                             let c = i.user;
@@ -968,7 +968,7 @@
                                     }, 200)
                                 } else if (c.leftNum < a) {
                                 const o = await I["a"].getInstance().getIsAllowTopUp(),
-                                    p = `当前套餐剩余${c.leftNum}张，本次导出预计消耗${a}张，这批照片将Không có法全部成功导出，`;
+                                    p = `当前套餐剩余${c.leftNum}张，本次导出预计消耗${a}张，这批照片将无法全部成功导出，`;
                                 let d = p + "建议您充值后再导出哦~";
                                 o || (d = p + (N["v"] ? "请联系管理员" : "请联系贵司管理员补充张数哦")), s.tsConfirm({
                                     title: d,
@@ -1002,7 +1002,7 @@
                                 status: !0
                             }), s.tsNotify({
                                 type: "error",
-                                message: "用户信息获取失败, Xác nhận网络是否稳定"
+                                message: "用户信息获取失败, 确认网络是否稳定"
                             })
                         }), 200);
                         async function w(e) {
@@ -1013,8 +1013,8 @@
                                     t = i[0];
                                 let a = Number(t.version);
                                 if (a && a > k["b"]) return void s.tsConfirm({
-                                    title: "Hệ thống nhắc",
-                                    message: "Bạn cần để nâng cấp phiên bản mới nhất để sử dụng các sẵn Oh~",
+                                    title: "系统提示",
+                                    message: "需要升级最新版本才能使用该预设哦~",
                                     showCancelButton: !1
                                 }).then(() => {});
                                 let {
@@ -1076,7 +1076,7 @@
                             } = i;
                             if (0 === P) return void s.tsNotify({
                                 type: "error",
-                                message: "Vui lòng chọn有效支持的图片格式进行导出～"
+                                message: "请选择有效支持的图片格式进行导出～"
                             });
                             t.exportSubDirPath = o, t.exportTimes = r, t.exportDirPath = a, t.currentProject = l, t.temporaryStoragePath = w;
                             let x = n["a"].state.config.configModel;
@@ -1236,7 +1236,7 @@
                         ...Object(u["b"])("project", ["ACT_UpdateProject"]),
                         onManualImportClick: Object(d["debounce"])((async function() {
                             const e = Y["a"].getInstance().exhibitionConfig;
-                            await B["a"].existsSync(e.importPath) ? this.getEventBus().$emit("onManualImportClick", [e.importPath]) : this.tsNotify("导入的路径Không tồn tại，请重新设置")
+                            await B["a"].existsSync(e.importPath) ? this.getEventBus().$emit("onManualImportClick", [e.importPath]) : this.tsNotify("导入的路径不存在，请重新设置")
                         }), 500),
                         onShowVipPriceDialogClick: Object(d["debounce"])((function() {
                             this.PointMemberPriceClick(), h["a"].send("open-member-plan-window", null)
@@ -1300,7 +1300,7 @@
                             this.getEventBus().$emit("onNavImportImage", t[e])
                         },
                         showRawTips: Object(d["throttle"])((function() {
-                            const e = "RAW调色功能Mở发中，敬请期待哦~";
+                            const e = "RAW调色功能开发中，敬请期待哦~";
                             this.tsNotify({
                                 type: "info",
                                 message: e
@@ -1423,11 +1423,11 @@
             const o = {
                 totalStep: 6,
                 step1: {
-                    text: `试试直接拖拽Tập tin夹或多Ảnh到这里，Mở始探索${s["b"]}吧~`,
+                    text: `试试直接拖拽文件夹或多张图片到这里，开始探索${s["b"]}吧~`,
                     num: 1
                 },
                 step2: {
-                    text: "点击应用Đặt trước",
+                    text: "点击应用预设",
                     num: 2
                 },
                 step3: {
@@ -1559,8 +1559,8 @@
                     },
                     allGuideQuit(e, t) {
                         this.tsConfirm({
-                            title: "Xác nhận退出新手引导",
-                            message: "您也可以在Phải上角新手教程Xem具体教程",
+                            title: "确认退出新手引导",
+                            message: "您也可以在右上角新手教程中查看具体教程",
                             customMessageStyle: "textAlign: center"
                         }).then(() => {
                             this.guideQuit(t), this._SetIsShowNoviceGuide(!1), this.PointClickQuit(e)
