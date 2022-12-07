@@ -18,7 +18,7 @@ export function getInstance(){
                 baseURL: getBaseURL() + '/v1',
                 crossDomain: false,
                 withCredentials: true,
-                // 忽略ssl校验
+                // Ignore SSL verification
                 // httpsAgent: new https.Agent({
                 //     rejectUnauthorized: false
                 // }),

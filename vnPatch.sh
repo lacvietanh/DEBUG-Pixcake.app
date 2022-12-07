@@ -47,12 +47,21 @@ ask(){
 UnzipOriginalJS(){
     unzip -o source/JS-ori*.zip -d ${JsDir}/
     echo "Đã xả backup JS gốc vào ${RED}$JsDir${NC}"
+    unset m; sleep 1; ask
 }
 CopyAppToSource(){
-    echo "function chưa viết"
+    echo "Đang copy..."
+    rsync -havIr /Applications/像素蛋糕.app/. source/PixCake.app
+    echo "Copy xong!"
 }
 BeautifyJS(){
-    echo "function chưa viết"
+    [ js-beautify ] || echo "chưa cài đặt js-beautify! ${RED}npm -g install js-beautify${NC}"
+    local i js ; i=1
+    for js in $JsDir/*.js; do
+        echo "===== Beautify File ${RED}$i: $(basename $js) ${NC} ====="
+        js-beautify --indent-size 2 $js -o $js
+        ((i=i+1))
+    done
 }
 UnPackByMap(){
     echo "function chưa viết"
@@ -64,7 +73,7 @@ ExportAppToZip(){
     echo "function chưa viết"
 }
 vnPatch(){
-    local i,zh,vn,line,js
+    local i zh vn line js
     for js in $JsDir/*.js; do
         i=1; echo "===== file $i: $js ====="
         for line in "${LANG[@]}"; do

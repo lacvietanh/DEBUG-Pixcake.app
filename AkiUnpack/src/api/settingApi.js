@@ -7,60 +7,60 @@ import { CUR_PRESET_VERSION } from '@/constants/preset-def'
 
 let instance = null
 
-export function getInstance(){
-    if (!instance){
-        instance =  provideInterceptors(
-            createInstance({
-                baseURL: getBaseURL() + '/v1/api/settings',
-                crossDomain: false,
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }), { request: true }
-        )
-    }
-    return instance
+export function getInstance() {
+  if (!instance) {
+    instance = provideInterceptors(
+      createInstance({
+        baseURL: getBaseURL() + '/v1/api/settings',
+        crossDomain: false,
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }), { request: true }
+    )
+  }
+  return instance
 }
 
 
 // 预设分类
 let instance1 = null
 
-export  function getInstance1(){
-    if (!instance1){
-        instance1 =  provideInterceptors(
-            createInstance({
-                baseURL: getBaseURL() + '/v1/api/preset_class',
-                crossDomain: false,
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }), { request: true }
-        )
-    }
-    return instance1
+export function getInstance1() {
+  if (!instance1) {
+    instance1 = provideInterceptors(
+      createInstance({
+        baseURL: getBaseURL() + '/v1/api/preset_class',
+        crossDomain: false,
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }), { request: true }
+    )
+  }
+  return instance1
 }
 
 
 
 // 获取预设v2
 let instance2 = null
-export  function getInstance2(){
-    if (!instance2){
-        instance2 =  provideInterceptors(
-            createInstance({
-                baseURL: getBaseURL() + '/v2/api/settings',
-                crossDomain: false,
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }), { request: true }
-        )
-    }
-    return instance2
+export function getInstance2() {
+  if (!instance2) {
+    instance2 = provideInterceptors(
+      createInstance({
+        baseURL: getBaseURL() + '/v2/api/settings',
+        crossDomain: false,
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }), { request: true }
+    )
+  }
+  return instance2
 }
 
 
@@ -71,56 +71,56 @@ export  function getInstance2(){
  * @returns {Promise<void>}
  */
 export async function getSetting(type, isSystem) {
-    try {
-        let params = {
-            type: type,
-            is_system: isSystem
-        }
-        const response = await getInstance().get('/get', { params })
-        const res = get(response, 'data.data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      type: type,
+      is_system: isSystem
     }
+    const response = await getInstance().get('/get', { params })
+    const res = get(response, 'data.data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
-//------预设套装相关------
+//------Preset set correlation------
 /**
  *
- * 获取预设的设置
+ * Get the preset settings
  * @param isSystem
  * @param min_version:最小版本号 int 类型
  *
  */
 export async function getPresetSuit(isSystem, min_version) {
-    try {
-        let params = {
-            type: 2,
-            is_system: isSystem,
-            // min_version: min_version
-            min_version: min_version // 获取所有预设
-        }
-        const response = await getInstance().get('/get', { params })
-        return get(response, 'data.data', {})
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      type: 2,
+      is_system: isSystem,
+      // min_version: min_version
+      min_version: min_version // 获取所有预设
     }
+    const response = await getInstance().get('/get', { params })
+    return get(response, 'data.data', {})
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'Parameter error'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -134,34 +134,34 @@ export async function getPresetSuit(isSystem, min_version) {
  *    cover:'http://****.jpg'
  * }
  */
-export async function createPresetSuit(jsonObject, settingName, class_id, created_at=null) {
-    try {
-        let { beautify, palette, cover } = jsonObject
-        let params = {
-            type: 2,
-            info: JSON.stringify(beautify),
-            info1: JSON.stringify(palette),
-            name: settingName,
-            class_id: class_id,
-            min_version: CUR_PRESET_VERSION
-        }
-        if (created_at){
-            params.created_at = created_at
-        }
-        const response = await getInstance().post('/create', params)
-        const res = get(response, 'data.data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+export async function createPresetSuit(jsonObject, settingName, class_id, created_at = null) {
+  try {
+    let { beautify, palette, cover } = jsonObject
+    let params = {
+      type: 2,
+      info: JSON.stringify(beautify),
+      info1: JSON.stringify(palette),
+      name: settingName,
+      class_id: class_id,
+      min_version: CUR_PRESET_VERSION
     }
+    if (created_at) {
+      params.created_at = created_at
+    }
+    const response = await getInstance().post('/create', params)
+    const res = get(response, 'data.data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'Parameter error'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -192,7 +192,7 @@ export async function createPresetSuit(jsonObject, settingName, class_id, create
 //             console.log(code)
 //             switch (code) {
 //                 case 400:
-//                     return '参数错误'
+//                     return 'parameter Err'
 //                 default:
 //                     {}
 //             }
@@ -213,24 +213,24 @@ export async function createPresetSuit(jsonObject, settingName, class_id, create
  * @returns {Promise<void>}
  */
 export async function updatePresetName(data) {
-    try {
-        let params = {
-            setting_id: parseInt(data.id),
-            name: data.name
-        }
-        const response = await getInstance().post('/update', params)
-        const res = get(response, 'data.data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      setting_id: parseInt(data.id),
+      name: data.name
     }
+    const response = await getInstance().post('/update', params)
+    const res = get(response, 'data.data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      switch (code) {
+        case 400:
+          return 'Parameter error'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 
@@ -242,26 +242,26 @@ export async function updatePresetName(data) {
  * @returns {Promise<void>}
  */
 export async function createSetting(type, json, settingName) {
-    try {
-        let params = {
-            type: type,
-            info: json,
-            name: settingName
-        }
-        const response = await getInstance().post('/create', params)
-        const res = get(response, 'data.data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      type: type,
+      info: json,
+      name: settingName
     }
+    const response = await getInstance().post('/create', params)
+    const res = get(response, 'data.data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -272,27 +272,27 @@ export async function createSetting(type, json, settingName) {
  * @returns {Promise<void>}
  */
 export async function updateSetting(settingId, json, settingName) {
-    try {
-        let params = {
-            setting_id: parseInt(settingId),
-            info: json,
-            name: settingName
-        }
-
-        const response = await getInstance().post('/update', params)
-        const res = get(response, 'data.data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      setting_id: parseInt(settingId),
+      info: json,
+      name: settingName
     }
+
+    const response = await getInstance().post('/update', params)
+    const res = get(response, 'data.data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 
@@ -303,27 +303,27 @@ export async function updateSetting(settingId, json, settingName) {
  * @returns {Promise<any>}
  */
 export async function deleteSettingByApi(settingId) {
-    try {
-        let params = {
-            setting_id: parseInt(settingId)
-        }
-
-        const response = await getInstance().delete('/delete', {
-            data: params
-        })
-        const res = get(response, 'data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      setting_id: parseInt(settingId)
     }
+
+    const response = await getInstance().delete('/delete', {
+      data: params
+    })
+    const res = get(response, 'data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /*
@@ -332,45 +332,45 @@ export async function deleteSettingByApi(settingId) {
 
 // 分享
 export async function getSharePresetToken(settingId) {
-    try {
-        let params = {
-            setting_id: parseInt(settingId)
-        }
-        const response = await getInstance().post('/share', params)
-        return get(response, 'data.data', {})
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      setting_id: parseInt(settingId)
     }
+    const response = await getInstance().post('/share', params)
+    return get(response, 'data.data', {})
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /*
     获得分享的详情
  */
 export async function getSharePresetInfo(share_token) {
-    try {
-        //todo 需要看下instance2的地址错误问题
-        const response = await getInstance2().get('/share/info', { params: { share_token: share_token } })
+  try {
+    //todo 需要看下instance2的地址错误问题
+    const response = await getInstance2().get('/share/info', { params: { share_token: share_token } })
 
-        return get(response, 'data.data', {})
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
-    }
+    return get(response, 'data.data', {})
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /*
@@ -385,23 +385,23 @@ export async function getSharePresetInfo(share_token) {
  */
 
 export async function importSharePreset(share_token, mini_version) {
-    try {
-        const response = await getInstance2().post('/import/from_token', {
-            share_token: share_token,
-            setting_version: mini_version
-        })
-        return get(response, 'data.data', [])
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
-    }
+  try {
+    const response = await getInstance2().post('/import/from_token', {
+      share_token: share_token,
+      setting_version: mini_version
+    })
+    return get(response, 'data.data', [])
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -410,22 +410,22 @@ export async function importSharePreset(share_token, mini_version) {
  * @returns {Promise<any>}
  */
 export async function createPresetClass(data) {
-    try {
-        const response = await getInstance1().post('/create', {
-            name: data
-        })
-        return get(response, 'data.data', [])
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
-    }
+  try {
+    const response = await getInstance1().post('/create', {
+      name: data
+    })
+    return get(response, 'data.data', [])
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -433,20 +433,20 @@ export async function createPresetClass(data) {
  * @returns {Promise<any>}
  */
 export async function getPresetClass(data) {
-    try {
-        const response = await getInstance1().get('/get')
-        return get(response, 'data.data', [])
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
-    }
+  try {
+    const response = await getInstance1().get('/get')
+    return get(response, 'data.data', [])
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -454,24 +454,24 @@ export async function getPresetClass(data) {
  * @returns {Promise<any>}
  */
 export async function getPresetItem(id) {
-    try {
-        let params = {
-            type: 2,
-            class_id: id || ''
-        }
-        const response = await getInstance2().get('/get', { params })
-        return get(response, 'data.data', [])
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      type: 2,
+      class_id: id || ''
     }
+    const response = await getInstance2().get('/get', { params })
+    return get(response, 'data.data', [])
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -481,27 +481,27 @@ export async function getPresetItem(id) {
  * @returns {Promise<any>}
  */
 export async function deletePresetClassByApi(id) {
-    try {
-        let params = {
-            id: parseInt(id)
-        }
-
-        const response = await getInstance1().delete('/delete', {
-            data: params
-        })
-        const res = get(response, 'data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            console.log(code)
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      id: parseInt(id)
     }
+
+    const response = await getInstance1().delete('/delete', {
+      data: params
+    })
+    const res = get(response, 'data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      console.log(code)
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -511,25 +511,25 @@ export async function deletePresetClassByApi(id) {
  * @returns {Promise<any>}
  */
 export async function updatePresetClassByApi(args) {
-    try {
-        let params = {
-            id: parseInt(args.id),
-            name: args.name
-        }
-
-        const response = await getInstance1().post('/update', params)
-        const res = get(response, 'data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      id: parseInt(args.id),
+      name: args.name
     }
+
+    const response = await getInstance1().post('/update', params)
+    const res = get(response, 'data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -538,24 +538,24 @@ export async function updatePresetClassByApi(args) {
  * @returns {Promise<any>}
  */
 export async function batchSharePresetByApi(id_json) {
-    try {
-        let params = {
-            ids_info: id_json
-        }
-
-        const response = await getInstance().post('/batch/share', params)
-        const res = get(response, 'data.data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      ids_info: id_json
     }
+
+    const response = await getInstance().post('/batch/share', params)
+    const res = get(response, 'data.data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -564,26 +564,26 @@ export async function batchSharePresetByApi(id_json) {
  * @returns {Promise<any>}
  */
 export async function batchDeletePresetByApi(id_json) {
-    try {
-        let params = {
-            ids_info: id_json
-        }
-
-        const response = await getInstance().delete('/batch/delete', {
-            data: params
-        })
-        const res = get(response, 'data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      ids_info: id_json
     }
+
+    const response = await getInstance().delete('/batch/delete', {
+      data: params
+    })
+    const res = get(response, 'data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -592,24 +592,24 @@ export async function batchDeletePresetByApi(id_json) {
  * @returns {Promise<any>}
  */
 export async function updatePresetClassOrder(order_info) {
-    try {
-        let params = {
-            order_info: order_info
-        }
-
-        const response = await getInstance1().post('/update_order', params)
-        const res = get(response, 'data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      order_info: order_info
     }
+
+    const response = await getInstance1().post('/update_order', params)
+    const res = get(response, 'data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
 
 /**
@@ -618,22 +618,22 @@ export async function updatePresetClassOrder(order_info) {
  * @returns {Promise<any>}
  */
 export async function updatePresetItemOrder(order_info) {
-    try {
-        let params = {
-            order_info: order_info
-        }
-
-        const response = await getInstance().post('/update_order', params)
-        const res = get(response, 'data', {})
-        return res
-    } catch (err) {
-        throwError(err, code => {
-            switch (code) {
-                case 400:
-                    return '参数错误'
-                default: {
-                }
-            }
-        })
+  try {
+    let params = {
+      order_info: order_info
     }
+
+    const response = await getInstance().post('/update_order', params)
+    const res = get(response, 'data', {})
+    return res
+  } catch (err) {
+    throwError(err, code => {
+      switch (code) {
+        case 400:
+          return 'parameter Err'
+        default: {
+        }
+      }
+    })
+  }
 }
