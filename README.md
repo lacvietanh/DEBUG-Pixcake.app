@@ -1,6 +1,7 @@
-# AkiDebug-pica
-- https://www.pixcakeai.com/
-- https://www.evoto.ai/ may be using pixcake (from) 4.x.x source code
+# DEBUG-Pixcake.app
+
+ https://www.pixcakeai.com/
+ https://www.evoto.ai/ may be using pixcake (from) 4.x.x source code
   
 ## 2024 Jan 15 NOTES:
 - This is old version of app (4.2.3)
